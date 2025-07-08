@@ -1,19 +1,17 @@
 import { useState, useRef, useEffect, useContext } from "react";
-import { NavLink, Link } from "react-router";
+import { NavLink, Link, useNavigate } from "react-router";
 import { Menu, X, UserCircle2, ChevronDown } from "lucide-react";
 import logo from "../assets/aaponaloi-logo.png";
-import useAuth from "../hooks/useAuth";
 import { AuthContext } from "../contexts/AuthContext/AuthContext";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
-  const { user, role, logout } = useAuth();
-  const { signOutUser, loading } = useContext(AuthContext);
+  const { user, userProfile, signOutUser, loading } = useContext(AuthContext);
   const profileRef = useRef();
+  const navigate = useNavigate();
 
-  console.log(user);
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (profileRef.current && !profileRef.current.contains(e.target)) {
@@ -23,6 +21,10 @@ export default function Navbar() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  // Use role from userProfile or fallback
+  const role = userProfile?.role || (user ? "member" : "visitor");
+  console.log(user)
 
   const navItems = {
     visitor: [
@@ -43,12 +45,18 @@ export default function Navbar() {
     ],
   };
 
-  const links = navItems[role || "visitor"];
+  const links = navItems[role] || navItems["visitor"];
 
-  const handleLogout = () => {
-    signOutUser();
-    setProfileMenuOpen(false);
-    setMenuOpen(false);
+  const handleLogout = async () => {
+    try {
+      localStorage.removeItem("accessToken");
+      await signOutUser();
+      setProfileMenuOpen(false);
+      setMenuOpen(false);
+      navigate("/login");
+    } catch (err) {
+      console.error("Logout error:", err);
+    }
   };
 
   if (loading) return null;
@@ -57,7 +65,11 @@ export default function Navbar() {
     <header className="bg-white border-b py-3 border-gray-200 shadow sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 flex justify-between items-center h-16">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="Aaponaloi Logo" className="w-22 h-22 object-contain" />
+          <img
+            src={logo}
+            alt="Aaponaloi Logo"
+            className="w-22 h-22 object-contain"
+          />
           <span className="text-2xl font-extrabold text-primary select-none hidden sm:block">
             Aaponaloi
           </span>
@@ -130,7 +142,7 @@ export default function Navbar() {
                     className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg py-2 z-50"
                   >
                     <li className="px-4 py-2 text-sm font-medium text-gray-800 border-b">
-                      {user.displayName || 'User'}
+                      {user.displayName || userProfile?.name || "User"}
                     </li>
                     <li>
                       <Link

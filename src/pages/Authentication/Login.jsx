@@ -14,7 +14,19 @@ const Login = () => {
 
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, provider)
-      .then(result => {
+      .then(async (result) => {
+        const user = result.user;
+        // Send user info to your backend to get JWT token
+        const response = await fetch('http://localhost:5000/api/auth/jwt', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: user.email, role: 'user' }), // You can update role logic later
+        });
+        const data = await response.json();
+        if (data.token) {
+          localStorage.setItem('accessToken', data.token); // Save JWT token
+        }
+
         navigate(from);
         Swal.fire({
           icon: 'success',
@@ -40,7 +52,19 @@ const Login = () => {
     const password = form.password.value;
 
     signInUser(email, password)
-      .then(result => {
+      .then(async (result) => {
+        const user = result.user;
+        // Send user info to your backend to get JWT token
+        const response = await fetch('http://localhost:5000/api/auth/jwt', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: user.email, role: 'user' }), // Adjust role if you have roles
+        });
+        const data = await response.json();
+        if (data.token) {
+          localStorage.setItem('accessToken', data.token);
+        }
+
         navigate(from);
         Swal.fire({
           icon: 'success',
@@ -58,6 +82,7 @@ const Login = () => {
         });
       });
   };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
