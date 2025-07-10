@@ -1,0 +1,92 @@
+import React, { useEffect } from 'react';
+import { FaTag } from 'react-icons/fa';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+const coupons = [
+  {
+    code: 'SAVE20',
+    description: 'Get 20% off on your first apartment rent!',
+    discount: '20%',
+    color: 'bg-green-100 text-green-800',
+  },
+  {
+    code: 'FAMILY10',
+    description: '10% off for family apartments (2BHK, 3BHK).',
+    discount: '10%',
+    color: 'bg-blue-100 text-blue-800',
+  },
+  {
+    code: 'LOYAL50',
+    description: '50% discount for long-term tenants (1 year+)',
+    discount: '50%',
+    color: 'bg-yellow-100 text-yellow-800',
+  },
+  {
+    code: 'STUDENT15',
+    description: '15% off for students on studio apartments.',
+    discount: '15%',
+    color: 'bg-purple-100 text-purple-800',
+  },
+  {
+    code: 'SUMMER25',
+    description: 'Summer special: Get 25% off!',
+    discount: '25%',
+    color: 'bg-pink-100 text-pink-800',
+  },
+  {
+    code: 'REFER30',
+    description: 'Refer a friend and both get 30% off!',
+    discount: '30%',
+    color: 'bg-orange-100 text-orange-800',
+  },
+];
+
+const CouponsSection = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: false,
+    });
+  }, []);
+
+  return (
+    <section className="py-20 px-6 md:px-20 ">
+      <div className="text-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+          🎁 Exclusive Coupons
+        </h2>
+        <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+          Unlock amazing savings for your next apartment experience with our limited-time offers.
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {coupons.map((coupon, index) => (
+            <div
+              key={coupon.code}
+              className="p-6 bg-white rounded-2xl border shadow hover:shadow-xl transition relative"
+              data-aos={index % 2 === 0 ? 'flip-left' : 'fade-down-left'}
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <FaTag className={`text-2xl ${coupon.color.split(' ')[1]}`} />
+                <div>
+                  <h3 className="text-xl font-bold">{coupon.code}</h3>
+                  <p className="text-sm text-gray-500">{coupon.description}</p>
+                </div>
+              </div>
+
+              <span
+                className={`absolute top-4 right-4 px-3 py-1 text-sm font-semibold rounded-full ${coupon.color}`}
+              >
+                {coupon.discount} OFF
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default CouponsSection;

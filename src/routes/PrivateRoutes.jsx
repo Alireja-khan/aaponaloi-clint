@@ -1,17 +1,21 @@
-import React from 'react';
-import useAuth from '../hooks/useAuth';
-import { Navigate } from 'react-router';
+import React, { useContext } from 'react';
+import { Navigate, useLocation } from 'react-router';
+import { AuthContext } from '../contexts/AuthContext/AuthContext';
 
 const PrivateRoutes = ({ children }) => {
-
-    const { user, loading } = useAuth();
+    const { user, loading } = useContext(AuthContext); // Fix here
+    const location = useLocation();
 
     if (loading) {
-        return <span className="loading loading-bars loading-xl"></span>
-    };
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <span className="loading loading-bars loading-xl"></span>
+            </div>
+        );
+    }
 
     if (!user) {
-        <Navigate to='login'></Navigate>
+        return <Navigate to='/login' state={{ from: location }} replace />;
     }
 
     return children;

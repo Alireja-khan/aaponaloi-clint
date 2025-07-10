@@ -1,9 +1,19 @@
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+// Login.jsx
 import React, { useContext } from 'react';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { AuthContext } from '../../contexts/AuthContext/AuthContext';
-import { useLocation, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import { auth } from '../../firebase/firebase.init';
+import { useForm } from 'react-hook-form';
+import { motion, AnimatePresence } from 'framer-motion';
+import SocialLogin from './SocialLogin';
+
+const containerVariants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
+  exit: { opacity: 0, x: -50, transition: { duration: 0.4 } },
+};
 
 const Login = () => {
   const provider = new GoogleAuthProvider();
@@ -12,134 +22,112 @@ const Login = () => {
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || '/';
 
-  const handleGoogleSignIn = () => {
-    signInWithPopup(auth, provider)
-      .then(async (result) => {
-        const user = result.user;
-        // Send user info to your backend to get JWT token
-        const response = await fetch('http://localhost:5000/api/auth/jwt', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: user.email, role: 'user' }), // You can update role logic later
-        });
-        const data = await response.json();
-        if (data.token) {
-          localStorage.setItem('accessToken', data.token); // Save JWT token
-        }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-        navigate(from);
-        Swal.fire({
-          icon: 'success',
-          title: 'Signed in with Google!',
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch(error => {
-        console.error(error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Google Sign-in Failed',
-          text: error.message,
-        });
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithPopup(auth, provider);
+      Swal.fire({
+        icon: 'success',
+        title: 'Signed in with Google!',
+        showConfirmButton: false,
+        timer: 1500,
       });
+      navigate(from);
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Google Sign-in Failed',
+        text: error.message,
+      });
+    }
   };
 
-  const handleSignIn = e => {
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-
-    signInUser(email, password)
-      .then(async (result) => {
-        const user = result.user;
-        // Send user info to your backend to get JWT token
-        const response = await fetch('http://localhost:5000/api/auth/jwt', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: user.email, role: 'user' }), // Adjust role if you have roles
-        });
-        const data = await response.json();
-        if (data.token) {
-          localStorage.setItem('accessToken', data.token);
-        }
-
-        navigate(from);
-        Swal.fire({
-          icon: 'success',
-          title: 'Login successful!',
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch(error => {
-        console.error(error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Login Failed',
-          text: 'Invalid email or password!',
-        });
+  const onSubmit = async (data) => {
+    console.log('Form Data:', data  )
+    try {
+      await signInUser(data.email, data.password);
+      Swal.fire({
+        icon: 'success',
+        title: 'Login successful!',
+        showConfirmButton: false,
+        timer: 1500,
       });
+      navigate(from);
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Login Failed',
+        text: 'Invalid email or password!',
+      });
+    }
   };
-
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="max-w-md w-full bg-white rounded-xl shadow-md p-8">
-        <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">
-          Sign In to Your Account
-        </h2>
+    <AnimatePresence mode="wait">
+      <motion.div
+        key="login"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        className="w-full bg-white p-8 rounded-lg"
+      >
+        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Sign In</h2>
 
-        <form onSubmit={handleSignIn} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email Address
-            </label>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
             <input
               type="email"
-              name="email"
-              required
-              className="mt-1 w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              {...register('email', { required: 'Email is required' })}
+              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="you@example.com"
             />
+            {errors.email && (
+              <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>
+            )}
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
             <input
               type="password"
-              name="password"
-              required
-              className="mt-1 w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              {...register('password', { required: 'Password is required' })}
+              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="••••••••"
             />
+            {errors.password && (
+              <p className="text-sm text-red-500 mt-1">{errors.password.message}</p>
+            )}
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md transition"
           >
             Sign In
           </button>
         </form>
 
-        <div className="my-4 text-center text-gray-500">OR</div>
+        <div className="my-6 text-center text-gray-500">or</div>
 
-        <button
-          onClick={handleGoogleSignIn}
-          className="w-full bg-red-500 text-white font-semibold py-2 rounded-md hover:bg-red-600 transition"
-        >
+        <SocialLogin onClick={handleGoogleSignIn}>
           Continue with Google
-        </button>
+        </SocialLogin>
 
         <p className="mt-6 text-sm text-center text-gray-600">
-          Don’t have an account? <span className="text-blue-600 hover:underline cursor-pointer">Sign Up</span>
+          Don’t have an account?{' '}
+          <Link to="/register" className="text-blue-600 hover:underline">
+            Sign Up
+          </Link>
         </p>
-      </div>
-    </div>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

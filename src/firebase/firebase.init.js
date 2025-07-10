@@ -21,3 +21,4 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 export const storage = getStorage(app); // ← add this
 export const auth = getAuth(app);
+export default app;

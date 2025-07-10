@@ -1,12 +1,12 @@
 import React from 'react';
-import logo from '../assets/aaponaloiLogo.png'
+import logo from '../assets/logo/aaponaloi-logo3.png'
 import { Link } from 'react-router';
 
 const AaponaloiLogo = () => {
     return (
         <Link to='/'>
             <div>
-                <img src={logo} alt="" />
+                <img className='' src={logo} alt="" />
             </div>
         </Link>
     );

@@ -1,0 +1,1370 @@
+[
+  {
+    "floor": 1,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "South",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/6c5fNH9s/pexels-rana-matloob-hussain-733235258-27531872.jpg",
+    "description": "A corner apartment with warm natural lighting, elegant tile finishes, and a cozy ambiance. Perfect for small families or professionals seeking tranquility.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "5de99cb9",
+    "apartmentNo": "A01",
+    "rent": 29500
+  },
+  {
+    "floor": 1,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "North-West",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/PzwbTYkb/pexels-curtis-adams-1694007-5178069.jpg",
+    "description": "A beautifully ventilated apartment offering scenic neighborhood views and an open living area ideal for entertaining guests.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "24975cac",
+    "apartmentNo": "A02",
+    "rent": 26000
+  },
+  {
+    "floor": 1,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "North-West",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/ymhjrNQg/pexels-the-ghazi-2152398165-32177990.jpg",
+    "description": "Featuring a modern kitchen layout and well-separated bedrooms, this apartment provides a practical yet stylish living experience.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "bb202430",
+    "apartmentNo": "A03",
+    "rent": 26000
+  },
+  {
+    "floor": 1,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "North-West",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/n8Cp5hFg/pexels-heyho-7746085.jpg",
+    "description": "Bright interiors, a spacious master suite, and a quiet balcony make this apartment a serene home for growing families.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "d62b87bb",
+    "apartmentNo": "A04",
+    "rent": 24500
+  },
+  {
+    "floor": 1,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "North-West",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/bgYcLgzY/pexels-fotoaibe-1743229.jpg",
+    "description": "This charming apartment stands out for its earthy tones and garden-facing windows, offering a fresh breath of nature every morning.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "410ba771",
+    "apartmentNo": "A05",
+    "rent": 28000
+  },
+  {
+    "floor": 1,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "East",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/hxmzJLJf/pexels-curtis-adams-1694007-3288100.jpg",
+    "description": "An east-facing flat with morning sunlight flooding into the living room and dining area, offering an uplifting start to each day.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "9a3b8eee",
+    "apartmentNo": "A06",
+    "rent": 27500
+  },
+  {
+    "floor": 2,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "South-East",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/FthtFs5/pexels-pu-ca-adryan-163345030-12954318.jpg",
+    "description": "This beautifully sunlit apartment offers a welcoming living area with stylish furniture-ready spaces and open balcony views, ideal for peaceful mornings.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "f9f2f85d",
+    "apartmentNo": "A07",
+    "rent": 25000
+  },
+  {
+    "floor": 2,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "North-West",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/sdQtTrJF/pexels-zvolskiy-2082087.jpg",
+    "description": "Designed with simplicity and elegance, this apartment features neutral tones, airy windows, and excellent room separation for enhanced privacy.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "896cdba3",
+    "apartmentNo": "A08",
+    "rent": 29000
+  },
+  {
+    "floor": 2,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "East",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/xKd6r37k/pexels-heyho-6585760.jpg",
+    "description": "Wake up to golden rays in this east-facing apartment featuring a roomy kitchen, bright bedrooms, and a compact study corner for remote work.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "ecf4eeb6",
+    "apartmentNo": "A09",
+    "rent": 25500
+  },
+  {
+    "floor": 2,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "South",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/n8zjvyJH/pexels-heyho-7534273.jpg",
+    "description": "A sun-drenched living space awaits with stylish ceramic floors and an extra-wide balcony for relaxation and evening tea time.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "1b6f02ad",
+    "apartmentNo": "A10",
+    "rent": 23000
+  },
+  {
+    "floor": 2,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "West",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/TDb45mwm/pexels-heyho-7018405.jpg",
+    "description": "This west-facing apartment boasts soft golden-hour lighting and an inviting layout with a spacious kitchen and stylish bathrooms.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "6c1ee967",
+    "apartmentNo": "A11",
+    "rent": 26000
+  },
+  {
+    "floor": 2,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "South-East",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/Kx49FFyt/pexels-heyho-7535018.jpg",
+    "description": "This cozy corner flat brings in soft daylight throughout, featuring smooth wooden textures and a relaxing study room with calm balcony access.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "cd21cacc",
+    "apartmentNo": "A12",
+    "rent": 24000
+  },
+  {
+    "floor": 3,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "North",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/m5zkm99H/Copy-of-pexels-heyho-7174407.jpg",
+    "description": "A minimalist-style apartment with elegant grey accents, ideal for modern families seeking a calming retreat and ample natural airflow.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "1f7b26c8",
+    "apartmentNo": "A13",
+    "rent": 26500
+  },
+  {
+    "floor": 3,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "South-East",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/Mkxzwfxd/Copy-of-pexels-heyho-7195850.jpg",
+    "description": "A warm and well-lit flat with dual balconies and an open-plan kitchen, designed for families who value both beauty and functionality.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "b29b3204",
+    "apartmentNo": "A14",
+    "rent": 23500
+  },
+  {
+    "floor": 3,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "North",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/xK89QHgc/pexels-heyho-6890399.jpg",
+    "description": "This cozy yet spacious apartment offers rich wooden interior finishes and a dedicated reading space, great for peaceful urban living.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "05ef589c",
+    "apartmentNo": "A15",
+    "rent": 24000
+  },
+  {
+    "floor": 3,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "East",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/Y7pZ9wBm/pexels-heyho-7174388.jpg",
+    "description": "With soft-toned walls and wide sliding doors, this apartment combines elegant simplicity with functionality and beautiful sunrise views.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "c2e793ea",
+    "apartmentNo": "A16",
+    "rent": 29500
+  },
+  {
+    "floor": 3,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "East",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/vvYwNV2Z/pexels-heyho-6758788.jpg",
+    "description": "This east-facing unit features full-length windows, open spaces, and a designer kitchen perfect for cooking enthusiasts and family bonding.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "58c9d989",
+    "apartmentNo": "A17",
+    "rent": 28500
+  },
+  {
+    "floor": 3,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "North-West",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/sDrSc36/pexels-heyho-7031715.jpg",
+    "description": "A vibrant top-floor unit with tasteful lighting, separate study nook, and cross-ventilation design—ideal for remote professionals or creatives.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "ee145045",
+    "apartmentNo": "A18",
+    "rent": 28000
+  },
+  {
+    "floor": 4,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "North",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/5Xw6R2Jd/pexels-heyho-7147291.jpg",
+    "description": "A vibrant home with earth-toned interiors and bright natural light, perfect for small families who value coziness and privacy.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "5b667b24",
+    "apartmentNo": "A19",
+    "rent": 26500
+  },
+  {
+    "floor": 4,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "East",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/LDjYTZBD/pexels-heyho-7147284.jpg",
+    "description": "Spacious and modern apartment with sleek furnishing and plenty of daylight, ideal for professionals working remotely or families with children.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "ddde8bfa",
+    "apartmentNo": "A20",
+    "rent": 27500
+  },
+  {
+    "floor": 4,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "East",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/1Y34Bsgx/pexels-heyho-7512036.jpg",
+    "description": "A classic-style flat with modern upgrades and a long living-dining area that promotes both relaxation and entertaining guests.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "3d407da6",
+    "apartmentNo": "A21",
+    "rent": 25000
+  },
+  {
+    "floor": 4,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "South-East",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/Gf0cbdJv/pexels-heyho-5998120.jpg",
+    "description": "Well-ventilated corner apartment with floral balcony views and a stylish kitchen setup. Suited for small families and elderly residents.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "0304eeab",
+    "apartmentNo": "A22",
+    "rent": 27000
+  },
+  {
+    "floor": 4,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "South",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/Df02YN8x/living-room-1.jpg",
+    "description": "Premium unit with elegant living room decor, soft lighting, and a spacious layout ideal for hosting friends and guests.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "903755fb",
+    "apartmentNo": "A23",
+    "rent": 24000
+  },
+  {
+    "floor": 4,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "South-East",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/23R8tnwm/pexels-curtis-adams-1694007-4469151.jpg",
+    "description": "This bright and stylish apartment has a colorful family vibe with large windows, warm furniture, and practical storage throughout.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "3cd17606",
+    "apartmentNo": "A24",
+    "rent": 24500
+  },
+  {
+    "floor": 5,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "South",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/mrN91HCB/pexels-curtis-adams-1694007-18038085.jpg",
+    "description": "A beautifully lit apartment with elegant flooring and a serene atmosphere. Ideal for couples or small families looking for peace and style.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "48bde70a",
+    "apartmentNo": "A25",
+    "rent": 29000
+  },
+  {
+    "floor": 5,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "South",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/wFXy659X/pexels-huy-quang-nguy-n-18652822-6699977.jpg",
+    "description": "Modern apartment with stylish fixtures, a smart open kitchen layout, and a cozy family vibe. Perfect for professionals and remote workers.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "0d61db07",
+    "apartmentNo": "A26",
+    "rent": 28500
+  },
+  {
+    "floor": 5,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "North-West",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/VcMVhkGg/pexels-curtis-adams-1694007-5353918.jpg",
+    "description": "A compact, cleanly designed space with plenty of natural airflow, built for efficiency and comfort with views of the neighborhood skyline.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "c6155d4c",
+    "apartmentNo": "A27",
+    "rent": 24000
+  },
+  {
+    "floor": 5,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "North-West",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/nNwSCzFf/pexels-curtis-adams-1694007-8583806.jpg",
+    "description": "A sun-washed apartment with warm colors and a calm layout. Great for artists, students, or small families looking for creativity and rest.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "02751277",
+    "apartmentNo": "A28",
+    "rent": 29500
+  },
+  {
+    "floor": 5,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "South-East",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/k24Qvy13/pexels-quang-nguyen-vinh-222549-14025022.jpg",
+    "description": "Elegant, naturally ventilated apartment featuring minimalist designs, soft daylight, and well-equipped rooms. Ideal for modern city living.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "36a78fc3",
+    "apartmentNo": "A29",
+    "rent": 28000
+  },
+  {
+    "floor": 5,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "South-East",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/jkH6FSN9/pexels-svh-manali-1801124329-28347470.jpg",
+    "description": "Stylish apartment with creative use of space, enhanced with cozy furniture and earthy tones. A peaceful retreat after a busy day.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "0c8bfffa",
+    "apartmentNo": "A30",
+    "rent": 25000
+  },
+  {
+    "floor": 6,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "South",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/Lhcmw9qh/pexels-dada-design-240566386-12277281.jpg",
+    "description": "This sleek top-floor apartment offers expansive views and polished interiors, ideal for modern living with a touch of elegance.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "8d21c30f",
+    "apartmentNo": "A31",
+    "rent": 25500
+  },
+  {
+    "floor": 6,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "West",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/KpzphqZt/pexels-fotoaibe-1743231.jpg",
+    "description": "Comfortable and modern west-facing apartment with wood accents, great for unwinding in the evening sun after a long day.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "1960e221",
+    "apartmentNo": "A32",
+    "rent": 24500
+  },
+  {
+    "floor": 6,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "North-West",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/1GqZkc1N/pexels-curtis-adams-1694007-5178070.jpg",
+    "description": "Cozy apartment perfect for working professionals, offering natural light, calm tones, and a comfortable study space.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "e08351a8",
+    "apartmentNo": "A33",
+    "rent": 24000
+  },
+  {
+    "floor": 6,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "South-East",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/KpcdDyZw/pexels-curtis-adams-1694007-8031934.jpg",
+    "description": "An open-plan layout with contemporary decor and large windows make this unit bright, airy, and truly inviting.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "0e7ff828",
+    "apartmentNo": "A34",
+    "rent": 25000
+  },
+  {
+    "floor": 6,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "North",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/WvDnp3s9/pexels-pixabay-271624.jpg",
+    "description": "Elegant and peaceful apartment with sleek finishes, designed for families who value both comfort and calm mornings.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "3080d159",
+    "apartmentNo": "A35",
+    "rent": 23000
+  },
+  {
+    "floor": 6,
+    "block": "B",
+    "available": true,
+    "sizeSqFt": 1250,
+    "balcony": true,
+    "facing": "North-West",
+    "yearBuilt": 2019,
+    "image": "https://i.ibb.co/nN9ZCFSV/living-room-3.jpg",
+    "description": "Bright and balanced apartment with a perfect blend of privacy and space. Excellent for both family life and quiet work-from-home setups.",
+    "amenities": [
+      "24/7 Security",
+      "Lift",
+      "CCTV Surveillance",
+      "Generator Backup",
+      "Fire Safety",
+      "Underground Parking"
+    ],
+    "contact": {
+      "managerName": "Mr. Rahman",
+      "phone": "+8801712345678",
+      "email": "manager@aaponaloi.com"
+    },
+    "rooms": [
+      "Living Room",
+      "Master Bedroom",
+      "Guest Bedroom",
+      "Kids Room",
+      "Kitchen",
+      "Dining Area",
+      "Common Washroom",
+      "Attached Washroom",
+      "Study Room"
+    ],
+    "_id": "b8242fbf",
+    "apartmentNo": "A36",
+    "rent": 28000
+  }
+]

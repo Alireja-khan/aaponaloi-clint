@@ -4,7 +4,8 @@ import Home from "../pages/Home/Home";
 import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
-import Apartment from "../pages/Apartment/Apartment";
+import PrivateRoutes from "./PrivateRoutes";
+import Apartments from "../pages/Apartment/Apartments";
 
 export const router = createBrowserRouter([
     {
@@ -16,8 +17,8 @@ export const router = createBrowserRouter([
                 Component: Home
             },
             {
-                path: 'apartment',
-                Component: Apartment
+                path: 'apartments',
+                element: <Apartments></Apartments>
             },
         ]
     },
