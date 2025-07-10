@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaUserCircle } from 'react-icons/fa';
 import useClickOutside from '../hooks/useClickOutside';
@@ -7,7 +7,7 @@ import { AuthContext } from '../contexts/AuthContext/AuthContext';
 import AaponaloiLogo from './AaponaloiLogo';
 
 const Navbar = () => {
-  const { user, signOutUser } = useContext(AuthContext); // ✅ renamed
+  const { user, signOutUser, role } = useContext(AuthContext); // ✅ renamed
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
@@ -93,8 +93,8 @@ const Navbar = () => {
                   </div>
                   <hr />
                   <ul className="menu p-2">
-                    <li><NavLink to="/dashboard">Dashboard</NavLink></li>
                     <li>
+                    <Link to='/dashboard'>Dashboard</Link>
                       <button onClick={handleLogout} className="text-red-500 font-medium">
                         Logout
                       </button>

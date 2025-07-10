@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AuthContext } from '../AuthContext/AuthContext';
 import {
   createUserWithEmailAndPassword,
@@ -11,11 +11,10 @@ import {
 import { auth } from '../../firebase/firebase.init';
 
 const googleProvider = new GoogleAuthProvider();
-// const BACKEND_URL = 'http://localhost:5000/';
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  // const [userProfile, setUserProfile] = useState(null);
+  const [role, setRole] = useState(null); // ✅ Role state
   const [loading, setLoading] = useState(true);
 
   // Register new user
@@ -32,91 +31,67 @@ const AuthProvider = ({ children }) => {
   };
 
   // Sign in user with email/password
-    const signInUser = async (email, password) => {
-        if (!email || !password) {
-            return Promise.reject(new Error('Email and password are required'));
-        }
-        setLoading(true);
-        try {
-            return await signInWithEmailAndPassword(auth, email, password);
-        } finally {
-            setLoading(false);
-        }
-    };
+  const signInUser = async (email, password) => {
+    if (!email || !password) {
+      return Promise.reject(new Error('Email and password are required'));
+    }
+    setLoading(true);
+    try {
+      return await signInWithEmailAndPassword(auth, email, password);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Google Sign-In
-    const googleSignIn = async () => {
-        setLoading(true);
-        try {
-            return await signInWithPopup(auth, googleProvider);
-        } finally {
-            setLoading(false);
-        }
-    };
+  const googleSignIn = async () => {
+    setLoading(true);
+    try {
+      return await signInWithPopup(auth, googleProvider);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Sign out user
-    const signOutUser = async () => {
-        setLoading(true);
-        try {
-            return await signOut(auth);
-        } finally {
-            setLoading(false);
-        }
-    };
+  const signOutUser = async () => {
+    setLoading(true);
+    try {
+      return await signOut(auth);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  // const upsertUserToDB = useCallback(async (firebaseUser) => {
-  //   if (!firebaseUser?.email) return;
-  //   try {
-  //     const res = await fetch(`${BACKEND_URL}/${encodeURIComponent(firebaseUser.email)}`, {
-  //       method: 'PUT',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({
-  //         email: firebaseUser.email,
-  //         name: firebaseUser.displayName || '',
-  //         photo: firebaseUser.photoURL || '',
-  //         role: 'user',
-  //       }),
-  //     });
-  //     if (!res.ok) throw new Error('Failed to upsert user');
-  //   } catch (err) {
-  //     console.error('Error upserting user:', err);
-  //   }
-  // }, []);
-
-  // const fetchUserProfile = useCallback(async (email) => {
-  //   if (!email) return;
-  //   try {
-  //     const res = await fetch(`${BACKEND_URL}/${encodeURIComponent(email)}`);
-  //     if (!res.ok) throw new Error('Failed to fetch profile');
-  //     const profile = await res.json();
-  //     setUserProfile(profile);
-  //   } catch (err) {
-  //     console.error('Error fetching user profile:', err);
-  //     setUserProfile(null);
-  //   }
-  // }, []);
-
+  // Check auth state and fetch user role from backend
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
 
+      if (currentUser?.email) {
+        try {
+          // ✅ Save user to DB (upsert)
+          await fetch(`http://localhost:5000/users/${currentUser.email}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: currentUser.email,
+              name: currentUser.displayName,
+              photo: currentUser.photoURL,
+            }),
+          });
 
-      // setLoading(true);
-      // if (currentUser?.email) {
-      //   try {
-      //     const token = await currentUser.getIdToken(true);
-      //     localStorage.setItem('access-token', token);
-
-      //     await upsertUserToDB(currentUser);
-      //     await fetchUserProfile(currentUser.email);
-      //   } catch (err) {
-      //     console.error('Error during auth state change:', err);
-      //   }
-      // } else {
-      //   localStorage.removeItem('access-token');
-      //   setUserProfile(null);
-      // }
-
+          // ✅ Fetch role
+          const res = await fetch(`http://localhost:5000/users/${currentUser.email}`);
+          const data = await res.json();
+          setRole(data.role || 'user');
+        } catch (error) {
+          console.error('Failed to fetch user role:', error);
+          setRole('user');
+        }
+      } else {
+        setRole(null);
+      }
 
       setLoading(false);
     });
@@ -124,10 +99,11 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  // Provide everything in context
   const authInfo = {
     user,
-    // userProfile,
     setUser,
+    role, // ✅ Provide role
     loading,
     createUser,
     signInUser,

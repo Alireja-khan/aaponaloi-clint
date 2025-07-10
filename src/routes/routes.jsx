@@ -10,58 +10,93 @@ import Apartments from "../pages/Apartment/Apartments";
 import DashboardLayout from "../dashboard/UserDashBoard.jsx/DashboardLayout";
 import Profile from "../dashboard/UserDashBoard.jsx/Profile";
 import Announcements from "../dashboard/UserDashBoard.jsx/Announcements";
+import AdminDashboardLayout from "../dashboard/AdminDashBoard/AdminDashboardLayout";
+import AdminProfile from "../dashboard/AdminDashBoard/AdminProfile";
+import ManageMembers from "../dashboard/AdminDashBoard/ManageMembers";
+import MakeAnnouncement from "../dashboard/AdminDashBoard/MakeAnnouncement";
+import AgreementRequests from "../dashboard/AdminDashBoard/AgreementRequests";
+import ManageCoupons from "../dashboard/AdminDashBoard/ManageCoupons";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     Component: RootLayout,
     children: [
+      { index: true, Component: Home },
+      { path: 'apartments', Component: Apartments },
+
+      // Main dashboard route with redirect logic
       {
-        index: true,
-        Component: Home,
+        path: 'dashboard',
+        Component: PrivateRoutes,
+        children: [], // Handled by redirection
       },
+
+      // User Dashboard
       {
-        path: "apartments",
-        Component: Apartments,
-      },
-      {
-        path: "dashboard",
-        Component: PrivateRoutes, // Protect all dashboard routes
+        path: 'dashboard/user',
+        Component: PrivateRoutes,
         children: [
           {
-            path: "",
-            Component: DashboardLayout,
+            path: '',
+            Component: DashboardLayout, // Your UserDashboardLayout
             children: [
-              {
-                index: true,
-                Component: Profile,
-              },
-              {
-                path: "profile",
-                Component: Profile,
-              },
-              {
-                path: "announcements",
-                Component: Announcements,
-              },
+              { index: true, Component: Profile },
+              { path: 'profile', Component: Profile },
+              { path: 'announcements', Component: Announcements },
+            ],
+          },
+        ],
+      },
+
+      // Member Dashboard
+      // {
+      //   path: 'member-dashboard',
+      //   Component: PrivateRoutes,
+      //   children: [
+      //     {
+      //       path: '',
+      //       Component: MemberDashboardLayout,
+      //       children: [
+      //         { index: true, Component: MemberProfile },
+      //         { path: 'profile', Component: MemberProfile },
+      //         { path: 'make-payment', Component: MakePayment },
+      //         { path: 'payment-history', Component: PaymentHistory },
+      //         { path: 'announcements', Component: Announcements },
+      //       ],
+      //     },
+      //   ],
+      // },
+
+      // Admin Dashboard
+      {
+        path: '',
+        Component: PrivateRoutes,
+        children: [
+          {
+            path: 'admin-dashboard',
+            Component: AdminDashboardLayout,
+            children: [
+              { index: true, Component: AdminProfile },
+              { path:'/admin-dashboard/profile', Component: AdminProfile },
+              { path: 'manage-members', Component: ManageMembers },
+              { path: 'make-announcement', Component: MakeAnnouncement },
+              { path: 'agreement-requests', Component: AgreementRequests },
+              { path: 'manage-coupons', Component: ManageCoupons },
             ],
           },
         ],
       },
     ],
   },
+
+  // Auth routes
   {
-    path: "/",
+    path: '/',
     Component: AuthLayout,
     children: [
-      {
-        path: "login",
-        Component: Login,
-      },
-      {
-        path: "register",
-        Component: Register,
-      },
+      { path: 'login', Component: Login },
+      { path: 'register', Component: Register },
     ],
   },
 ]);
