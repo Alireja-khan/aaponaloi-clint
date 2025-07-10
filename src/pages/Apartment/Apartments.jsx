@@ -14,6 +14,9 @@ const Apartments = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
 
+    const [hasApplied, setHasApplied] = useState(false);
+    const [appliedApartmentNo, setAppliedApartmentNo] = useState(null);
+
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -33,6 +36,24 @@ const Apartments = () => {
         fetchApartments();
     }, []);
 
+    useEffect(() => {
+        const checkUserAgreement = async () => {
+            if (user?.email) {
+                try {
+                    const res = await axios.get(`http://localhost:5000/agreements?email=${user.email}`);
+                    if (res.data.hasApplied) {
+                        setHasApplied(true);
+                        setAppliedApartmentNo(res.data.appliedApartment);
+                    }
+                } catch (err) {
+                    console.error('Failed to check agreement status:', err);
+                }
+            }
+        };
+
+        checkUserAgreement();
+    }, [user?.email]);
+
     const handleSearch = (e) => {
         e.preventDefault();
         const min = Number(minRent) || 0;
@@ -40,12 +61,17 @@ const Apartments = () => {
         const results = apartments.filter((apt) => apt.rent >= min && apt.rent <= max);
         setFiltered(results);
         setCurrentPage(1);
-        AOS.refresh(); // Refresh AOS after filtering
+        AOS.refresh();
     };
 
     const handleAgreement = async (apt) => {
         if (!user) {
             navigate('/login');
+            return;
+        }
+
+        if (hasApplied) {
+            toast.warn('You have already applied for one apartment.');
             return;
         }
 
@@ -62,6 +88,8 @@ const Apartments = () => {
             const res = await axios.post('http://localhost:5000/agreements', agreementData);
             if (res.status === 201) {
                 toast.success('Agreement submitted successfully!');
+                setHasApplied(true);
+                setAppliedApartmentNo(apt.apartmentNo);
             }
         } catch (err) {
             if (err.response?.status === 409) {
@@ -122,9 +150,8 @@ const Apartments = () => {
                     currentApartments.map((apt, i) => (
                         <div
                             key={apt._id}
-                            className={`rounded-2xl overflow-hidden flex flex-col sm:flex-row ${
-                                i % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'
-                            } items-center`}
+                            className={`rounded-2xl overflow-hidden flex flex-col sm:flex-row ${i % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'
+                                } items-center`}
                             data-aos={i % 2 === 0 ? 'fade-right' : 'fade-left'}
                             data-aos-duration="700"
                             data-aos-delay={i * 100}
@@ -146,21 +173,11 @@ const Apartments = () => {
                                     <p className="text-gray-600 text-sm mb-4">{apt.description}</p>
 
                                     <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm text-[#222222] mb-4">
-                                        <p>
-                                            <strong>Floor:</strong> {apt.floor}
-                                        </p>
-                                        <p>
-                                            <strong>Block:</strong> {apt.block}
-                                        </p>
-                                        <p>
-                                            <strong>Facing:</strong> {apt.facing}
-                                        </p>
-                                        <p>
-                                            <strong>Size:</strong> {apt.sizeSqFt} sqft
-                                        </p>
-                                        <p>
-                                            <strong>Balcony:</strong> {apt.balcony ? 'Yes' : 'No'}
-                                        </p>
+                                        <p><strong>Floor:</strong> {apt.floor}</p>
+                                        <p><strong>Block:</strong> {apt.block}</p>
+                                        <p><strong>Facing:</strong> {apt.facing}</p>
+                                        <p><strong>Size:</strong> {apt.sizeSqFt} sqft</p>
+                                        <p><strong>Balcony:</strong> {apt.balcony ? 'Yes' : 'No'}</p>
                                     </div>
                                 </div>
 
@@ -168,11 +185,23 @@ const Apartments = () => {
                                     <button className="px-5 py-2 text-sm font-medium bg-[#D9822B] text-white rounded-full hover:bg-[#D9822B] transition-all">
                                         View Details
                                     </button>
+
                                     <button
                                         onClick={() => handleAgreement(apt)}
-                                        className="px-5 py-2 text-sm font-medium bg-[#222222] text-white rounded-full hover:bg-gray-900 transition-all"
+                                        disabled={hasApplied}
+                                        className={`px-5 py-2 text-sm font-medium rounded-full transition-all
+                                            ${hasApplied
+                                                ? apt.apartmentNo === appliedApartmentNo
+                                                    ? 'bg-green-600 text-white cursor-not-allowed'
+                                                    : 'bg-gray-400 text-white cursor-not-allowed'
+                                                : 'bg-[#222222] text-white hover:bg-gray-900'}
+                                        `}
                                     >
-                                        Apply for Agreement
+                                        {hasApplied
+                                            ? apt.apartmentNo === appliedApartmentNo
+                                                ? '✅ You Applied Here'
+                                                : 'Already Applied'
+                                            : 'Apply for Agreement'}
                                     </button>
                                 </div>
                             </div>
@@ -190,11 +219,10 @@ const Apartments = () => {
                         <button
                             key={i}
                             onClick={() => setCurrentPage(i + 1)}
-                            className={`w-10 h-10 rounded-full flex items-center justify-center border font-medium transition-all duration-200 ${
-                                currentPage === i + 1
-                                    ? 'bg-[#D9822B] text-white'
-                                    : 'bg-white text-gray-800 border-gray-300 hover:bg-[#f3e8d3]'
-                            }`}
+                            className={`w-10 h-10 rounded-full flex items-center justify-center border font-medium transition-all duration-200 ${currentPage === i + 1
+                                ? 'bg-[#D9822B] text-white'
+                                : 'bg-white text-gray-800 border-gray-300 hover:bg-[#f3e8d3]'
+                                }`}
                         >
                             {i + 1}
                         </button>

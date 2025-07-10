@@ -16,6 +16,10 @@ import ManageMembers from "../dashboard/AdminDashBoard/ManageMembers";
 import MakeAnnouncement from "../dashboard/AdminDashBoard/MakeAnnouncement";
 import AgreementRequests from "../dashboard/AdminDashBoard/AgreementRequests";
 import ManageCoupons from "../dashboard/AdminDashBoard/ManageCoupons";
+import MemberDashboardLayout from "../dashboard/MemberDashboard.jsx/MemberDashboardLayout";
+import MemberProfile from "../dashboard/MemberDashboard.jsx/MemberProfile";
+import MakePayment from "../dashboard/MemberDashboard.jsx/MakePayment";
+import PaymentHistory from "../dashboard/MemberDashboard.jsx/PaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -50,23 +54,23 @@ export const router = createBrowserRouter([
       },
 
       // Member Dashboard
-      // {
-      //   path: 'member-dashboard',
-      //   Component: PrivateRoutes,
-      //   children: [
-      //     {
-      //       path: '',
-      //       Component: MemberDashboardLayout,
-      //       children: [
-      //         { index: true, Component: MemberProfile },
-      //         { path: 'profile', Component: MemberProfile },
-      //         { path: 'make-payment', Component: MakePayment },
-      //         { path: 'payment-history', Component: PaymentHistory },
-      //         { path: 'announcements', Component: Announcements },
-      //       ],
-      //     },
-      //   ],
-      // },
+      {
+        path: 'member-dashboard',
+        Component: PrivateRoutes,
+        children: [
+          {
+            path: '',
+            Component: MemberDashboardLayout,
+            children: [
+              { index: true, Component: MemberProfile },
+              { path: 'profile', Component: MemberProfile },
+              { path: 'make-payment', Component: MakePayment },
+              { path: 'payment-history', Component: PaymentHistory },
+              { path: 'announcements', Component: Announcements },
+            ],
+          },
+        ],
+      },
 
       // Admin Dashboard
       {
