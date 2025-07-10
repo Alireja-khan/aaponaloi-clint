@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { Navigate, useLocation } from 'react-router';
+import { Navigate, useLocation, Outlet } from 'react-router';
 import { AuthContext } from '../contexts/AuthContext/AuthContext';
 
-const PrivateRoutes = ({ children }) => {
-    const { user, loading } = useContext(AuthContext); // Fix here
+const PrivateRoutes = () => {
+    const { user, loading } = useContext(AuthContext);
     const location = useLocation();
 
     if (loading) {
@@ -18,7 +18,8 @@ const PrivateRoutes = ({ children }) => {
         return <Navigate to='/login' state={{ from: location }} replace />;
     }
 
-    return children;
+    // Render nested routes here
+    return <Outlet />;
 };
 
 export default PrivateRoutes;

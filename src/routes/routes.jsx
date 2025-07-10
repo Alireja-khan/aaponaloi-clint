@@ -7,33 +7,61 @@ import Register from "../pages/Authentication/Register";
 import PrivateRoutes from "./PrivateRoutes";
 import Apartments from "../pages/Apartment/Apartments";
 
+import DashboardLayout from "../dashboard/UserDashBoard.jsx/DashboardLayout";
+import Profile from "../dashboard/UserDashBoard.jsx/Profile";
+import Announcements from "../dashboard/UserDashBoard.jsx/Announcements";
+
 export const router = createBrowserRouter([
-    {
-        path: "/",
-        Component: RootLayout,
+  {
+    path: "/",
+    Component: RootLayout,
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "apartments",
+        Component: Apartments,
+      },
+      {
+        path: "dashboard",
+        Component: PrivateRoutes, // Protect all dashboard routes
         children: [
-            {
+          {
+            path: "",
+            Component: DashboardLayout,
+            children: [
+              {
                 index: true,
-                Component: Home
-            },
-            {
-                path: 'apartments',
-                element: <Apartments></Apartments>
-            },
-        ]
-    },
-    {
-        path: "/",
-        Component: AuthLayout,
-        children: [
-            {
-                path: 'login',
-                Component: Login
-            },
-            {
-                path: 'register',
-                Component: Register
-            },
-        ]
-    }
+                Component: Profile,
+              },
+              {
+                path: "profile",
+                Component: Profile,
+              },
+              {
+                path: "announcements",
+                Component: Announcements,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: "/",
+    Component: AuthLayout,
+    children: [
+      {
+        path: "login",
+        Component: Login,
+      },
+      {
+        path: "register",
+        Component: Register,
+      },
+    ],
+  },
 ]);
