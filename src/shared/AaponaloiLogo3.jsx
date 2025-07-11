@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/logo/aaponaloi-logo5.png'
+import logo from '../assets/logo/aaponaloi-logo4.png'
 import { Link } from 'react-router';
 
 const AaponaloiLogo = () => {

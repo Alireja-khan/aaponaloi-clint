@@ -64,7 +64,7 @@ const fadeUp = {
 const AboutBuilding = () => {
   return (
     <section
-      id="apartment-section"
+      id="about"
       className="relative mt-0 pt-24 pb-20 px-6 md:px-20  z-10 rounded-t-3xl"
     >
       <motion.div
@@ -79,14 +79,14 @@ const AboutBuilding = () => {
           custom={0}
           variants={fadeUp}
         >
-          About Our Building
+          About Our <span className='text-secondary'>Building</span>
         </motion.h2>
         <motion.p
           className="text-base md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto"
           custom={1}
           variants={fadeUp}
         >
-          Welcome to <span className="font-semibold text-primary">Aaponaloi</span>, your modern living solution. Our thoughtfully designed complex blends comfort, security, and sustainability for every lifestyle.
+          Welcome to <span className="font-semibold text-secondary">Aaponaloi</span>, your modern living solution. Our thoughtfully designed complex blends comfort, security, and sustainability for every lifestyle.
         </motion.p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -99,7 +99,7 @@ const AboutBuilding = () => {
               viewport={{ once: false, amount: 0.3 }}
               variants={fadeUp}
               whileHover={{ scale: 1.03 }}
-              className="bg-white rounded-2xl shadow-md p-6 hover:shadow-2xl transition-all"
+              className="bg-accent rounded-2xl shadow-md p-6 hover:shadow-2xl transition-all"
             >
               {card.icon}
               <h3 className="text-xl font-semibold mb-2">{card.title}</h3>

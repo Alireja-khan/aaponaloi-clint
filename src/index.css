@@ -8,15 +8,19 @@
   @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: #D9822B;
-  --color-secondary: #222222; 
+  --color-primary: #adc178;
+  --color-secondary: #678314;
+  --color-accent: #adc17899; 
 }
 
  .active {
-  background-color: #D9822B;
+  background-color: #adc178;
 
-  color: white;
+  color: black;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
               0 4px 6px -4px rgba(0, 0, 0, 0.1);
 }
 
+html {
+  scroll-behavior: smooth;
+}

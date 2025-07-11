@@ -39,7 +39,9 @@ const LocationSection = () => {
   const position = [24.8977, 91.8712]; // Sylhet city center
 
   return (
-    <section className="py-20 px-6 md:px-20 ">
+    <section 
+    id='location'
+    className="py-20 px-6 md:px-20 ">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Left Info */}
         <div data-aos="fade-right">

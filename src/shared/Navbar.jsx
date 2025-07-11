@@ -1,68 +1,151 @@
 import React, { useContext, useRef, useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaUserCircle } from 'react-icons/fa';
 import useClickOutside from '../hooks/useClickOutside';
 import { AuthContext } from '../contexts/AuthContext/AuthContext';
 import AaponaloiLogo from './AaponaloiLogo';
+import { triggerScrollToTop } from './ScrollToTop';
 
 const Navbar = () => {
-  const { user, signOutUser, role } = useContext(AuthContext); // ✅ renamed
+  const { user, signOutUser, role } = useContext(AuthContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false); // mobile menu toggle
+  const [activeSection, setActiveSection] = useState('');
   const navigate = useNavigate();
+  const dropdownRef = useRef(null);
 
   useClickOutside(dropdownRef, () => setDropdownOpen(false));
 
-  const links = (
-    <>
-      <li><NavLink to="/" className="font-medium">Home</NavLink></li>
-      <li><NavLink to="/apartments" className="font-medium">Apartments</NavLink></li>
-
-      {user && (
-
-          <>
-          </>
-
-        )
-      }
-    </>
-  );
-
   const handleLogout = async () => {
-    await signOutUser(); // ✅ fixed
+    await signOutUser();
     navigate('/login');
   };
 
+  const sectionLinks = ['about', 'banner', 'coupons', 'location'];
+
+  const handleSectionClick = (section) => {
+    setIsOpen(false);
+    setActiveSection(section); // set active section
+
+    if (window.location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const el = document.getElementById(section);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    } else {
+      const el = document.getElementById(section);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const navLinks = (
+    <>
+      <li>
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) =>
+            `font-medium px-3 py-1.5 rounded ${isActive && activeSection === '' ? 'bg-primary font-semibold' : ''
+            }`
+          }
+          onClick={(e) => {
+            setIsOpen(false);
+            setActiveSection('');
+            if (window.location.pathname === '/') {
+              e.preventDefault(); // prevent reload
+              triggerScrollToTop(); // manual scroll
+            }
+          }}
+        >
+          Home
+        </NavLink>
+
+
+      </li>
+      <li>
+        <NavLink
+          to="/apartments"
+          className="font-medium"
+          onClick={(e) => {
+            setIsOpen(false);
+            setActiveSection('');
+            if (window.location.pathname === '/apartments') {
+              e.preventDefault(); // prevent unnecessary navigation
+              triggerScrollToTop();
+            }
+          }}
+        >
+          Apartments
+        </NavLink>
+
+      </li>
+
+      {sectionLinks.map((section) => (
+        <li key={section}>
+          <button
+            className={`font-medium cursor-pointer py-1.5 px-3 rounded transition ${activeSection === section ? 'bg-primary ' : ''
+              }`}
+            onClick={() => handleSectionClick(section)}
+          >
+            {section.charAt(0).toUpperCase() + section.slice(1)}
+          </button>
+        </li>
+      ))}
+    </>
+  );
+
   return (
-    <div className="navbar bg-gradient-to-br from-[#f8f9fa] sticky to-[#e2e8f0] top-0 z-50 shadow-md px-4 lg:px-16">
+    <div className="navbar sticky top-0 z-50 bg-[#adc17826] backdrop-blur-2xl shadow-md px-4 lg:px-16">
+      {/* Navbar Start */}
       <div className="navbar-start">
+        {/* Mobile Dropdown Button */}
         <div className="dropdown lg:hidden">
-          <button tabIndex={0} className="btn btn-ghost lg:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
-              viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16" />
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            tabIndex={0}
+            className="btn btn-ghost lg:hidden"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-            {links}
-          </ul>
+
+          {/* Mobile Dropdown Menu */}
+          {isOpen && (
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              {navLinks}
+            </ul>
+          )}
         </div>
+
+        {/* Logo */}
         <div className="flex items-center gap-2 cursor-pointer">
-          <span className='w-15 h-13'><AaponaloiLogo /></span>
+          <span className="w-15 h-13"><AaponaloiLogo /></span>
           <span className="text-xl font-bold tracking-tight">Aaponaloi</span>
         </div>
       </div>
 
+      {/* Navbar Center */}
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 space-x-2">{links}</ul>
+        <ul className="menu menu-horizontal px-1 space-x-2">{navLinks}</ul>
       </div>
 
+      {/* Navbar End */}
       <div className="navbar-end">
         {!user ? (
           <div className="flex gap-2">
-            <NavLink to="/login" className="btn btn-md btn-primary">Sign In</NavLink>
+            <NavLink to="/login" className="btn btn-md text-black btn-primary">Sign In</NavLink>
             <NavLink to="/register" className="btn btn-md btn-secondary">Sign Up</NavLink>
           </div>
         ) : (
@@ -94,7 +177,7 @@ const Navbar = () => {
                   <hr />
                   <ul className="menu p-2">
                     <li>
-                    <Link to='/dashboard'>Dashboard</Link>
+                      <NavLink to="/dashboard">Dashboard</NavLink>
                       <button onClick={handleLogout} className="text-red-500 font-medium">
                         Logout
                       </button>

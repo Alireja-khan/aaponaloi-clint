@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router';
-import AaponaloiLogo from '../shared/AaponaloiLogo';
+import AaponaloiLogo from '../shared/AaponaloiLogo3';
 import { motion } from 'framer-motion';
 
 const AuthLayout = () => {

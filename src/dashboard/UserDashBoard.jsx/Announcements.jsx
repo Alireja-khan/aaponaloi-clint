@@ -32,7 +32,7 @@ const Announcements = () => {
           {announcements.map((ann) => (
             <li key={ann._id} className="border-b pb-3">
               <h2 className="font-semibold text-lg">{ann.title || 'Announcement'}</h2>
-              <p className="text-gray-700">{ann.message}</p>
+              <p className="text-gray-700">{ann.description}</p>
               <p className="text-sm text-gray-500 mt-1">
                 Date: {new Date(ann.createdAt).toLocaleDateString()}
               </p>

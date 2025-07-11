@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { FaTag } from 'react-icons/fa';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { motion } from 'framer-motion';
 
 const coupons = [
   {
@@ -42,6 +43,22 @@ const coupons = [
   },
 ];
 
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: 'easeOut',
+    },
+  }),
+};
+
+
+
 const CouponsSection = () => {
   useEffect(() => {
     AOS.init({
@@ -52,7 +69,9 @@ const CouponsSection = () => {
   }, []);
 
   return (
-    <section className="py-20 px-6 md:px-20 ">
+    <section
+    id='coupons' 
+    className="py-20 px-6 md:px-20 ">
       <div className="text-center">
         <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
           🎁 Exclusive Coupons
@@ -63,9 +82,16 @@ const CouponsSection = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {coupons.map((coupon, index) => (
-            <div
+
+            <motion.div
+              custom={index + 2}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.3 }}
+              variants={fadeUp}
+              whileHover={{ scale: 1.03 }}
               key={coupon.code}
-              className="p-6 bg-white rounded-2xl border shadow hover:shadow-xl transition relative"
+              className="bg-accent rounded-2xl shadow-md p-6 hover:shadow-2xl transition-all"
               data-aos={index % 2 === 0 ? 'flip-left' : 'fade-down-left'}
             >
               <div className="flex items-center gap-4 mb-4">
@@ -81,7 +107,8 @@ const CouponsSection = () => {
               >
                 {coupon.discount} OFF
               </span>
-            </div>
+            </motion.div>
+
           ))}
         </div>
       </div>

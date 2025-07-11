@@ -57,7 +57,9 @@ const Banner = () => {
   };
 
   return (
-    <div className="relative w-full min-h-[70vh] max-h-[80vh] overflow-hidden z-0">
+    <section
+    id='banner' 
+    className="relative w-full min-h-[70vh] max-h-[80vh] overflow-hidden z-0">
       <Slider {...settings}>
         {bannerImages.map((slide, index) => (
           <div key={index}>
@@ -90,7 +92,7 @@ const Banner = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-white text-black px-6 py-2 rounded-lg font-semibold shadow-md hover:bg-primary hover:text-white transition duration-300"
+                  className="bg-white text-secondary px-6 py-2 rounded-lg font-bold shadow-md hover:bg-primary hover:text-black transition duration-300"
                   onClick={() => {
                     const section = document.getElementById('apartment-section');
                     section?.scrollIntoView({ behavior: 'smooth' });
@@ -103,7 +105,7 @@ const Banner = () => {
           </div>
         ))}
       </Slider>
-    </div>
+    </section>
   );
 };
 

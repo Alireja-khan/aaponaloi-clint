@@ -6,7 +6,7 @@ import LocationSection from './LocationSection';
 
 const Home = () => {
     return (
-        <div className='bg-gradient-to-br from-[#f8f9fa] to-[#e2e8f0]'>
+        <div className='bg-primary/20'>
             <Banner></Banner>
             <div className=' max-w-screen-2xl mx-auto'>
                 <AboutBuilding></AboutBuilding>
