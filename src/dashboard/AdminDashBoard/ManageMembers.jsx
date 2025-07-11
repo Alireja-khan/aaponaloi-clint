@@ -1,80 +1,82 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
 
 const ManageMembers = () => {
-  const [members, setMembers] = useState([]);
+  const [members, setMembers] = useState([]); // ✅ default to empty array
   const [loading, setLoading] = useState(true);
 
-  // Fetch members
-  useEffect(() => {
-    axios.get('http://localhost:5000/users/members')
-      .then(res => setMembers(res.data))
-      .catch(err => console.error(err))
-      .finally(() => setLoading(false));
-  }, []);
-
-  const handleRemoveMember = (email) => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: `Remove ${email} from members?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, remove',
-      cancelButtonText: 'Cancel'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/member-to-user/${email}`, {
-          method: 'PATCH',
-        })
-          .then(res => res.json())
-          .then(() => {
-            setMembers(prev => prev.filter(member => member.email !== email));
-            Swal.fire('Removed!', 'Member has been removed.', 'success');
-          })
-          .catch(() => {
-            Swal.fire('Error', 'Failed to remove member.', 'error');
-          });
+  const fetchMembers = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/users');
+      console.log('✅ All users fetched:', res.data);
+      if (Array.isArray(res.data)) {
+        const members = res.data.filter(user => user.role === 'member');
+        setMembers(members);
+      } else {
+        setMembers([]);
+        toast.error('Invalid data format from server');
       }
-    });
+    } catch (error) {
+      console.error('❌ Fetch error:', error);
+      toast.error('Failed to load members');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  if (loading) {
-    return <p className="text-center">Loading members...</p>;
-  }
+  useEffect(() => {
+    fetchMembers();
+  }, []);
+
+
+  const handleRemove = async (email) => {
+    try {
+      await axios.patch(`/users/${email}`);
+      toast.success('Member demoted to user');
+      fetchMembers(); // Refresh list
+    } catch (error) {
+      console.error('❌ Role update error:', error);
+      toast.error('Failed to update role');
+    }
+  };
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-lg max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4 text-[#D9822B]">Manage Members</h1>
+    <div className="p-6">
+      <h2 className="text-2xl font-bold mb-4">Manage Members</h2>
 
-      {members.length === 0 ? (
+      {loading ? (
+        <p>Loading...</p>
+      ) : members.length === 0 ? (
         <p>No members found.</p>
       ) : (
-        <table className="w-full border">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="py-2 px-4 border">Name</th>
-              <th className="py-2 px-4 border">Email</th>
-              <th className="py-2 px-4 border">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {members.map(member => (
-              <tr key={member._id}>
-                <td className="py-2 px-4 border">{member.name || 'N/A'}</td>
-                <td className="py-2 px-4 border">{member.email}</td>
-                <td className="py-2 px-4 border">
-                  <button
-                    onClick={() => handleRemoveMember(member.email)}
-                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded"
-                  >
-                    Remove
-                  </button>
-                </td>
+        <div className="overflow-x-auto">
+          <table className="min-w-full table-auto border">
+            <thead className="bg-gray-100">
+              <tr>
+                <th className="px-4 py-2 border">Name</th>
+                <th className="px-4 py-2 border">Email</th>
+                <th className="px-4 py-2 border">Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {members.map((member) => (
+                <tr key={member._id} className="border-t">
+                  <td className="px-4 py-2 border">{member.name || 'N/A'}</td>
+                  <td className="px-4 py-2 border">{member.email}</td>
+                  <td className="px-4 py-2 border">
+                    <button
+                      onClick={() => handleRemove(member.email)}
+                      className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                    >
+                      Remove Access
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
