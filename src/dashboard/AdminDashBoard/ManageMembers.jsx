@@ -32,7 +32,7 @@ const ManageMembers = () => {
 
   const handleRemove = async (email) => {
     try {
-      await axios.patch(`/users/${email}`);
+      await axios.patch(`http://localhost:5000/users/${email}`);
       toast.success('Member demoted to user');
       fetchMembers(); // Refresh list
     } catch (error) {
