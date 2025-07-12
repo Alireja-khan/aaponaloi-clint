@@ -8,6 +8,7 @@ import { FaMapMarkerAlt, FaRoute, FaBus, FaTrain, FaCar } from 'react-icons/fa';
 import 'leaflet/dist/leaflet.css';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+import linePerson from '../../assets/line-art/line-person.png'
 
 const customIcon = new Icon({
   iconUrl: markerIcon,
@@ -39,9 +40,9 @@ const LocationSection = () => {
   const position = [24.8977, 91.8712]; // Sylhet city center
 
   return (
-    <section 
-    id='location'
-    className="py-20 px-6 md:px-20 ">
+    <section
+      id='location'
+      className="py-20 px-6 md:px-20 ">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Left Info */}
         <div data-aos="fade-right">
@@ -75,14 +76,17 @@ const LocationSection = () => {
           </ul>
         </div>
 
+
         {/* Right Map */}
-        <div data-aos="fade-left">
-          <div className="w-full h-80 rounded-2xl overflow-hidden shadow-lg border">
+
+        <div className="relative w-full h-80" data-aos="fade-left">
+          {/* Map */}
+          <div className="w-4/5 h-full rounded-2xl overflow-hidden shadow-lg border">
             <MapContainer
               center={position}
               zoom={14}
               scrollWheelZoom={false}
-              className="h-full w-full"
+              className="h-full w-full z-10"
             >
               <EnableScrollZoom />
               <TileLayer
@@ -96,7 +100,17 @@ const LocationSection = () => {
               </Marker>
             </MapContainer>
           </div>
+
+          {/* Line Person leaning on map */}
+          <img
+            src={linePerson}
+            alt="Leaning Person"
+            className="absolute -right-48 top-32 -translate-y-1/2 h-150 z-20 object-contain pointer-events-none"
+          />
         </div>
+
+
+
       </div>
     </section>
   );

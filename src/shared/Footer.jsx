@@ -4,6 +4,7 @@ import AaponaloiLogo from './AaponaloiLogo2';
 const Footer = () => {
     return (
         <footer className="bg-[#0f172a] text-white px-6 lg:px-20 py-12">
+            
             <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-3">
                 {/* Logo and Intro */}
                 <div>
