@@ -37,7 +37,7 @@ const faqData = [
   },
 ];
 
-// Fade-in wrapper component that triggers on scroll into view
+// Fade-in wrapper for scroll animation
 const FadeInOnView = ({ children, direction = 'right', delay = 0 }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.2 });
@@ -80,19 +80,26 @@ const FAQSection = () => {
 
   return (
     <section id="faq" className="relative pb-30 px-6 md:px-20 overflow-hidden">
-      <motion.div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      {/* Animate layout changes when FAQs expand */}
+      <motion.div
+        layout
+        transition={{ layout: { duration: 0.6, ease: 'easeInOut' } }}
+        className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start"
+      >
         {/* Left Illustration */}
         <FadeInOnView direction="left" delay={0}>
-          <img
-            src={image1}
-            alt="Apartment Building"
-            className="rounded-3xl object-cover w-full h-[450px]"
-          />
+          <motion.div layout>
+            <img
+              src={image1}
+              alt="Apartment Building"
+              className="rounded-3xl object-cover w-full h-[450px]"
+            />
+          </motion.div>
         </FadeInOnView>
 
         {/* Right FAQ Section */}
         <FadeInOnView direction="right" delay={0.2}>
-          <div>
+          <motion.div layout>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-10 flex items-center gap-3">
               <RiQuestionAnswerLine className="text-secondary text-5xl" />
               Common <span className="text-secondary ml-1">Queries</span>
@@ -174,7 +181,7 @@ const FAQSection = () => {
                   <motion.button
                     onClick={() => {
                       setShowAll(!showAll);
-                      setActiveIndex(null); // Reset open answer
+                      setActiveIndex(null); // Close any open FAQ
                     }}
                     whileTap={{ scale: 0.95 }}
                     className="text-secondary font-semibold hover:underline transition duration-200"
@@ -184,7 +191,7 @@ const FAQSection = () => {
                 </div>
               )}
             </div>
-          </div>
+          </motion.div>
         </FadeInOnView>
       </motion.div>
     </section>
@@ -192,3 +199,4 @@ const FAQSection = () => {
 };
 
 export default FAQSection;
+  

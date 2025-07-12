@@ -1,6 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../contexts/AuthContext/AuthContext';
+import { motion } from 'framer-motion';
+import { FaMoneyCheckAlt } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 const MakePayment = () => {
     const { user } = useContext(AuthContext);
@@ -10,7 +13,7 @@ const MakePayment = () => {
     const [coupon, setCoupon] = useState('');
     const [discount, setDiscount] = useState(0);
     const [finalRent, setFinalRent] = useState(null);
-    const [error, setError] = useState('');
+    const [submitting, setSubmitting] = useState(false);
 
     useEffect(() => {
         if (user?.email) {
@@ -20,13 +23,13 @@ const MakePayment = () => {
                     setAgreement(res.data);
                     setFinalRent(res.data?.rent);
                 })
-                .catch(() => setError('No accepted agreement found'))
+                .catch(() => toast.error('No accepted agreement found'))
                 .finally(() => setLoading(false));
         }
     }, [user?.email]);
 
     const handleApplyCoupon = () => {
-        if (!coupon) return;
+        if (!coupon.trim()) return;
 
         axios
             .get(`http://localhost:5000/coupons/${coupon}`)
@@ -36,23 +39,25 @@ const MakePayment = () => {
                     const reduced = agreement.rent - (agreement.rent * (percentage / 100));
                     setDiscount(percentage);
                     setFinalRent(Math.round(reduced));
-                    setError('');
+                    toast.success(`Coupon Applied: ${percentage}% off`);
                 } else {
-                    setError('Invalid coupon code');
+                    toast.error('Invalid coupon code');
                 }
             })
             .catch(() => {
-                setError('Invalid coupon code');
+                toast.error('Invalid coupon code');
                 setDiscount(0);
                 setFinalRent(agreement.rent);
             });
     };
 
-    const handleSubmit = async e => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setError('');
 
-        if (!month) return setError('Please enter a month');
+        if (!month.trim()) {
+            toast.error('Please enter a month');
+            return;
+        }
 
         const paymentData = {
             email: user.email,
@@ -67,112 +72,119 @@ const MakePayment = () => {
         };
 
         try {
+            setSubmitting(true);
             const res = await axios.post('http://localhost:5000/payments', paymentData);
             if (res.status === 201) {
-                alert(`✅ Payment of ৳${finalRent} for ${month} submitted successfully`);
-                // Optionally reset form or navigate
+                toast.success(`Payment of ৳${finalRent} for ${month} submitted successfully`);
+                setMonth('');
+                setCoupon('');
+                setDiscount(0);
+                setFinalRent(agreement.rent);
             }
         } catch (err) {
             if (err.response?.status === 409) {
-                setError('❌ You have already paid for this month');
+                toast.error('You have already paid for this month');
             } else {
                 console.error(err);
-                setError('❌ Failed to submit payment');
+                toast.error('Failed to submit payment');
             }
+        } finally {
+            setSubmitting(false);
         }
     };
 
-
     if (loading) return <div className="text-center py-10">Loading...</div>;
-    if (!agreement) return <div className="text-center text-red-500 py-10">{error || 'Agreement not found'}</div>;
+    if (!agreement) return null;
 
     return (
-        <div className="max-w-5xl mx-auto p-8 bg-white rounded-lg shadow mt-10">
-            <h2 className="text-3xl font-bold text-[#D9822B] mb-6">Make Payment</h2>
+        <div className="pt-15 pl-10">
+            <h2
+                className="text-4xl pb-9 font-bold flex items-center gap-3 text-gray-800"
+                data-aos="fade-down"
+            >
+                <FaMoneyCheckAlt className="text-secondary" />
+                Make <span className="text-secondary">Payment</span>
+            </h2>
 
-            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <label className="font-semibold">Member Email</label>
-                    <input type="email" value={user.email} readOnly className="input input-bordered w-full" />
-                </div>
+            <motion.div
+                className="max-w-5xl p-8 bg-white rounded-2xl shadow-lg border border-gray-100"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <Input label="Member Email" value={user.email} readOnly />
+                    <Input label="Floor" value={agreement.floor} readOnly />
+                    <Input label="Block Name" value={agreement.block} readOnly />
+                    <Input label="Apartment No / Room No" value={agreement.apartmentNo} readOnly />
+                    <Input label="Original Rent" value={`৳${agreement.rent}`} readOnly />
 
-                <div>
-                    <label className="font-semibold">Floor</label>
-                    <input type="text" value={agreement.floor} readOnly className="input input-bordered w-full" />
-                </div>
-
-                <div>
-                    <label className="font-semibold">Block Name</label>
-                    <input type="text" value={agreement.block} readOnly className="input input-bordered w-full" />
-                </div>
-
-                <div>
-                    <label className="font-semibold">Apartment No / Room No</label>
-                    <input type="text" value={agreement.apartmentNo} readOnly className="input input-bordered w-full" />
-                </div>
-
-                <div>
-                    <label className="font-semibold">Original Rent</label>
-                    <input type="text" value={`৳${agreement.rent}`} readOnly className="input input-bordered w-full" />
-                </div>
-
-                <div>
-                    <label className="font-semibold">Month</label>
-                    <input
-                        type="text"
-                        placeholder="Enter month (e.g., July 2025)"
-                        className="input input-bordered w-full"
+                    <Input
+                        label="Month"
                         value={month}
-                        onChange={e => setMonth(e.target.value)}
+                        placeholder="e.g., July 2025"
+                        onChange={(e) => setMonth(e.target.value)}
                     />
-                </div>
 
-                <div className="md:col-span-2">
-                    <label className="font-semibold">Coupon Code</label>
-                    <div className="flex flex-col sm:flex-row gap-3">
+                    <div className="md:col-span-2">
+                        <label className="block mb-1 text-sm font-medium text-gray-700">Coupon Code</label>
+                        <div className="flex flex-col sm:flex-row gap-3">
+                            <input
+                                type="text"
+                                placeholder="Enter coupon"
+                                value={coupon}
+                                onChange={(e) => setCoupon(e.target.value)}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition"
+                            />
+                            <button
+                                type="button"
+                                onClick={handleApplyCoupon}
+                                className="px-4 py-2 rounded-lg bg-primary text-white font-semibold hover:bg-secondary transition duration-200"
+                            >
+                                Apply
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="md:col-span-2">
+                        <label className="block mb-1 text-sm font-medium text-gray-700">Final Rent</label>
                         <input
                             type="text"
-                            placeholder="Enter coupon code"
-                            className="input input-bordered flex-1"
-                            value={coupon}
-                            onChange={e => setCoupon(e.target.value)}
+                            value={`৳${finalRent}`}
+                            readOnly
+                            className="w-full px-4 py-2 font-semibold text-green-600 border border-gray-300 rounded-lg focus:outline-none transition"
                         />
+                    </div>
+
+                    <div className="md:col-span-2">
                         <button
-                            type="button"
-                            onClick={handleApplyCoupon}
-                            className="btn bg-[#D9822B] text-white"
+                            type="submit"
+                            disabled={submitting}
+                            className={`w-full py-2 px-4 bg-primary text-black hover:text-white rounded-lg font-semibold hover:bg-secondary transition duration-200 flex items-center justify-center ${submitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                         >
-                            Apply
+                            {submitting ? (
+                                <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                                </svg>
+                            ) : null}
+                            {submitting ? 'Processing...' : 'Proceed to Pay'}
                         </button>
                     </div>
-                </div>
-
-                {discount > 0 && (
-                    <p className="md:col-span-2 text-green-600 mt-2">✅ Coupon Applied: {discount}% off</p>
-                )}
-
-                <div className="md:col-span-2">
-                    <label className="font-semibold">Final Rent</label>
-                    <input
-                        type="text"
-                        value={`৳${finalRent}`}
-                        readOnly
-                        className="input input-bordered w-full text-green-700 font-semibold"
-                    />
-                </div>
-
-                {error && (
-                    <p className="md:col-span-2 text-red-500">{error}</p>
-                )}
-
-                <div className="md:col-span-2">
-                    <button type="submit" className="btn bg-[#D9822B] text-white w-full">
-                        Proceed to Pay
-                    </button>
-                </div>
-            </form>
+                </form>
+            </motion.div>
         </div>
     );
 };
+
+const Input = ({ label, ...props }) => (
+    <div>
+        <label className="block mb-1 text-sm font-medium text-gray-700">{label}</label>
+        <input
+            {...props}
+            className={`w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${props.readOnly ? 'bg-gray-100' : ''}`}
+        />
+    </div>
+);
 
 export default MakePayment;

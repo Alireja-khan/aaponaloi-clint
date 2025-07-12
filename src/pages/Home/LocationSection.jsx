@@ -11,7 +11,7 @@ import {
 import 'leaflet/dist/leaflet.css';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
-import linePerson from '../../assets/line-art/line-person.png';
+import linePerson from '../../assets/images/leaning.png';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -139,7 +139,7 @@ const LocationSection = () => {
             <img
               src={linePerson}
               alt="Leaning Person"
-              className="absolute -right-62 top-32 -translate-y-1/2 h-150 z-20 object-contain pointer-events-none"
+              className="absolute -right-62 top-7 -translate-y-1/2 h-150 z-20 object-contain pointer-events-none"
             />
           </div>
         </FadeInOnView>
