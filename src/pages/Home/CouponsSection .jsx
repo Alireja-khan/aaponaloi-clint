@@ -1,69 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaTag } from 'react-icons/fa';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { motion } from 'framer-motion';
 import { IoIosGift } from "react-icons/io";
-
-const coupons = [
-  {
-    code: 'SAVE20',
-    description: 'Get 20% off on your first apartment rent!',
-    discount: '20%',
-    color: 'bg-green-100 text-green-800',
-  },
-  {
-    code: 'FAMILY10',
-    description: '10% off for family apartments (2BHK, 3BHK).',
-    discount: '10%',
-    color: 'bg-blue-100 text-blue-800',
-  },
-  {
-    code: 'LOYAL50',
-    description: '50% discount for long-term tenants (1 year+)',
-    discount: '50%',
-    color: 'bg-yellow-100 text-yellow-800',
-  },
-  {
-    code: 'STUDENT15',
-    description: '15% off for students on studio apartments.',
-    discount: '15%',
-    color: 'bg-purple-100 text-purple-800',
-  },
-  {
-    code: 'SUMMER25',
-    description: 'Summer special: Get 25% off!',
-    discount: '25%',
-    color: 'bg-pink-100 text-pink-800',
-  },
-  {
-    code: 'REFER30',
-    description: 'Refer a friend and both get 30% off!',
-    discount: '30%',
-    color: 'bg-orange-100 text-orange-800',
-  },
-  // ✅ NEW COUPONS
-  {
-    code: 'NEWYEAR40',
-    description: 'Celebrate the new year with 40% off your rent!',
-    discount: '40%',
-    color: 'bg-red-100 text-red-800',
-  },
-  {
-    code: 'WORKFROMHOME',
-    description: '25% discount for remote workers renting 1BHK.',
-    discount: '25%',
-    color: 'bg-teal-100 text-teal-800',
-  },
-  {
-    code: 'WEEKENDDEAL',
-    description: 'Book your apartment over the weekend and save 20%.',
-    discount: '20%',
-    color: 'bg-indigo-100 text-indigo-800',
-  },
-];
-
-
+import axios from 'axios';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -78,15 +19,26 @@ const fadeUp = {
   }),
 };
 
-
-
 const CouponsSection = () => {
+  const [coupons, setCoupons] = useState([]);
+
   useEffect(() => {
     AOS.init({
       duration: 800,
       easing: 'ease-out-cubic',
       once: false,
     });
+
+    const fetchCoupons = async () => {
+      try {
+        const res = await axios.get('http://localhost:5000/coupons'); // 🔁 adjust if hosted
+        setCoupons(res.data);
+      } catch (err) {
+        console.error('Failed to fetch coupons:', err);
+      }
+    };
+
+    fetchCoupons();
   }, []);
 
   return (
@@ -100,7 +52,6 @@ const CouponsSection = () => {
             Exclusive <span className="text-secondary ml-1">Coupons</span>
           </h2>
         </div>
-
 
         <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
           Unlock amazing savings for your next apartment experience with our limited-time offers.
@@ -121,7 +72,7 @@ const CouponsSection = () => {
               data-aos={index % 2 === 0 ? 'flip-left' : 'fade-down-left'}
             >
               <div className="flex items-center gap-4 mb-4">
-                <FaTag className={`text-2xl ${coupon.color.split(' ')[1]}`} />
+                <FaTag className={`text-2xl ${coupon.color?.split(' ')[1]}`} />
                 <div>
                   <h3 className="text-xl font-bold">{coupon.code}</h3>
                   <p className="text-sm text-gray-500">{coupon.description}</p>
@@ -129,7 +80,7 @@ const CouponsSection = () => {
               </div>
 
               <span
-                className={`absolute top-4 right-4 px-3 py-1 text-sm font-semibold rounded-full ${coupon.color}`}
+                className={`absolute top-4 right-4 px-3 py-1 text-sm font-semibold rounded-full bg-lime-200`}
               >
                 {coupon.discount} OFF
               </span>
