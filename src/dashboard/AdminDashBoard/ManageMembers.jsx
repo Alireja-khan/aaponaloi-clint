@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { motion } from 'framer-motion';
+import { FaUsers } from 'react-icons/fa';
 
 const ManageMembers = () => {
   const [members, setMembers] = useState([]);
@@ -48,10 +49,18 @@ const ManageMembers = () => {
   };
 
   return (
-    <div className="p-6 max-w-5xl mx-auto">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-3xl font-semibold text-gray-800">Manage Members</h2>
-      </div>
+    <div className="py-15 max-w-5xl pl-10">
+
+      <h2
+        className="text-4xl pb-9 font-bold flex items-center gap-3"
+        data-aos="fade-down"
+        data-aos-duration="800"
+        data-aos-easing="ease-in-out"
+
+      >
+        <FaUsers className="text-secondary" />
+        Manage <span className='text-secondary'>Members</span>
+      </h2>
 
       {loading ? (
         <div className="flex justify-center items-center py-20">
@@ -79,15 +88,15 @@ const ManageMembers = () => {
           transition={{ duration: 0.4 }}
         >
           <table className="min-w-full divide-y divide-gray-200 bg-white">
-            <thead className="bg-blue-50">
+            <thead className="bg-gray-100">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text uppercase tracking-wider">
                   Name
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text uppercase tracking-wider">
                   Email
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-blue-700 uppercase tracking-wider">
+                <th className="px-6 py-3 text-center text-xs font-medium text uppercase tracking-wider">
                   Action
                 </th>
               </tr>

@@ -7,7 +7,8 @@ import {
   FaDoorClosed,
   FaUsers,
   FaUserCheck,
-  FaTicketAlt
+  FaTicketAlt,
+  FaUserShield
 } from 'react-icons/fa';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -71,19 +72,28 @@ const AdminProfile = () => {
   }, []);
 
   return (
-    <div>
+    <div className='py-15 pl-10'>
 
+      <h1
+        className="text-4xl font-bold flex items-center gap-3"
+        data-aos="fade-down"
+        data-aos-duration="800"
+        data-aos-easing="ease-in-out"
+      >
+        <FaUserShield className="text-secondary" />
+        Admin <span className='text-secondary'>Profile</span>
+      </h1>
 
-      <div className="bg-secondary/80 text-black rounded-xl overflow-hidden max-w-5xl my-10 flex shadow-lg">
+      <div className="bg-white text-gray-800 rounded-xl overflow-hidden max-w-5xl my-10 flex shadow-lg">
         {/* Left: Image Section */}
         <div
-          className="w-1/2 bg-primary/70 p-6 flex items-center justify-center"
+          className="w-1/2 bg-gray-50 p-6 flex items-center justify-center"
           data-aos="fade-right"
         >
           <img
             src={user?.photoURL || 'https://via.placeholder.com/200'}
             alt="Admin"
-            className="w-48 h-48 rounded-lg object-cover border-4 border-secondary"
+            className="w-48 h-48 rounded-lg object-cover border-4 border-gray-200"
           />
         </div>
 
@@ -94,30 +104,29 @@ const AdminProfile = () => {
         >
           <div>
             <h1 className="text-3xl font-bold mb-2">{user?.displayName || 'Admin Name'}</h1>
-            <h2 className="text-lg mb-4">Admin / Lead Manager</h2>
+            <h2 className="text-lg mb-4 text-slate-600">Admin / Lead Manager</h2>
 
-            <p className="text-black text-md leading-relaxed mb-6">
+            <p className="text-slate-700 text-md leading-relaxed mb-6">
               {user?.bio ||
                 "This admin manages core operations, oversees system performance, and ensures platform stability and efficiency for all users."}
             </p>
 
             <div className="space-y-2 text-md">
-              <p className="flex items-center gap-2 text-black">
-                <FaMapMarkerAlt className="text-black" />
-                <span className="font-">Location:</span> {user?.location || 'City, Country'}
+              <p className="flex items-center gap-2 text-slate-700">
+                <FaMapMarkerAlt className="text-slate-500" />
+                <span>Location:</span> {user?.location || 'City, Country'}
               </p>
-              <p className="flex items-center gap-2 text-black">
-                <FaPhoneAlt className="text-gblack" />
-                <span className="font-">Phone:</span> {user?.phone || 'Not provided'}
+              <p className="flex items-center gap-2 text-slate-700">
+                <FaPhoneAlt className="text-slate-500" />
+                <span>Phone:</span> {user?.phone || 'Not provided'}
               </p>
-              <p className="flex items-center gap-2 text-black">
-                <FaEnvelope className="text-black" />
-                <span className="font-">Email:</span> {user?.email || 'Not provided'}
+              <p className="flex items-center gap-2 text-slate-700">
+                <FaEnvelope className="text-slate-500" />
+                <span>Email:</span> {user?.email || 'Not provided'}
               </p>
             </div>
           </div>
 
-          {/* Social Icons */}
           <div className="mt-6 flex gap-4 text-lg">
             <a
               href={user?.instagram || '#'}
@@ -139,74 +148,67 @@ const AdminProfile = () => {
         </div>
       </div>
 
-
-
-      <div className="rounded-lg max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 ">
+      <div className="rounded-lg max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
         {[
           {
             label: 'Total Rooms',
             value: stats.totalRooms,
-            icon: <FaBed className="text-black text-2xl" />,
-            aos: 'fade-up',
+            icon: <FaBed className="text-slate-600 text-2xl" />,
           },
           {
             label: 'Available Rooms',
             value: stats.availableRooms,
-            icon: <FaDoorOpen className="text-black text-2xl" />,
-            aos: 'fade-up',
+            icon: <FaDoorOpen className="text-slate-600 text-2xl" />,
           },
           {
             label: 'Available Rooms (%)',
             value: `${stats.availableRoomsPercentage}%`,
-            icon: <FaDoorOpen className="text-black text-2xl" />,
-            aos: 'fade-up',
+            icon: <FaDoorOpen className="text-slate-600 text-2xl" />,
           },
           {
             label: 'Unavailable Rooms',
             value: stats.totalRooms - stats.availableRooms,
-            icon: <FaDoorClosed className="text-black text-2xl" />,
-            aos: 'fade-up',
+            icon: <FaDoorClosed className="text-slate-600 text-2xl" />,
           },
           {
             label: 'Unavailable Rooms (%)',
             value: `${stats.unavailableRoomsPercentage}%`,
-            icon: <FaDoorClosed className="text-black text-2xl" />,
-            aos: 'fade-up',
+            icon: <FaDoorClosed className="text-slate-600 text-2xl" />,
           },
           {
             label: 'Users',
             value: stats.users,
-            icon: <FaUsers className="text-black text-2xl" />,
-            aos: 'fade-up',
+            icon: <FaUsers className="text-slate-600 text-2xl" />,
           },
           {
             label: 'Members',
             value: stats.members,
-            icon: <FaUserCheck className="text-black text-2xl" />,
-            aos: 'fade-up',
+            icon: <FaUserCheck className="text-slate-600 text-2xl" />,
           },
           {
             label: 'Total Coupons',
             value: stats.coupons,
-            icon: <FaTicketAlt className="text-black text-2xl" />,
+            icon: <FaTicketAlt className="text-slate-600 text-2xl" />,
             span: true,
-            aos: 'fade-up',
-          }
+          },
         ].map((item, index) => (
           <div
             key={index}
-            className={`bg-secondary/80 rounded-md p-4 shadow flex items-center justify-between gap-4 hover:scale-[1.02] transition duration-300 ${item.span ? 'col-span-1 sm:col-span-2 lg:col-span-2' : ''}`}
-            data-aos={item.aos}
+            className={`bg-gray-50 rounded-md p-4 shadow flex items-center justify-between gap-4 hover:scale-[1.02] transition duration-300 ${item.span ? 'col-span-1 sm:col-span-2 lg:col-span-2' : ''
+              }`}
+            data-aos="fade-up"
             data-aos-delay={index * 100}
           >
             <div>
-              <p className="text-md font- text-black">{item.label}</p>
-              <p className="text-xl font-bold text-black">{item.value}</p>
+              <p className="text-sm font-medium text-slate-500">{item.label}</p>
+              <p className="text-xl font-bold text-gray-800">{item.value}</p>
             </div>
             {item.icon}
           </div>
         ))}
       </div>
+
+
 
 
     </div>

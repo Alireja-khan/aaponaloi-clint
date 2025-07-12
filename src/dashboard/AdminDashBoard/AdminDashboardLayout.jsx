@@ -14,8 +14,8 @@ const AdminDashboardLayout = () => {
   ];
 
   return (
-    <div className="min-h-screen flex bg-primary/40">
-      <aside className="w-64 bg-primary/30 shadow-md p-6 flex flex-col">
+    <div className="min-h-screen flex bg-primary/20">
+      <aside className="w-74 bg-primary/10 shadow-md p-6 flex flex-col">
         <h2 className="text-2xl font-bold mb-8 text-[#222222]">Admin Dashboard</h2>
         <nav className="flex flex-col gap-2">
           {navItems.map(({ path, label, icon }) => (
