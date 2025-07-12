@@ -75,7 +75,7 @@ const StatsSection = () => {
   }, [inView, controls]);
 
   return (
-    <section id="stats" className="relative py-20 overflow-hidden">
+    <section id="Highlights" className="relative py-20 overflow-hidden">
       {/* radial‑gradient backdrop */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-primary/5 to-transparent"></div>
 

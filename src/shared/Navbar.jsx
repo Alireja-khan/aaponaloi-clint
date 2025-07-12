@@ -22,7 +22,7 @@ const Navbar = () => {
     navigate('/login');
   };
 
-  const sectionLinks = ['about', 'coupons', 'location', 'stats', 'faq' ];
+  const sectionLinks = ['about', 'coupons', 'location', 'Highlights', 'faq' ];
 
   const handleSectionClick = (section) => {
     setIsOpen(false);
