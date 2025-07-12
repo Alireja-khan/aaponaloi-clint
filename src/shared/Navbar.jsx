@@ -22,7 +22,7 @@ const Navbar = () => {
     navigate('/login');
   };
 
-  const sectionLinks = ['about', 'coupons', 'location', 'faq' ];
+  const sectionLinks = ['about', 'coupons', 'location', 'stats', 'faq' ];
 
   const handleSectionClick = (section) => {
     setIsOpen(false);
@@ -97,7 +97,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar sticky top-0 z-50 bg-[#adc17826] backdrop-blur-2xl shadow-md px-4 lg:px-16">
+    <div className="navbar sticky top-0 z-50 bg-[#adc17826] backdrop-blur-2xl shadow-md px-4 lg:px-36">
       {/* Navbar Start */}
       <div className="navbar-start">
         {/* Mobile Dropdown Button */}
