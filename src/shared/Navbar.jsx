@@ -22,7 +22,7 @@ const Navbar = () => {
     navigate('/login');
   };
 
-  const sectionLinks = ['about', 'coupons', 'location', 'Highlights', 'faq' ];
+  const sectionLinks = ['about', 'coupons', 'location', 'Highlights', 'faq'];
 
   const handleSectionClick = (section) => {
     setIsOpen(false);
@@ -174,17 +174,30 @@ const Navbar = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute right-0 mt-3 w-52 rounded-lg bg-white text-black shadow-lg z-50"
+                  className="absolute right-0 mt-3 w-56 rounded-lg bg-white text-black shadow-lg z-50"
                 >
-                  <div className="p-4">
+                  <div className="p-4 border-b">
                     <p className="font-semibold">{user.displayName || 'User'}</p>
                     <p className="text-xs text-gray-500">{user.email}</p>
                   </div>
-                  <hr />
-                  <ul className="menu p-2">
+                  <ul className="flex flex-col">
                     <li>
-                      <NavLink to="/dashboard">Dashboard</NavLink>
-                      <button onClick={handleLogout} className="text-red-500 font-medium">
+                      <NavLink
+                        to="/dashboard"
+                        onClick={() => setDropdownOpen(false)}
+                        className="block w-full px-4 py-2 hover:bg-accent transition text-left"
+                      >
+                        Dashboard
+                      </NavLink>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          handleLogout();
+                          setDropdownOpen(false);
+                        }}
+                        className="block w-full text-left px-4 py-2 hover:bg-red-400 hover:text-white text-red-500 font-medium transition"
+                      >
                         Logout
                       </button>
                     </li>
@@ -192,6 +205,7 @@ const Navbar = () => {
                 </motion.div>
               )}
             </AnimatePresence>
+
           </div>
         )}
       </div>
