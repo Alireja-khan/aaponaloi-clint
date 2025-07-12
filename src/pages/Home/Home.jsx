@@ -3,6 +3,7 @@ import Banner from './Banner';
 import AboutBuilding from './AboutBuilding';
 import CouponsSection from './CouponsSection ';
 import LocationSection from './LocationSection';
+import FAQSection from './FAQsection';
 
 const Home = () => {
     return (
@@ -10,6 +11,7 @@ const Home = () => {
             <Banner></Banner>
             <div className=' max-w-screen-2xl mx-auto'>
                 <AboutBuilding></AboutBuilding>
+                <FAQSection></FAQSection>
                 <CouponsSection></CouponsSection>
                 <LocationSection></LocationSection>
             </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import { motion } from 'framer-motion';
 import { Typewriter } from 'react-simple-typewriter';
+import { useNavigate } from 'react-router';
 
 import img1 from '../../assets/Apartment-3/living-room-3.jpg';
 import img2 from '../../assets/Apartment-3/bed-room-3.jpg';
@@ -13,32 +14,32 @@ import img6 from '../../assets/Apartment-3/kitchen-3.jpg';
 const bannerImages = [
   {
     url: img1,
-    title: 'Modern Living Room',
+    title: 'Modern and Spacious Living Room',
     desc: 'Experience comfort and style in every corner.',
   },
   {
     url: img2,
-    title: 'Cozy Bedroom',
+    title: 'Cozy and Serene Bedroom Retreat',
     desc: 'A perfect place to rest and relax.',
   },
   {
     url: img3,
-    title: 'Colorful Kids Room',
+    title: 'Colorful and Playful Kids Room',
     desc: 'Safe and joyful space for your little ones.',
   },
   {
     url: img4,
-    title: 'Productive Study Room',
+    title: 'Productive and Peaceful Study Room',
     desc: 'Stay focused and inspired in a calm environment.',
   },
   {
     url: img5,
-    title: 'Elegant Washroom',
+    title: 'Elegant and Modern Washroom Design',
     desc: 'Clean, modern, and thoughtfully designed.',
   },
   {
     url: img6,
-    title: 'Stylish Kitchen',
+    title: 'Stylish Kitchen for Culinary Delight',
     desc: 'Cook with love in a space that feels like home.',
   },
 ];
@@ -62,9 +63,9 @@ const PrevArrow = ({ onClick }) => (
   </button>
 );
 
-
-
 const Banner = () => {
+  const navigate = useNavigate();
+
   const settings = {
     dots: true,
     infinite: true,
@@ -78,27 +79,29 @@ const Banner = () => {
     prevArrow: <PrevArrow />,
   };
 
-
-
   return (
-    <section
-      id='banner'
-      className="relative w-full min-h-[70vh] max-h-[80vh] overflow-hidden z-0">
+    <section id="banner" className="relative w-full min-h-[70vh] max-h-[80vh] overflow-hidden z-0">
       <Slider {...settings}>
         {bannerImages.map((slide, index) => (
           <div key={index}>
-            <div
+            <motion.div
               className="h-[70vh] bg-cover bg-center relative flex items-center justify-center"
               style={{ backgroundImage: `url(${slide.url})` }}
+              initial={{ scale: 1.05 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.8 }}
             >
-              <div className="absolute inset-0 bg-black/50 z-10" />
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent z-10" />
 
+              {/* Content */}
               <motion.div
                 className="z-20 text-center text-white px-6"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
+                  
                 <h2 className="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
                   <Typewriter
                     words={[slide.title]}
@@ -110,22 +113,36 @@ const Banner = () => {
                     delaySpeed={1500}
                   />
                 </h2>
+
+
                 <p className="text-base md:text-lg lg:text-xl font-light mb-6 max-w-xl mx-auto">
                   {slide.desc}
                 </p>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-white text-secondary px-6 py-2 rounded-lg font-bold shadow-md hover:bg-primary hover:text-black transition duration-300"
-                  onClick={() => {
-                    const section = document.getElementById('apartment-section');
-                    section?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  View Apartments
-                </motion.button>
+
+                {/* CTA Buttons */}
+                <div className="flex flex-col md:flex-row gap-4 justify-center">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-white text-secondary px-6 py-2 rounded-lg font-bold shadow-md hover:bg-primary hover:text-black transition duration-300"
+                    onClick={() => {
+                      const section = document.getElementById('apartment-section');
+                      section?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    View Apartments
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-primary text-black px-6 py-2 rounded-lg font-bold shadow-md hover:bg-white hover:text-secondary transition duration-300"
+                    onClick={() => navigate('/register')}
+                  >
+                    Keep in Touch
+                  </motion.button>
+                </div>
               </motion.div>
-            </div>
+            </motion.div>
           </div>
         ))}
       </Slider>

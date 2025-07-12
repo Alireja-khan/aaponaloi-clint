@@ -3,6 +3,7 @@ import { FaTag } from 'react-icons/fa';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { motion } from 'framer-motion';
+import { IoIosGift } from "react-icons/io";
 
 const coupons = [
   {
@@ -41,7 +42,27 @@ const coupons = [
     discount: '30%',
     color: 'bg-orange-100 text-orange-800',
   },
+  // ✅ NEW COUPONS
+  {
+    code: 'NEWYEAR40',
+    description: 'Celebrate the new year with 40% off your rent!',
+    discount: '40%',
+    color: 'bg-red-100 text-red-800',
+  },
+  {
+    code: 'WORKFROMHOME',
+    description: '25% discount for remote workers renting 1BHK.',
+    discount: '25%',
+    color: 'bg-teal-100 text-teal-800',
+  },
+  {
+    code: 'WEEKENDDEAL',
+    description: 'Book your apartment over the weekend and save 20%.',
+    discount: '20%',
+    color: 'bg-indigo-100 text-indigo-800',
+  },
 ];
+
 
 
 const fadeUp = {
@@ -70,12 +91,17 @@ const CouponsSection = () => {
 
   return (
     <section
-    id='coupons' 
-    className="py-20 px-6 md:px-20 ">
+      id='coupons'
+      className="pb-30 px-6 md:px-20 ">
       <div className="text-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-          🎁 Exclusive Coupons
-        </h2>
+        <div className="flex justify-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 flex items-center gap-3">
+            <IoIosGift className="text-secondary text-5xl" />
+            Exclusive <span className="text-secondary ml-1">Coupons</span>
+          </h2>
+        </div>
+
+
         <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
           Unlock amazing savings for your next apartment experience with our limited-time offers.
         </p>

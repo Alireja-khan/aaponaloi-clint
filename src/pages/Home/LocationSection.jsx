@@ -42,12 +42,12 @@ const LocationSection = () => {
   return (
     <section
       id='location'
-      className="py-20 px-6 md:px-20 ">
+      className="pb-20 pt-10 px-6 md:px-20 ">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Left Info */}
         <div data-aos="fade-right">
           <h2 className="text-4xl flex md:text-5xl font-bold text-gray-800 mb-6">
-            <span>🗺️</span> <div><span>How to Reach</span> <span className="text-primary">Aaponaloi</span></div>
+            <span><FaMapMarkerAlt className="text-secondary text-5xl mr-3" /></span> <div><span>How to Reach</span> <span className="text-secondary">Aaponaloi</span></div>
           </h2>
           <p className="text-lg text-gray-600 mb-4">
             Aaponaloi is located in Sylhet city, offering quick access to markets, transport hubs, and city landmarks.

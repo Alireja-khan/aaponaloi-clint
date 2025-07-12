@@ -22,7 +22,7 @@ const Navbar = () => {
     navigate('/login');
   };
 
-  const sectionLinks = ['about', 'coupons', 'location'];
+  const sectionLinks = ['about', 'coupons', 'location', 'faq' ];
 
   const handleSectionClick = (section) => {
     setIsOpen(false);
@@ -32,11 +32,11 @@ const Navbar = () => {
       navigate('/');
       setTimeout(() => {
         const el = document.getElementById(section);
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 100);
     } else {
       const el = document.getElementById(section);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
 
