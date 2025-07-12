@@ -1,10 +1,17 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { AuthContext } from './contexts/AuthContext/AuthContext'
+import Loader from './shared/Loader'
 
 function App() {
   const [count, setCount] = useState(0)
+  const { loading } = useContext(AuthContext);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -31,5 +38,7 @@ function App() {
     </>
   )
 }
+
+
 
 export default App

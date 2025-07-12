@@ -130,10 +130,7 @@ const ManageCoupons = () => {
                 </button>
             </div>
 
-            {loading ? (
-                <div className="flex justify-center py-20">
-                    <div className="animate-spin h-10 w-10 text-blue-600 border-4 border-blue-300 border-t-transparent rounded-full" />
-                </div>
+            {loading ? (''
             ) : coupons.length === 0 ? (
                 <div
                     className="text-center"
