@@ -22,7 +22,7 @@ const Navbar = () => {
     navigate('/login');
   };
 
-  const sectionLinks = ['about', 'banner', 'coupons', 'location'];
+  const sectionLinks = ['about', 'coupons', 'location'];
 
   const handleSectionClick = (section) => {
     setIsOpen(false);
@@ -130,6 +130,12 @@ const Navbar = () => {
         </div>
 
         {/* Logo */}
+
+
+
+
+
+
         <div className="flex items-center gap-2 cursor-pointer">
           <span className="w-15 h-13"><AaponaloiLogo /></span>
           <span className="text-xl font-bold tracking-tight">Aaponaloi</span>

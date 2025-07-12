@@ -43,6 +43,27 @@ const bannerImages = [
   },
 ];
 
+
+const NextArrow = ({ onClick }) => (
+  <button
+    className="absolute right-4 top-1/2 transform -translate-y-1/2 z-30 text-white bg-black/50 hover:bg-primary hover:text-black p-2 rounded-full"
+    onClick={onClick}
+  >
+    ❯
+  </button>
+);
+
+const PrevArrow = ({ onClick }) => (
+  <button
+    className="absolute left-4 top-1/2 transform -translate-y-1/2 z-30 text-white bg-black/50 hover:bg-primary hover:text-black p-2 rounded-full"
+    onClick={onClick}
+  >
+    ❮
+  </button>
+);
+
+
+
 const Banner = () => {
   const settings = {
     dots: true,
@@ -52,14 +73,17 @@ const Banner = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
-    arrows: false,
     pauseOnHover: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
   };
+
+
 
   return (
     <section
-    id='banner' 
-    className="relative w-full min-h-[70vh] max-h-[80vh] overflow-hidden z-0">
+      id='banner'
+      className="relative w-full min-h-[70vh] max-h-[80vh] overflow-hidden z-0">
       <Slider {...settings}>
         {bannerImages.map((slide, index) => (
           <div key={index}>
