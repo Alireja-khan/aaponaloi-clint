@@ -74,7 +74,7 @@ const AdminProfile = () => {
     <div>
 
 
-      <div className="bg-secondary/80 text-white rounded-xl overflow-hidden max-w-5xl my-10 flex shadow-lg">
+      <div className="bg-secondary/80 text-black rounded-xl overflow-hidden max-w-5xl my-10 flex shadow-lg">
         {/* Left: Image Section */}
         <div
           className="w-1/2 bg-primary/70 p-6 flex items-center justify-center"
@@ -96,23 +96,23 @@ const AdminProfile = () => {
             <h1 className="text-3xl font-bold mb-2">{user?.displayName || 'Admin Name'}</h1>
             <h2 className="text-lg mb-4">Admin / Lead Manager</h2>
 
-            <p className="text-gray-100 text-md leading-relaxed mb-6">
+            <p className="text-black text-md leading-relaxed mb-6">
               {user?.bio ||
                 "This admin manages core operations, oversees system performance, and ensures platform stability and efficiency for all users."}
             </p>
 
             <div className="space-y-2 text-md">
-              <p className="flex items-center gap-2 text-white">
-                <FaMapMarkerAlt className="text-lime-400" />
-                <span className="font-semibold">Location:</span> {user?.location || 'City, Country'}
+              <p className="flex items-center gap-2 text-black">
+                <FaMapMarkerAlt className="text-black" />
+                <span className="font-">Location:</span> {user?.location || 'City, Country'}
               </p>
-              <p className="flex items-center gap-2 text-white">
-                <FaPhoneAlt className="text-green-400" />
-                <span className="font-semibold">Phone:</span> {user?.phone || 'Not provided'}
+              <p className="flex items-center gap-2 text-black">
+                <FaPhoneAlt className="text-gblack" />
+                <span className="font-">Phone:</span> {user?.phone || 'Not provided'}
               </p>
-              <p className="flex items-center gap-2 text-white">
-                <FaEnvelope className="text-blue-400" />
-                <span className="font-semibold">Email:</span> {user?.email || 'Not provided'}
+              <p className="flex items-center gap-2 text-black">
+                <FaEnvelope className="text-black" />
+                <span className="font-">Email:</span> {user?.email || 'Not provided'}
               </p>
             </div>
           </div>
@@ -146,49 +146,49 @@ const AdminProfile = () => {
           {
             label: 'Total Rooms',
             value: stats.totalRooms,
-            icon: <FaBed className="text-white text-2xl" />,
+            icon: <FaBed className="text-black text-2xl" />,
             aos: 'fade-up',
           },
           {
             label: 'Available Rooms',
             value: stats.availableRooms,
-            icon: <FaDoorOpen className="text-white text-2xl" />,
+            icon: <FaDoorOpen className="text-black text-2xl" />,
             aos: 'fade-up',
           },
           {
             label: 'Available Rooms (%)',
             value: `${stats.availableRoomsPercentage}%`,
-            icon: <FaDoorOpen className="text-white text-2xl" />,
+            icon: <FaDoorOpen className="text-black text-2xl" />,
             aos: 'fade-up',
           },
           {
             label: 'Unavailable Rooms',
             value: stats.totalRooms - stats.availableRooms,
-            icon: <FaDoorClosed className="text-white text-2xl" />,
+            icon: <FaDoorClosed className="text-black text-2xl" />,
             aos: 'fade-up',
           },
           {
             label: 'Unavailable Rooms (%)',
             value: `${stats.unavailableRoomsPercentage}%`,
-            icon: <FaDoorClosed className="text-white text-2xl" />,
+            icon: <FaDoorClosed className="text-black text-2xl" />,
             aos: 'fade-up',
           },
           {
             label: 'Users',
             value: stats.users,
-            icon: <FaUsers className="text-white text-2xl" />,
+            icon: <FaUsers className="text-black text-2xl" />,
             aos: 'fade-up',
           },
           {
             label: 'Members',
             value: stats.members,
-            icon: <FaUserCheck className="text-white text-2xl" />,
+            icon: <FaUserCheck className="text-black text-2xl" />,
             aos: 'fade-up',
           },
           {
             label: 'Total Coupons',
             value: stats.coupons,
-            icon: <FaTicketAlt className="text-white text-2xl" />,
+            icon: <FaTicketAlt className="text-black text-2xl" />,
             span: true,
             aos: 'fade-up',
           }
@@ -200,8 +200,8 @@ const AdminProfile = () => {
             data-aos-delay={index * 100}
           >
             <div>
-              <p className="text-md font-semibold text-white">{item.label}</p>
-              <p className="text-xl font-bold text-white">{item.value}</p>
+              <p className="text-md font- text-black">{item.label}</p>
+              <p className="text-xl font-bold text-black">{item.value}</p>
             </div>
             {item.icon}
           </div>
