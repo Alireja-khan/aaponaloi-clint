@@ -1,3 +1,4 @@
+// LocationSection.jsx
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { Icon } from 'leaflet';
@@ -68,15 +69,15 @@ const position = [24.8977, 91.8712]; // Sylhet city center
 
 const LocationSection = () => {
   return (
-    <section id="location" className="pb-20 pt-10 px-6 md:px-20">
+    <section id="location" className="pb-20 pt-10 px-4 md:px-12 lg:px-20">
       {/* Section Title & Description */}
       <FadeInOnView direction="up" delay={0}>
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-3">
-            <FaMapMarkerAlt className="text-secondary text-5xl" />
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-3 flex-wrap">
+            <FaMapMarkerAlt className="text-secondary text-4xl sm:text-5xl" />
             How to Reach <span className="text-secondary ml-1">Aaponaloi</span>
           </h2>
-          <p className="text-gray-600 text-base md:text-lg font-light">
+          <p className="text-gray-600 text-base sm:text-lg font-light">
             Aaponaloi is located in Sylhet city, offering quick access to
             markets, transport hubs, and city landmarks.
           </p>
@@ -84,29 +85,29 @@ const LocationSection = () => {
       </FadeInOnView>
 
       {/* Info & Map Grid */}
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Info */}
         <FadeInOnView direction="left" delay={0.1}>
-          <ul className="space-y-6 text-gray-700 mt-6">
-            <li className="flex text-2xl items-center gap-4">
-              <FaMapMarkerAlt className="text-4xl text-red-500" />
-              <p className="text-xl">Ambarkhana Point, Sylhet, Bangladesh</p>
+          <ul className="space-y-6 text-gray-700 mt-4 sm:mt-6">
+            <li className="flex items-start gap-4">
+              <FaMapMarkerAlt className="text-2xl sm:text-4xl text-red-500" />
+              <p className="text-lg sm:text-xl">Ambarkhana Point, Sylhet, Bangladesh</p>
             </li>
-            <li className="flex text-2xl items-center gap-4">
-              <FaCar className="text-4xl text-green-600" />
-              <p className="text-xl">12 min from Osmani International Airport</p>
+            <li className="flex items-start gap-4">
+              <FaCar className="text-2xl sm:text-4xl text-green-600" />
+              <p className="text-lg sm:text-xl">12 min from Osmani International Airport</p>
             </li>
-            <li className="flex text-2xl items-center gap-4">
-              <FaBus className="text-4xl text-blue-600" />
-              <p className="text-xl">All major bus stops within 1.5km</p>
+            <li className="flex items-start gap-4">
+              <FaBus className="text-2xl sm:text-4xl text-blue-600" />
+              <p className="text-lg sm:text-xl">All major bus stops within 1.5km</p>
             </li>
-            <li className="flex text-2xl items-center gap-4">
-              <FaTrain className="text-4xl text-purple-600" />
-              <p className="text-xl">15 min from Sylhet Railway Station</p>
+            <li className="flex items-start gap-4">
+              <FaTrain className="text-2xl sm:text-4xl text-purple-600" />
+              <p className="text-lg sm:text-xl">15 min from Sylhet Railway Station</p>
             </li>
-            <li className="flex text-2xl items-center gap-4">
-              <FaRoute className="text-4xl text-orange-500" />
-              <p className="text-xl">
+            <li className="flex items-start gap-4">
+              <FaRoute className="text-2xl sm:text-4xl text-orange-500" />
+              <p className="text-lg sm:text-xl">
                 Ride-sharing apps (Uber, Pathao) fully accessible
               </p>
             </li>
@@ -115,9 +116,9 @@ const LocationSection = () => {
 
         {/* Right Map */}
         <FadeInOnView direction="right" delay={0.2}>
-          <div className="relative w-full h-80">
+          <div className="relative w-full h-80 sm:h-96">
             {/* Map */}
-            <div className="w-4/5 h-full rounded-2xl overflow-hidden shadow-lg border mx-auto">
+            <div className="w-full sm:w-4/5 h-full rounded-2xl overflow-hidden shadow-lg border mx-auto">
               <MapContainer
                 center={position}
                 zoom={14}
@@ -135,12 +136,13 @@ const LocationSection = () => {
               </MapContainer>
             </div>
 
-            {/* Line Person leaning on map */}
+            {/* Line Person (hidden on small devices) */}
             <img
               src={linePerson}
               alt="Leaning Person"
-              className="absolute -right-62 top-7 -translate-y-1/2 h-150 z-20 object-contain pointer-events-none"
+              className="hidden lg:block absolute -right-62 top-7 -translate-y-1/2 h-150 z-20 object-contain pointer-events-none"
             />
+
           </div>
         </FadeInOnView>
       </div>

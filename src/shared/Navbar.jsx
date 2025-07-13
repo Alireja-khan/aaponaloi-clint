@@ -8,7 +8,7 @@ import AaponaloiLogo from './AaponaloiLogo';
 import { triggerScrollToTop } from './ScrollToTop';
 
 const Navbar = () => {
-  const { user, signOutUser, role } = useContext(AuthContext);
+  const { user, signOutUser } = useContext(AuthContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false); // mobile menu toggle
   const [activeSection, setActiveSection] = useState('');
@@ -26,7 +26,7 @@ const Navbar = () => {
 
   const handleSectionClick = (section) => {
     setIsOpen(false);
-    setActiveSection(section); // set active section
+    setActiveSection(section);
 
     if (window.location.pathname !== '/') {
       navigate('/');
@@ -54,38 +54,34 @@ const Navbar = () => {
             setIsOpen(false);
             setActiveSection('');
             if (window.location.pathname === '/') {
-              e.preventDefault(); // prevent reload
-              triggerScrollToTop(); // manual scroll
+              e.preventDefault();
+              triggerScrollToTop();
             }
           }}
         >
           Home
         </NavLink>
-
-
       </li>
       <li>
         <NavLink
           to="/apartments"
-          className="font-medium"
+          className="font-medium px-3 py-1.5 rounded"
           onClick={(e) => {
             setIsOpen(false);
             setActiveSection('');
             if (window.location.pathname === '/apartments') {
-              e.preventDefault(); // prevent unnecessary navigation
+              e.preventDefault();
               triggerScrollToTop();
             }
           }}
         >
           Apartments
         </NavLink>
-
       </li>
-
       {sectionLinks.map((section) => (
         <li key={section}>
           <button
-            className={`font-medium cursor-pointer py-1.5 px-3 rounded transition ${activeSection === section ? 'bg-primary ' : ''
+            className={`font-medium cursor-pointer py-1.5 px-3 rounded transition ${activeSection === section ? 'bg-primary' : ''
               }`}
             onClick={() => handleSectionClick(section)}
           >
@@ -98,14 +94,15 @@ const Navbar = () => {
 
   return (
     <div className="navbar sticky top-0 z-50 bg-[#adc17826] backdrop-blur-2xl shadow-md px-4 lg:px-36">
+
       {/* Navbar Start */}
       <div className="navbar-start">
-        {/* Mobile Dropdown Button */}
-        <div className="dropdown lg:hidden">
+
+        {/* Hamburger - mobile only */}
+        <div className="lg:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            tabIndex={0}
-            className="btn btn-ghost lg:hidden"
+            className="btn btn-ghost"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -117,32 +114,23 @@ const Navbar = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-
-          {/* Mobile Dropdown Menu */}
-          {isOpen && (
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              {navLinks}
-            </ul>
-          )}
         </div>
 
-        {/* Logo */}
-
-
-
-
-
-
-        <div className="flex items-center gap-2 cursor-pointer">
+        {/* Logo - desktop only */}
+        <div className="hidden lg:flex items-center gap-2 cursor-pointer">
           <span className="w-15 h-13"><AaponaloiLogo /></span>
           <span className="text-xl font-bold tracking-tight">Aaponaloi</span>
         </div>
       </div>
 
-      {/* Navbar Center */}
+      {/* Mobile full menu dropdown below navbar */}
+      {isOpen && (
+        <div className="lg:hidden absolute top-full left-0 w-full bg-base-100 z-40 shadow-md px-4 py-4">
+          <ul className="space-y-2">{navLinks}</ul>
+        </div>
+      )}
+
+      {/* Navbar center - desktop only */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 space-x-2">{navLinks}</ul>
       </div>
@@ -205,7 +193,6 @@ const Navbar = () => {
                 </motion.div>
               )}
             </AnimatePresence>
-
           </div>
         )}
       </div>
