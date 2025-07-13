@@ -14,7 +14,7 @@
 
 //     const fetchUsers = async () => {
 //         try {
-//             const res = await axios.get('http://localhost:5000/users');
+//             const res = await axios.get('https://aaponaloi-server.vercel.app/users');
 //             const usersArray = Array.isArray(res.data) ? res.data : res.data.users || [];
 //             setUsers(usersArray);
 //         } catch (error) {
@@ -32,7 +32,7 @@
 
 //     const handleMakeAdmin = async (id) => {
 //         try {
-//             const res = await axios.patch(`http://localhost:5000/users/admin/${id}`);
+//             const res = await axios.patch(`https://aaponaloi-server.vercel.app/users/admin/${id}`);
 //             if (res.data.modifiedCount > 0) {
 //                 Swal.fire('Success!', 'User promoted to admin.', 'success');
 //                 fetchUsers();
@@ -44,7 +44,7 @@
 
 //     const handleRemoveAdmin = async (id) => {
 //         try {
-//             const res = await axios.patch(`http://localhost:5000/users/remove-admin/${id}`);
+//             const res = await axios.patch(`https://aaponaloi-server.vercel.app/users/remove-admin/${id}`);
 //             if (res.data.modifiedCount > 0) {
 //                 Swal.fire('Success!', 'Admin demoted to user.', 'success');
 //                 fetchUsers();

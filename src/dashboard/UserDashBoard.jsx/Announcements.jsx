@@ -16,7 +16,7 @@ const Announcements = () => {
 
     const fetchAnnouncements = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/announcements');
+        const res = await axios.get('https://aaponaloi-server.vercel.app/announcements');
         setAnnouncements(res.data);
       } catch (error) {
         console.error('Failed to fetch announcements:', error);

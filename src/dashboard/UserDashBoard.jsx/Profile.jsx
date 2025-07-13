@@ -19,7 +19,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (user?.email) {
-      axios.get(`http://localhost:5000/agreements/accepted/${user.email}`)
+      axios.get(`https://aaponaloi-server.vercel.app/agreements/accepted/${user.email}`)
         .then(res => setAgreement(res.data))
         .catch(err => console.error('No accepted agreement:', err))
         .finally(() => setLoading(false));

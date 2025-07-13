@@ -25,7 +25,7 @@ const MakePayment = () => {
     useEffect(() => {
         if (user?.email) {
             axios
-                .get(`http://localhost:5000/agreements/accepted/${user.email}`)
+                .get(`https://aaponaloi-server.vercel.app/agreements/accepted/${user.email}`)
                 .then(res => {
                     setAgreement(res.data);
                     setFinalRent(res.data?.rent);
@@ -39,7 +39,7 @@ const MakePayment = () => {
         if (!coupon.trim()) return;
 
         axios
-            .get(`http://localhost:5000/coupons/${coupon}`)
+            .get(`https://aaponaloi-server.vercel.app/coupons/${coupon}`)
             .then(res => {
                 const percentage = res.data?.discount;
                 if (percentage) {
@@ -80,7 +80,7 @@ const MakePayment = () => {
 
         try {
             setSubmitting(true);
-            const res = await axios.post('http://localhost:5000/payments', paymentData);
+            const res = await axios.post('https://aaponaloi-server.vercel.app/payments', paymentData);
             if (res.status === 201) {
                 toast.success(`Payment of ৳${finalRent} for ${month} submitted successfully`);
                 setMonth('');

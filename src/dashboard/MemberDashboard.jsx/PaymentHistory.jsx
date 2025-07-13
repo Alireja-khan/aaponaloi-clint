@@ -17,7 +17,7 @@ const PaymentHistory = () => {
     AOS.init({ duration: 700, easing: 'ease-in-out', once: true });
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/payments?email=${user.email}`)
+        .get(`https://aaponaloi-server.vercel.app/payments?email=${user.email}`)
         .then(res => setPayments(res.data))
         .catch(err => console.error('Error fetching payments:', err))
         .finally(() => setLoading(false));

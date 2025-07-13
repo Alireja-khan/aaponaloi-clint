@@ -31,7 +31,7 @@ const Apartments = () => {
 
         const fetchApartments = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/apartments');
+                const res = await axios.get('https://aaponaloi-server.vercel.app/apartments');
                 setApartments(res.data);
                 setFiltered(res.data);
             } catch (err) {
@@ -45,7 +45,7 @@ const Apartments = () => {
         const checkUserAgreement = async () => {
             if (user?.email) {
                 try {
-                    const res = await axios.get(`http://localhost:5000/agreements?email=${user.email}`);
+                    const res = await axios.get(`https://aaponaloi-server.vercel.app/agreements?email=${user.email}`);
                     if (res.data.hasApplied) {
                         setHasApplied(true);
                         setAppliedApartmentNo(res.data.appliedApartment);
@@ -95,7 +95,7 @@ const Apartments = () => {
         };
 
         try {
-            const res = await axios.post('http://localhost:5000/agreements', agreementData);
+            const res = await axios.post('https://aaponaloi-server.vercel.app/agreements', agreementData);
             if (res.status === 201) {
                 toast.success('Agreement submitted successfully!');
                 setHasApplied(true);

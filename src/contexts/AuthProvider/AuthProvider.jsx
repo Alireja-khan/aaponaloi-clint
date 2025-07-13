@@ -71,7 +71,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser?.email) {
         try {
           // ✅ Save user to DB (upsert)
-          await fetch(`http://localhost:5000/users/${currentUser.email}`, {
+          await fetch(`https://aaponaloi-server.vercel.app/users/${currentUser.email}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -82,7 +82,7 @@ const AuthProvider = ({ children }) => {
           });
 
           // ✅ Fetch role
-          const res = await fetch(`http://localhost:5000/users/${currentUser.email}`);
+          const res = await fetch(`https://aaponaloi-server.vercel.app/users/${currentUser.email}`);
           const data = await res.json();
           setRole(data.role || 'user');
         } catch (error) {

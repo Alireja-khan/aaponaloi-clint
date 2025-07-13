@@ -25,7 +25,7 @@ const MakeAnnouncement = () => {
 
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/announcements', { title, description });
+      await axios.post('https://aaponaloi-server.vercel.app/announcements', { title, description });
       toast.success('Announcement created successfully!');
       setTitle('');
       setDescription('');

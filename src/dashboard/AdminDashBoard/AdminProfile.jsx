@@ -25,10 +25,10 @@ const AdminProfile = () => {
     const fetchStats = async () => {
       try {
         const [apartmentsRes, usersRes, membersRes, couponsRes] = await Promise.all([
-          axios.get('http://localhost:5000/apartments'),
-          axios.get('http://localhost:5000/users'),
-          axios.get('http://localhost:5000/members'),
-          axios.get('http://localhost:5000/coupons'),
+          axios.get('https://aaponaloi-server.vercel.app/apartments'),
+          axios.get('https://aaponaloi-server.vercel.app/users'),
+          axios.get('https://aaponaloi-server.vercel.app/members'),
+          axios.get('https://aaponaloi-server.vercel.app/coupons'),
         ]);
 
         const allRooms = apartmentsRes.data;
