@@ -4,6 +4,8 @@ import { AuthContext } from '../../contexts/AuthContext/AuthContext';
 import { motion } from 'framer-motion';
 import { FaEye, FaMoneyCheckAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const MakePayment = () => {
     const { user } = useContext(AuthContext);
@@ -14,6 +16,11 @@ const MakePayment = () => {
     const [discount, setDiscount] = useState(0);
     const [finalRent, setFinalRent] = useState(null);
     const [submitting, setSubmitting] = useState(false);
+
+    useEffect(() => {
+        AOS.init({ duration: 1000, once: true });
+        AOS.refresh();
+    }, []);
 
     useEffect(() => {
         if (user?.email) {
@@ -34,7 +41,7 @@ const MakePayment = () => {
         axios
             .get(`http://localhost:5000/coupons/${coupon}`)
             .then(res => {
-                const percentage = res.data?.discount; // updated to match standard structure
+                const percentage = res.data?.discount;
                 if (percentage) {
                     const reduced = agreement.rent - (agreement.rent * (percentage / 100));
                     setDiscount(percentage);
@@ -97,10 +104,11 @@ const MakePayment = () => {
     if (!agreement) return null;
 
     return (
-        <div className="pt-15 pl-10">
+        <div className="pt-15 lg:pl-10">
             <h2
                 className="text-4xl pb-9 font-bold flex items-center gap-3 text-gray-800"
                 data-aos="fade-down"
+                data-aos-once="true"
             >
                 <FaMoneyCheckAlt className="text-secondary" />
                 Make <span className="text-secondary">Payment</span>
@@ -153,14 +161,14 @@ const MakePayment = () => {
                                         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
                                     }
                                 }}
-                                className="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-gray-300 flex items-center gap-1 transition duration-200"
+                                className="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-gray-300 flex items-center justify-center gap-2 transition duration-200"
                             >
-                                <FaEye />
-                                Coupons
+                                <FaEye className="text-base" />
+                                <span className="text-sm">Coupons</span>
                             </button>
+
                         </div>
                     </div>
-
 
                     <div className="md:col-span-2">
                         <label className="block mb-1 text-sm font-medium text-gray-700">Final Rent</label>

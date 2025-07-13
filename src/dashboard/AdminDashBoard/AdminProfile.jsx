@@ -69,7 +69,6 @@ const AdminProfile = () => {
 
   return (
     <div className="px-4 py-10 sm:px-6 lg:px-10">
-
       <h1
         className="text-3xl sm:text-4xl font-bold flex items-center gap-3 mb-6"
         data-aos="fade-down"
@@ -79,7 +78,7 @@ const AdminProfile = () => {
       </h1>
 
       {/* Profile Card */}
-      <div className="bg-white text-gray-800 rounded-xl overflow-hidden max-w-5xl my-10 shadow-lg flex flex-col md:flex-row">
+      <div className="bg-white text-gray-800 items-center rounded-xl overflow-hidden max-w-5xl my-10 shadow-lg flex flex-col md:flex-row">
         {/* Left: Image Section */}
         <div
           className="w-full md:w-1/2 bg-gray-50 p-6 flex items-center justify-center"
@@ -88,10 +87,9 @@ const AdminProfile = () => {
           <img
             src={user?.photoURL || 'https://via.placeholder.com/200'}
             alt="Admin"
-            className="w-[250px] h-[250px] md:w-[300px] md:h-[300px] rounded-lg object-top object-cover border-4 border-gray-200"
+            className="w-100 h-100 rounded-lg object-top object-cover border-4 border-gray-200"
           />
         </div>
-
 
         {/* Right: Info Section */}
         <div

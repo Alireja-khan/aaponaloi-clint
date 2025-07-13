@@ -29,16 +29,17 @@ const Announcements = () => {
   }, []);
 
   return (
-    <div className="pt-16 pl-10 max-w-5xl">
+    <div className="pt-16 lg:pl-10 max-w-5xl">
       <h2
-        className="text-4xl pb-9 font-bold flex items-center gap-3 text-gray-800"
+        className="text-2xl sm:text-3xl lg:text-4xl pb-6 sm:pb-8 lg:pb-9 font-bold flex items-center gap-2 sm:gap-3 text-gray-800"
         data-aos="fade-down"
         data-aos-duration="800"
         data-aos-easing="ease-in-out"
       >
-        <FaBullhorn className="text-secondary" />
+        <FaBullhorn className="text-secondary text-xl sm:text-2xl lg:text-3xl" />
         Latest <span className="text-secondary">Announcements</span>
       </h2>
+
 
       {loading ? (
         <p className="text-gray-500">Loading announcements...</p>

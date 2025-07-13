@@ -25,7 +25,7 @@ const PaymentHistory = () => {
   }, [user?.email]);
 
   return (
-    <div className="pt-15 pl-10 max-w-5xl">
+    <div className="pt-15 lg:pl-10 max-w-5xl">
       <h2
         className="text-4xl pb-9 font-bold flex items-center gap-3"
         data-aos="fade-down"

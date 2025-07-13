@@ -45,19 +45,20 @@ const MemberProfile = () => {
   } = agreement;
 
   return (
-    <div className="py-10 pl-10">
+    <div className="px-4 py-10 sm:px-6 lg:px-10">
       <h1
-        className="text-4xl font-bold flex items-center gap-3"
+        className="text-3xl sm:text-4xl font-bold flex items-center gap-3 mb-6"
         data-aos="fade-down"
       >
         <FaUserCheck className="text-secondary" />
         Member <span className="text-secondary">Profile</span>
       </h1>
 
-      <div className="bg-white text-gray-800 rounded-xl overflow-hidden max-w-5xl my-10 flex items-center shadow-lg">
+      {/* Profile Card */}
+      <div className="bg-white text-gray-800 items-center rounded-xl overflow-hidden max-w-5xl my-10 shadow-lg flex flex-col md:flex-row">
         {/* Left: Image */}
         <div
-          className="w-1/2 bg-gray-50 p-6 flex items-center justify-center"
+          className="w-full md:w-1/2 bg-gray-50 p-6 flex items-center justify-center"
           data-aos="fade-right"
         >
           <img
@@ -69,18 +70,20 @@ const MemberProfile = () => {
 
         {/* Right: Info */}
         <div
-          className="w-1/2 p-8 flex flex-col justify-between"
+          className="w-full md:w-1/2 p-6 flex flex-col justify-between"
           data-aos="fade-left"
         >
           <div>
-            <h1 className="text-3xl font-bold mb-2">{userName || user?.displayName || 'Member Name'}</h1>
-            <h2 className="text-lg mb-4 text-slate-600">Resident Member</h2>
+            <h1 className="text-2xl md:text-3xl font-bold mb-1">
+              {userName || user?.displayName || 'Member Name'}
+            </h1>
+            <h2 className="text-md text-slate-600 mb-4">Resident Member</h2>
 
-            <p className="text-slate-700 text-md leading-relaxed mb-6">
+            <p className="text-slate-700 text-sm md:text-base leading-relaxed mb-4">
               Welcome to your member profile. Here you can view your current agreement and housing details.
             </p>
 
-            <div className="space-y-2 text-md">
+            <div className="space-y-2 text-sm md:text-base">
               <p className="flex items-center gap-2 text-slate-700">
                 <FaEnvelope className="text-slate-500" />
                 <span>Email:</span> {email}
@@ -94,8 +97,8 @@ const MemberProfile = () => {
         </div>
       </div>
 
-      {/* Stats Summary */}
-      <div className="rounded-lg max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+      {/* Stats Grid */}
+      <div className="max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
         {[
           {
             label: 'Block',
@@ -116,13 +119,13 @@ const MemberProfile = () => {
             label: 'Rent (৳)',
             value: rent,
             icon: <FaMoneyBillWave className="text-green-600 text-2xl" />,
-            colSpan: true, // mark this card to span full width
-          }
+            span: true,
+          },
         ].map((item, index) => (
           <div
             key={index}
-            className={`bg-gray-50 rounded-md p-4 shadow flex items-center justify-between gap-4 transition-all duration-300 ease-in-out  hover:shadow-lg ${
-              item.colSpan ? 'lg:col-span-3' : ''
+            className={`bg-gray-50 rounded-md p-4 shadow flex items-center justify-between gap-4 hover:scale-[1.02] transition duration-300 ${
+              item.span ? 'col-span-1 sm:col-span-2 md:col-span-1 lg:col-span-3' : ''
             }`}
             data-aos="fade-up"
             data-aos-delay={index * 100}

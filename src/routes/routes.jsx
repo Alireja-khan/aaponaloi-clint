@@ -91,6 +91,22 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      // User Dashboard
+      {
+        path: '',
+        Component: PrivateRoutes,
+        children: [
+          {
+            path: 'user-dashboard',
+            Component: DashboardLayout,
+            children: [
+              { index: true, Component: Profile },
+              { path: 'profile', Component: Profile },
+              { path: 'announcements', Component: Announcements },
+            ],
+          },
+        ],
+      },
     ],
   },
 

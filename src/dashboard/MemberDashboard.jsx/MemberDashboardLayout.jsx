@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, Outlet } from 'react-router';
 import { BsPersonLinesFill } from 'react-icons/bs';
-import { FaMoneyBillWave, FaHistory, FaBullhorn } from 'react-icons/fa';
+import { FaMoneyBillWave, FaHistory, FaBullhorn, FaBars, FaTimes } from 'react-icons/fa';
 
 const MemberDashboardLayout = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const navItems = [
     { path: '/member-dashboard/profile', label: 'My Profile', icon: <BsPersonLinesFill /> },
     { path: '/member-dashboard/make-payment', label: 'Make Payment', icon: <FaMoneyBillWave /> },
@@ -12,9 +14,21 @@ const MemberDashboardLayout = () => {
   ];
 
   return (
-    <div className="min-h-screen flex bg-primary/20">
-      <aside className="w-74 bg-primary/10 shadow-md p-6 flex flex-col">
-        <h2 className="text-2xl font-bold mb-8 text-[#222222]">Member Dashboard</h2>
+    <div className="min-h-screen flex flex-col lg:flex-row bg-primary/20">
+      {/* Mobile Top Bar */}
+      <div className="flex justify-between items-center p-4 lg:hidden shadow-md bg-primary/10">
+        <h2 className="text-xl font-bold text-[#222222]">Member Dashboard</h2>
+        <button onClick={() => setMenuOpen(!menuOpen)} className="text-2xl text-gray-800 focus:outline-none">
+          {menuOpen ? <FaTimes /> : <FaBars />}
+        </button>
+      </div>
+
+      {/* Sidebar */}
+      <aside
+        className={`bg-primary/10 shadow-md p-6 flex-col transition-all duration-300
+        ${menuOpen ? 'flex' : 'hidden'} lg:flex lg:w-72`}
+      >
+        <h2 className="text-2xl font-bold mb-6 text-[#222222] hidden lg:block">Member Dashboard</h2>
         <nav className="flex flex-col gap-2">
           {navItems.map(({ path, label, icon }) => (
             <NavLink
@@ -26,6 +40,7 @@ const MemberDashboardLayout = () => {
                   ? 'bg-primary/50 text-black font-semibold shadow'
                   : 'text-gray-700 hover:text-black hover:bg-primary/20'}`
               }
+              onClick={() => setMenuOpen(false)} // Close menu on mobile after clicking
             >
               <span className="text-lg">{icon}</span>
               <span>{label}</span>
@@ -34,7 +49,8 @@ const MemberDashboardLayout = () => {
         </nav>
       </aside>
 
-      <main className="flex-1 p-8">
+      {/* Main Content */}
+      <main className="flex-1 p-6 lg:p-8">
         <Outlet />
       </main>
     </div>

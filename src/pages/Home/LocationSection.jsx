@@ -140,7 +140,7 @@ const LocationSection = () => {
             <img
               src={linePerson}
               alt="Leaning Person"
-              className="hidden lg:block absolute -right-62 top-7 -translate-y-1/2 h-150 z-20 object-contain pointer-events-none"
+              className="hidden lg:block absolute -right-62 top-9 -translate-y-1/2 h-175 z-20 object-contain pointer-events-none"
             />
 
           </div>
