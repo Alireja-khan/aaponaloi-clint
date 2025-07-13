@@ -36,7 +36,7 @@ const AdminProfile = () => {
         ]);
 
         const allRooms = apartmentsRes.data;
-        const availableRooms = allRooms.filter(room => room.available === true);
+        const availableRooms = allRooms.filter(room => !room.isBooked); // ✅ FIXED HERE
 
         const totalRooms = allRooms.length;
         const availableCount = availableRooms.length;
@@ -64,6 +64,7 @@ const AdminProfile = () => {
       }
     };
 
+
     fetchStats();
   }, []);
 
@@ -84,7 +85,7 @@ const AdminProfile = () => {
         Admin <span className='text-secondary'>Profile</span>
       </h1>
 
-      <div className="bg-white text-gray-800 rounded-xl overflow-hidden max-w-5xl my-10 flex shadow-lg">
+      <div className="bg-white text-gray-800 rounded-xl overflow-hidden max-w-5xl my-10 flex items-center shadow-lg">
         {/* Left: Image Section */}
         <div
           className="w-1/2 bg-gray-50 p-6 flex items-center justify-center"
@@ -93,7 +94,7 @@ const AdminProfile = () => {
           <img
             src={user?.photoURL || 'https://via.placeholder.com/200'}
             alt="Admin"
-            className="w-48 h-48 rounded-lg object-cover border-4 border-gray-200"
+            className="w-100 h-100 rounded-lg object-top object-cover border-4 border-gray-200"
           />
         </div>
 
@@ -150,63 +151,63 @@ const AdminProfile = () => {
 
       <div className="rounded-lg max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
         {[
-  {
-    label: 'Total Rooms',
-    value: stats.totalRooms,
-    icon: <FaBed className="text-blue-600 text-2xl" />,  // Blue = info / general
-  },
-  {
-    label: 'Available Rooms',
-    value: stats.availableRooms,
-    icon: <FaDoorOpen className="text-green-600 text-2xl" />, // Green = positive / available
-  },
-  {
-    label: 'Available Rooms (%)',
-    value: `${stats.availableRoomsPercentage}%`,
-    icon: <FaDoorOpen className="text-green-600 text-2xl" />,
-  },
-  {
-    label: 'Unavailable Rooms',
-    value: stats.totalRooms - stats.availableRooms,
-    icon: <FaDoorClosed className="text-red-600 text-2xl" />, // Red = negative / unavailable
-  },
-  {
-    label: 'Unavailable Rooms (%)',
-    value: `${stats.unavailableRoomsPercentage}%`,
-    icon: <FaDoorClosed className="text-red-600 text-2xl" />,
-  },
-  {
-    label: 'Users',
-    value: stats.users,
-    icon: <FaUsers className="text-indigo-600 text-2xl" />, // Indigo = neutral, general user data
-  },
-  {
-    label: 'Members',
-    value: stats.members,
-    icon: <FaUserCheck className="text-teal-600 text-2xl" />, // Teal = verified / special users
-  },
-  {
-    label: 'Total Coupons',
-    value: stats.coupons,
-    icon: <FaTicketAlt className="text-yellow-600 text-2xl" />, // Yellow = discounts, coupons
-    span: true,
-  },
-]
-.map((item, index) => (
-          <div
-            key={index}
-            className={`bg-gray-50 rounded-md p-4 shadow flex items-center justify-between gap-4 hover:scale-[1.02] transition duration-300 ${item.span ? 'col-span-1 sm:col-span-2 lg:col-span-2' : ''
-              }`}
-            data-aos="fade-up"
-            data-aos-delay={index * 100}
-          >
-            <div>
-              <p className="text-sm font-medium text-slate-500">{item.label}</p>
-              <p className="text-xl font-bold text-gray-800">{item.value}</p>
+          {
+            label: 'Total Rooms',
+            value: stats.totalRooms,
+            icon: <FaBed className="text-blue-600 text-2xl" />,  // Blue = info / general
+          },
+          {
+            label: 'Available Rooms',
+            value: stats.availableRooms,
+            icon: <FaDoorOpen className="text-green-600 text-2xl" />, // Green = positive / available
+          },
+          {
+            label: 'Available Rooms (%)',
+            value: `${stats.availableRoomsPercentage}%`,
+            icon: <FaDoorOpen className="text-green-600 text-2xl" />,
+          },
+          {
+            label: 'Unavailable Rooms',
+            value: stats.totalRooms - stats.availableRooms,
+            icon: <FaDoorClosed className="text-red-600 text-2xl" />, // Red = negative / unavailable
+          },
+          {
+            label: 'Unavailable Rooms (%)',
+            value: `${stats.unavailableRoomsPercentage}%`,
+            icon: <FaDoorClosed className="text-red-600 text-2xl" />,
+          },
+          {
+            label: 'Users',
+            value: stats.users,
+            icon: <FaUsers className="text-indigo-600 text-2xl" />, // Indigo = neutral, general user data
+          },
+          {
+            label: 'Members',
+            value: stats.members,
+            icon: <FaUserCheck className="text-teal-600 text-2xl" />, // Teal = verified / special users
+          },
+          {
+            label: 'Total Coupons',
+            value: stats.coupons,
+            icon: <FaTicketAlt className="text-yellow-600 text-2xl" />, // Yellow = discounts, coupons
+            span: true,
+          },
+        ]
+          .map((item, index) => (
+            <div
+              key={index}
+              className={`bg-gray-50 rounded-md p-4 shadow flex items-center justify-between gap-4 hover:scale-[1.02] transition duration-300 ${item.span ? 'col-span-1 sm:col-span-2 lg:col-span-2' : ''
+                }`}
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
+              <div>
+                <p className="text-sm font-medium text-slate-500">{item.label}</p>
+                <p className="text-xl font-bold text-gray-800">{item.value}</p>
+              </div>
+              {item.icon}
             </div>
-            {item.icon}
-          </div>
-        ))}
+          ))}
       </div>
 
 

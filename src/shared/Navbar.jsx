@@ -161,7 +161,7 @@ const Navbar = () => {
               className="cursor-pointer rounded-full border p-1 hover:scale-105 transition"
             >
               {user.photoURL ? (
-                <img src={user.photoURL} alt="user" className="w-10 h-10 rounded-full object-cover" />
+                <img src={user.photoURL} alt="user" className="w-10 h-10 rounded-full object-cover object-top" />
               ) : (
                 <FaUserCircle className="text-3xl" />
               )}

@@ -54,7 +54,7 @@ const MemberProfile = () => {
         Member <span className="text-secondary">Profile</span>
       </h1>
 
-      <div className="bg-white text-gray-800 rounded-xl overflow-hidden max-w-5xl my-10 flex shadow-lg">
+      <div className="bg-white text-gray-800 rounded-xl overflow-hidden max-w-5xl my-10 flex items-center shadow-lg">
         {/* Left: Image */}
         <div
           className="w-1/2 bg-gray-50 p-6 flex items-center justify-center"
@@ -63,7 +63,7 @@ const MemberProfile = () => {
           <img
             src={user?.photoURL || 'https://via.placeholder.com/200'}
             alt="Member"
-            className="w-48 h-48 rounded-lg object-cover border-4 border-gray-200"
+            className="w-100 h-100 rounded-lg object-top object-cover border-4 border-gray-200"
           />
         </div>
 

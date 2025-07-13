@@ -1,5 +1,5 @@
 // Login.jsx
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { AuthContext } from '../../contexts/AuthContext/AuthContext';
 import { Link, useLocation, useNavigate } from 'react-router';
@@ -8,6 +8,7 @@ import { auth } from '../../firebase/firebase.init';
 import { useForm } from 'react-hook-form';
 import { motion, AnimatePresence } from 'framer-motion';
 import SocialLogin from './SocialLogin';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const containerVariants = {
   hidden: { opacity: 0, x: 50 },
@@ -27,6 +28,8 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleGoogleSignIn = async () => {
     try {
@@ -48,7 +51,6 @@ const Login = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log('Form Data:', data  )
     try {
       await signInUser(data.email, data.password);
       Swal.fire({
@@ -75,11 +77,12 @@ const Login = () => {
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="w-full bg-white p-8 rounded-lg"
+        className="w-full bg-white p-8 rounded-lg max-w-md mx-auto"
       >
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Sign In</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Email */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
             <input
@@ -93,19 +96,29 @@ const Login = () => {
             )}
           </div>
 
+          {/* Password with eye icon */}
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
-            <input
-              type="password"
-              {...register('password', { required: 'Password is required' })}
-              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="••••••••"
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                {...register('password', { required: 'Password is required' })}
+                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="••••••••"
+              />
+              <span
+                onClick={() => setShowPassword(prev => !prev)}
+                className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500 cursor-pointer"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
             {errors.password && (
               <p className="text-sm text-red-500 mt-1">{errors.password.message}</p>
             )}
           </div>
 
+          {/* Submit */}
           <button
             type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md transition"

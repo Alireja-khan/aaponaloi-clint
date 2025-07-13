@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../contexts/AuthContext/AuthContext';
 import { motion } from 'framer-motion';
-import { FaMoneyCheckAlt } from 'react-icons/fa';
+import { FaEye, FaMoneyCheckAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 const MakePayment = () => {
@@ -34,14 +34,14 @@ const MakePayment = () => {
         axios
             .get(`http://localhost:5000/coupons/${coupon}`)
             .then(res => {
-                const percentage = res.data?.discount;
+                const percentage = res.data?.discount; // updated to match standard structure
                 if (percentage) {
                     const reduced = agreement.rent - (agreement.rent * (percentage / 100));
                     setDiscount(percentage);
                     setFinalRent(Math.round(reduced));
                     toast.success(`Coupon Applied: ${percentage}% off`);
                 } else {
-                    toast.error('Invalid coupon code');
+                    throw new Error();
                 }
             })
             .catch(() => {
@@ -143,8 +143,24 @@ const MakePayment = () => {
                             >
                                 Apply
                             </button>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    if (window.location.pathname !== '/') {
+                                        window.location.href = '/#coupons';
+                                    } else {
+                                        const el = document.getElementById('coupons');
+                                        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                    }
+                                }}
+                                className="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-gray-300 flex items-center gap-1 transition duration-200"
+                            >
+                                <FaEye />
+                                Coupons
+                            </button>
                         </div>
                     </div>
+
 
                     <div className="md:col-span-2">
                         <label className="block mb-1 text-sm font-medium text-gray-700">Final Rent</label>

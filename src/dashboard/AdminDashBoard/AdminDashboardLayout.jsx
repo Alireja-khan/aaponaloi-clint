@@ -12,7 +12,6 @@ const AdminDashboardLayout = () => {
     { path: 'agreement-requests', label: 'Agreement Requests', icon: <FaFileContract /> },
     { path: 'manage-coupons', label: 'Manage Coupons', icon: <FaTags /> },
   ];
-
   return (
     <div className="min-h-screen flex bg-primary/20">
       <aside className="w-74 bg-primary/10 shadow-md p-6 flex flex-col">
