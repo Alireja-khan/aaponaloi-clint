@@ -37,7 +37,6 @@ const faqData = [
   },
 ];
 
-// Fade-in wrapper for scroll animation
 const FadeInOnView = ({ children, direction = 'right', delay = 0 }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.2 });
@@ -79,20 +78,19 @@ const FAQSection = () => {
   const visibleFaqs = showAll ? faqData : faqData.slice(0, 2);
 
   return (
-    <section id="faq" className="relative pb-30 px-6 md:px-20 overflow-hidden">
-      {/* Animate layout changes when FAQs expand */}
+    <section id="faq" className="relative pb-30 px-6 sm:px-6 md:px-10 lg:px-20 overflow-hidden">
       <motion.div
         layout
         transition={{ layout: { duration: 0.6, ease: 'easeInOut' } }}
-        className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start"
+        className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-start"
       >
         {/* Left Illustration */}
         <FadeInOnView direction="left" delay={0}>
-          <motion.div layout>
+          <motion.div layout className="w-full">
             <img
               src={image1}
               alt="Apartment Building"
-              className="rounded-3xl object-cover w-full h-[450px]"
+              className="rounded-3xl object-cover w-full h-[300px] sm:h-[400px] md:h-[350px] lg:h-[450px]"
             />
           </motion.div>
         </FadeInOnView>
@@ -100,8 +98,8 @@ const FAQSection = () => {
         {/* Right FAQ Section */}
         <FadeInOnView direction="right" delay={0.2}>
           <motion.div layout>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-10 flex items-center gap-3">
-              <RiQuestionAnswerLine className="text-secondary text-5xl" />
+            <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6 md:mb-8 lg:mb-10 flex items-center gap-3">
+              <RiQuestionAnswerLine className="text-secondary text-4xl md:text-5xl" />
               Common <span className="text-secondary ml-1">Queries</span>
             </h2>
 
@@ -119,14 +117,14 @@ const FAQSection = () => {
                   >
                     <button
                       onClick={() => toggleIndex(index)}
-                      className="w-full px-6 py-5 text-left flex justify-between items-center text-lg font-medium text-gray-800 hover:text-secondary transition-colors"
+                      className="w-full px-4 sm:px-6 py-4 sm:py-5 text-left flex justify-between items-center text-base sm:text-lg font-medium text-gray-800 hover:text-secondary transition-colors"
                     >
                       {item.question}
                       <span className="ml-4 text-secondary">
                         {activeIndex === index ? (
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6"
+                            className="h-5 w-5 sm:h-6 sm:w-6"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -141,7 +139,7 @@ const FAQSection = () => {
                         ) : (
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6"
+                            className="h-5 w-5 sm:h-6 sm:w-6"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -165,7 +163,7 @@ const FAQSection = () => {
                           animate={{ opacity: 1, height: 'auto' }}
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.3, ease: 'easeInOut' }}
-                          className="px-6 pb-6 text-gray-600"
+                          className="px-4 sm:px-6 pb-4 sm:pb-6 text-gray-600 text-sm sm:text-base"
                         >
                           <p>{item.answer}</p>
                         </motion.div>
@@ -177,14 +175,14 @@ const FAQSection = () => {
 
               {/* Show More/Less Button */}
               {faqData.length > 2 && (
-                <div className="text-center mt-6">
+                <div className="text-center mt-4 md:mt-6">
                   <motion.button
                     onClick={() => {
                       setShowAll(!showAll);
                       setActiveIndex(null); // Close any open FAQ
                     }}
                     whileTap={{ scale: 0.95 }}
-                    className="text-secondary font-semibold hover:underline transition duration-200"
+                    className="text-secondary font-semibold hover:underline transition duration-200 text-sm md:text-base"
                   >
                     {showAll ? 'Show Less ▲' : 'Show More ▼'}
                   </motion.button>
@@ -199,4 +197,3 @@ const FAQSection = () => {
 };
 
 export default FAQSection;
-  

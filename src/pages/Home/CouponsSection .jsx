@@ -58,36 +58,36 @@ const CouponsSection = () => {
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {coupons.map((coupon, index) => (
-
-            <motion.div
-              custom={index + 2}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.3 }}
-              variants={fadeUp}
-              whileHover={{ scale: 1.03 }}
-              key={coupon.code}
-              className="bg-accent rounded-2xl shadow-md p-6 hover:shadow-2xl transition-all"
-              data-aos={index % 2 === 0 ? 'flip-left' : 'fade-down-left'}
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <FaTag className={`text-2xl ${coupon.color?.split(' ')[1]}`} />
-                <div>
-                  <h3 className="text-xl font-bold">{coupon.code}</h3>
-                  <p className="text-sm text-gray-500">{coupon.description}</p>
-                </div>
-              </div>
-
-              <span
-                className={`absolute top-4 right-4 px-3 py-1 text-sm font-semibold rounded-full bg-lime-200`}
-              >
-                {coupon.discount} OFF
-              </span>
-            </motion.div>
-
-          ))}
+  {coupons.map((coupon, index) => (
+    <motion.div
+      custom={index + 2}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }}
+      variants={fadeUp}
+      whileHover={{ scale: 1.03 }}
+      key={coupon.code}
+      className={`relative bg-accent rounded-2xl shadow-md p-6 hover:shadow-2xl transition-all ${
+        index === coupons.length - 1 ? 'md:col-span-2 lg:col-span-1' : ''
+      }`}
+      data-aos={index % 2 === 0 ? 'flip-left' : 'fade-down-left'}
+    >
+      <div className="flex items-center gap-4 mb-4">
+        <FaTag className={`text-2xl ${coupon.color?.split(' ')[1]}`} />
+        <div>
+          <h3 className="text-xl font-bold">{coupon.code}</h3>
+          <p className="text-sm text-gray-500">{coupon.description}</p>
         </div>
+      </div>
+
+      <span className="absolute top-4 right-4 px-3 py-1 text-sm font-semibold rounded-full bg-lime-200">
+        {coupon.discount} OFF
+      </span>
+    </motion.div>
+  ))}
+</div>
+
+
       </div>
     </section>
   );

@@ -115,26 +115,30 @@ const AboutBuilding = () => {
           Welcome to <span className="font-semibold text-secondary">Aaponaloi</span>, your modern living solution. Our thoughtfully designed complex blends comfort, security, and sustainability for every lifestyle.
         </motion.p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {cardData.map((card, index) => (
-            <motion.div
-              key={index}
-              custom={index + 2}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.3 }}
-              variants={fadeUp}
-              whileHover={{ scale: 1.03 }}
-              className="bg-accent rounded-2xl shadow-md p-6 hover:shadow-2xl transition-all"
-            >
-              {card.icon}
-              <div className='-mt-5 mb-5'>
-                <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
-                <p className="text-gray-600">{card.description}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {cardData.map((card, index) => (
+    <motion.div
+      key={index}
+      custom={index + 2}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }}
+      variants={fadeUp}
+      whileHover={{ scale: 1.03 }}
+      className={`bg-accent rounded-2xl shadow-md p-6 hover:shadow-2xl transition-all ${
+        index === cardData.length - 1 ? 'md:col-span-2 lg:col-span-1' : ''
+      }`}
+    >
+      {card.icon}
+      <div className='-mt-5 mb-5'>
+        <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
+        <p className="text-gray-600">{card.description}</p>
+      </div>
+    </motion.div>
+  ))}
+</div>
+
+        
       </motion.div>
     </section>
   );

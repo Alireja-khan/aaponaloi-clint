@@ -97,29 +97,31 @@ const StatsSection = () => {
           variants={containerVariants}
           initial="hidden"
           animate={controls}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
+          className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
         >
           {stats.map(({ icon: Icon, label, value, color }, index) => (
             <motion.li
               key={label}
               variants={index % 2 === 0 ? cardVariantsLeft : cardVariantsRight}
               whileHover={{ y: -6, boxShadow: '0 10px 25px rgba(0,0,0,0.15)' }}
-              className="group rounded-2xl bg-accent backdrop-blur-md p-6 text-center shadow transition cursor-pointer"
+              className={`group rounded-2xl bg-accent backdrop-blur-md p-6 text-center shadow transition cursor-pointer ${index === stats.length - 1 ? 'col-span-2 md:col-span-2 lg:col-span-1' : ''
+                }`}
             >
               <Icon
                 className={`mx-auto mb-4 text-4xl transition group-hover:scale-110 ${color}`}
               />
-
               <div className="text-3xl md:text-4xl font-bold text-gray-900">
                 <CountUp end={value} duration={2.5} enableScrollSpy />
               </div>
-
               <p className="mt-1 text-sm md:text-base font-medium text-gray-700">
                 {label}
               </p>
             </motion.li>
           ))}
         </motion.ul>
+
+
+
       </div>
     </section>
   );

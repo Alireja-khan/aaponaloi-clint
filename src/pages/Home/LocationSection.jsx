@@ -85,7 +85,7 @@ const LocationSection = () => {
       </FadeInOnView>
 
       {/* Info & Map Grid */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-6x mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Info */}
         <FadeInOnView direction="left" delay={0.1}>
           <ul className="space-y-6 text-gray-700 mt-4 sm:mt-6">
