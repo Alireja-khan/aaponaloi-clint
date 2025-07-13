@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import { motion } from 'framer-motion';
 import { Typewriter } from 'react-simple-typewriter';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 import img1 from '../../assets/Apartment-3/living-room-3.jpg';
 import img2 from '../../assets/Apartment-3/bed-room-3.jpg';
@@ -101,7 +101,7 @@ const Banner = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                  
+
                 <h2 className="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
                   <Typewriter
                     words={[slide.title]}
@@ -121,22 +121,24 @@ const Banner = () => {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col md:flex-row gap-4 justify-center">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-white text-secondary px-6 py-2 rounded-lg font-bold shadow-md hover:bg-primary hover:text-black transition duration-300"
-                    onClick={() => {
-                      const section = document.getElementById('apartment-section');
-                      section?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    View Apartments
-                  </motion.button>
+                  <Link to='/apartments'>
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="bg-white text-secondary px-6 py-2 rounded-lg font-bold shadow-md hover:bg-primary hover:text-black transition duration-300"
+                      onClick={() => {
+                        const section = document.getElementById('apartment-section');
+                        section?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                    >
+                      View Apartments
+                    </motion.button>
+                  </Link>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="bg-primary text-black px-6 py-2 rounded-lg font-bold shadow-md hover:bg-white hover:text-secondary transition duration-300"
-                    onClick={() => navigate('/register')}
+                    onClick={() => navigate('/contact')}
                   >
                     Keep in Touch
                   </motion.button>

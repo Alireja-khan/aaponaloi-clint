@@ -78,6 +78,22 @@ const Navbar = () => {
           Apartments
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/contact"
+          className="font-medium px-3 py-1.5 rounded"
+          onClick={(e) => {
+            setIsOpen(false);
+            setActiveSection('');
+            if (window.location.pathname === '/contact') {
+              e.preventDefault();
+              triggerScrollToTop();
+            }
+          }}
+        >
+          Contact
+        </NavLink>
+      </li>
       {sectionLinks.map((section) => (
         <li key={section}>
           <button

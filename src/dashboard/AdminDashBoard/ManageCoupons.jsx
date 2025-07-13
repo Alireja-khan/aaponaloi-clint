@@ -124,7 +124,7 @@ const ManageCoupons = () => {
                 <div className="sm:ml-auto sm:mt-0 mt-2 sm:flex-shrink-0">
                     <button
                         onClick={() => openModal()}
-                        className="px-4 py-2 bg-primary hover:text-white text-sm font-medium rounded-md hover:bg-secondary transition"
+                        className="px-4 py-2 bg-primary lg:mr-123 hover:text-white text-sm font-medium rounded-md hover:bg-secondary transition"
                     >
                         <FaPlus className="inline-block mr-2" />
                         Add Coupon

@@ -174,7 +174,7 @@ const Apartments = () => {
                                         ? '✅ You Applied Here'
                                         : 'Already Applied';
                             } else if (apt.isBooked) {
-                                buttonText = 'Booked by Another User';
+                                buttonText = 'Booked ';
                             }
 
                             return (

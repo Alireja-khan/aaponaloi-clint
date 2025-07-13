@@ -30,11 +30,6 @@ const faqData = [
     answer:
       'The building features 24/7 CCTV surveillance, secure access control, and on-site security personnel.',
   },
-  {
-    question: 'How can I apply for an apartment?',
-    answer:
-      'You can apply through our website or contact our leasing office directly for personalized assistance.',
-  },
 ];
 
 const FadeInOnView = ({ children, direction = 'right', delay = 0 }) => {

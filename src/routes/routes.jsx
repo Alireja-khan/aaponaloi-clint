@@ -6,6 +6,7 @@ import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import PrivateRoutes from "./PrivateRoutes";
 import Apartments from "../pages/Apartment/Apartments";
+import Contact from "../pages/Contact/Contact";
 
 import DashboardLayout from "../dashboard/UserDashBoard.jsx/DashboardLayout";
 import Profile from "../dashboard/UserDashBoard.jsx/Profile";
@@ -28,6 +29,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       { path: 'apartments', Component: Apartments },
+      { path: 'contact', Component: Contact },
 
       // Main dashboard route with redirect logic
       {
