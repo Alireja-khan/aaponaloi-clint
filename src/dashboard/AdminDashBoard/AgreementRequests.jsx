@@ -3,10 +3,17 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { motion } from 'framer-motion';
 import { FaHandshake } from 'react-icons/fa';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const AgreementRequests = () => {
     const [requests, setRequests] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        AOS.init({ duration: 1000, once: true });
+        AOS.refresh(); // Fixes animation not triggering on refresh
+    }, []);
 
     useEffect(() => {
         axios
@@ -38,17 +45,17 @@ const AgreementRequests = () => {
     };
 
     return (
-        <div className='pt-15 pl-10'>
-
+        <div className="pt-14 lg:pl-10">
             <h2
-                className="text-4xl pb-9 font-bold flex items-center gap-3 text-gray-800"
+                className="text-2xl sm:text-3xl lg:text-4xl pb-6 sm:pb-8 font-bold flex flex-wrap items-center gap-2 sm:gap-3 text-gray-800"
                 data-aos="fade-down"
                 data-aos-duration="800"
                 data-aos-easing="ease-in-out"
             >
                 <FaHandshake className="text-secondary" />
-                Agreement <span className='text-secondary'>Requests</span>
+                Agreement <span className="text-secondary">Requests</span>
             </h2>
+
 
             <motion.div
                 className="max-w-5xl p-6 bg-white rounded-xl shadow-md border border-gray-100"
@@ -56,8 +63,8 @@ const AgreementRequests = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
             >
-
-                {loading ? (''
+                {loading ? (
+                    ''
                 ) : requests.length === 0 ? (
                     <p className="text-gray-500 text-center py-10">No pending agreement requests.</p>
                 ) : (

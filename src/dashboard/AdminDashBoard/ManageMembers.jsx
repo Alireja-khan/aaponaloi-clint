@@ -49,7 +49,7 @@ const ManageMembers = () => {
   };
 
   return (
-    <div className="py-15 max-w-5xl pl-10">
+    <div className="py-15 max-w-5xl lg:pl-10">
 
       <h2
         className="text-4xl pb-9 font-bold flex items-center gap-3"
