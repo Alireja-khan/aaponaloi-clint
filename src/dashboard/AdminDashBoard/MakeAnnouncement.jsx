@@ -37,6 +37,14 @@ const MakeAnnouncement = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-bars loading-xl"></span>
+      </div>
+    );
+  }
+
   return (
     <div className="pt-14 lg:pl-10">
       <h2
@@ -83,9 +91,8 @@ const MakeAnnouncement = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full py-2 px-4 bg-primary text-black hover:text-white rounded-lg font-semibold hover:bg-secondary transition duration-200 flex items-center justify-center ${
-              loading ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
+            className={`w-full py-2 px-4 bg-primary text-black hover:text-white rounded-lg font-semibold hover:bg-secondary transition duration-200 flex items-center justify-center ${loading ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
           >
             {loading && (
               <svg

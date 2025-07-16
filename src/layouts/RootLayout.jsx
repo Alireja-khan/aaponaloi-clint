@@ -1,16 +1,24 @@
 import React from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
 import Navbar from '../shared/Navbar';
 import Footer from '../shared/Footer';
 import ScrollToTop from '../shared/ScrollToTop';
 
 const RootLayout = () => {
+    const location = useLocation();
+
+    // Hide navbar on any dashboard route
+    const hideNavbar = location.pathname.startsWith('/dashboard') ||
+        location.pathname.startsWith('/admin-dashboard') ||
+        location.pathname.startsWith('/member-dashboard') ||
+        location.pathname.startsWith('/user-dashboard');
+
     return (
-        <div className=''>
-            <ScrollToTop></ScrollToTop>
-            <Navbar></Navbar>
-            <Outlet></Outlet>
-            <Footer></Footer>
+        <div>
+            <ScrollToTop />
+            {!hideNavbar && <Navbar />}
+            <Outlet />
+            <Footer />
         </div>
     );
 };

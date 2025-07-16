@@ -21,6 +21,7 @@ import MemberDashboardLayout from "../dashboard/MemberDashboard.jsx/MemberDashbo
 import MemberProfile from "../dashboard/MemberDashboard.jsx/MemberProfile";
 import MakePayment from "../dashboard/MemberDashboard.jsx/MakePayment";
 import PaymentHistory from "../dashboard/MemberDashboard.jsx/PaymentHistory";
+import NotFound from "../pages/NotFound/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -84,7 +85,7 @@ export const router = createBrowserRouter([
             Component: AdminDashboardLayout,
             children: [
               { index: true, Component: AdminProfile },
-              { path:'/admin-dashboard/profile', Component: AdminProfile },
+              { path: '/admin-dashboard/profile', Component: AdminProfile },
               { path: 'manage-members', Component: ManageMembers },
               { path: 'make-announcement', Component: MakeAnnouncement },
               { path: 'agreement-requests', Component: AgreementRequests },
@@ -120,5 +121,11 @@ export const router = createBrowserRouter([
       { path: 'login', Component: Login },
       { path: 'register', Component: Register },
     ],
+  },
+
+  // ✅ 404 Catch-all route
+  {
+    path: '*',
+    Component: NotFound,
   },
 ]);

@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaEnvelope, FaPhoneAlt, FaWhatsapp, FaFacebook, FaInstagram } from "react-icons/fa";
 import { motion } from "framer-motion";
 import contactImg from "../../assets/images/Get in touch-cuate.png"; // Use your own image path
 import { FiMessageSquare } from "react-icons/fi";
 
 const Contact = () => {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        // Simulate loading delay, adjust as needed or replace with real loading logic
+        const timer = setTimeout(() => setLoading(false), 500);
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center min-h-screen bg-primary/20">
+                <span className="loading loading-bars loading-xl"></span>
+            </div>
+        );
+    }
+
     return (
         <div className="bg-primary/20">
-            <div id="contact" className="max-w-screen-2xl mx-auto min-h-screen  px-4 lg:px-30 py-10 grid grid-cols-1 lg:grid-cols-2 items-center ">
+            <div
+                id="contact"
+                className="max-w-screen-2xl mx-auto min-h-screen px-4 lg:px-30 py-10 grid grid-cols-1 lg:grid-cols-2 items-center"
+            >
                 {/* Left Section */}
                 <motion.div
                     className="space-y-6"
@@ -24,23 +43,33 @@ const Contact = () => {
                     <div className="space-y-4 text-lg">
                         <div className="flex items-center gap-4">
                             <FaEnvelope className="text-[#678314]" />
-                            <a href="mailto:contact@example.com" className="hover:underline">alirejakhan18@gmail.com</a>
+                            <a href="mailto:contact@example.com" className="hover:underline">
+                                alirejakhan18@gmail.com
+                            </a>
                         </div>
                         <div className="flex items-center gap-4">
                             <FaPhoneAlt className="text-[#678314]" />
-                            <a href="tel:+1234567890" className="hover:underline">+880 173 342 8976</a>
+                            <a href="tel:+1234567890" className="hover:underline">
+                                +880 173 342 8976
+                            </a>
                         </div>
                         <div className="flex items-center gap-4">
                             <FaWhatsapp className="text-[#678314]" />
-                            <a href="https://wa.me/1234567890" className="hover:underline">+880 133 111 6711</a>
+                            <a href="https://wa.me/1234567890" className="hover:underline">
+                                +880 133 111 6711
+                            </a>
                         </div>
                         <div className="flex items-center gap-4">
                             <FaFacebook className="text-[#678314]" />
-                            <a href="https://facebook.com/yourpage" className="hover:underline">facebook.com/yourpage</a>
+                            <a href="https://facebook.com/yourpage" className="hover:underline">
+                                facebook.com/yourpage
+                            </a>
                         </div>
                         <div className="flex items-center gap-4">
                             <FaInstagram className="text-[#678314]" />
-                            <a href="https://instagram.com/yourprofile" className="hover:underline">@yourprofile</a>
+                            <a href="https://instagram.com/yourprofile" className="hover:underline">
+                                @yourprofile
+                            </a>
                         </div>
                     </div>
                 </motion.div>

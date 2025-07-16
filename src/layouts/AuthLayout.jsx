@@ -4,6 +4,7 @@ import AaponaloiLogo from '../shared/AaponaloiLogo3';
 import { motion } from 'framer-motion';
 
 const AuthLayout = () => {
+    
     return (
         <div className="min-h-screen my-10 mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center bg-white rounded-xl overflow-hidden">
             {/* Left Side */}

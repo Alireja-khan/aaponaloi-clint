@@ -18,6 +18,8 @@ const Apartments = () => {
     const [hasApplied, setHasApplied] = useState(false);
     const [appliedApartmentNo, setAppliedApartmentNo] = useState(null);
 
+    const [loading, setLoading] = useState(true); // <-- loading state added
+
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -31,11 +33,14 @@ const Apartments = () => {
 
         const fetchApartments = async () => {
             try {
+                setLoading(true); // start loading
                 const res = await axios.get('https://aaponaloi-server.vercel.app/apartments');
                 setApartments(res.data);
                 setFiltered(res.data);
+                setLoading(false); // end loading
             } catch (err) {
                 console.error('Failed to fetch apartments:', err);
+                setLoading(false); // end loading even on error
             }
         };
         fetchApartments();
@@ -114,6 +119,14 @@ const Apartments = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const currentApartments = filtered.slice(startIndex, startIndex + itemsPerPage);
 
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center min-h-screen bg-primary/20">
+                <span className="loading loading-bars loading-xl"></span>
+            </div>
+        );
+    }
+
     return (
         <div className='bg-primary/20'>
             <div className="max-w-screen-2xl mx-auto min-h-screen font-sans">
@@ -153,8 +166,6 @@ const Apartments = () => {
                         Search
                     </button>
                 </form>
-
-
 
                 <div className="mx-auto px-4 grid grid-cols-1 gap-12 pb-16">
                     {currentApartments.length > 0 ? (

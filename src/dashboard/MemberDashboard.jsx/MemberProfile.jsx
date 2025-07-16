@@ -27,7 +27,11 @@ const MemberProfile = () => {
   }, [user?.email]);
 
   if (loading) {
-    return <div className="text-center py-10">Loading profile...</div>;
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-bars loading-xl"></span>
+      </div>
+    );
   }
 
   if (!agreement) {
@@ -43,6 +47,8 @@ const MemberProfile = () => {
     rent,
     createdAt
   } = agreement;
+
+
 
   return (
     <div className="px-4 py-10 sm:px-6 lg:px-10">
@@ -124,9 +130,8 @@ const MemberProfile = () => {
         ].map((item, index) => (
           <div
             key={index}
-            className={`bg-gray-50 rounded-md p-4 shadow flex items-center justify-between gap-4 hover:scale-[1.02] transition duration-300 ${
-              item.span ? 'col-span-1 sm:col-span-2 md:col-span-1 lg:col-span-3' : ''
-            }`}
+            className={`bg-gray-50 rounded-md p-4 shadow flex items-center justify-between gap-4 hover:scale-[1.02] transition duration-300 ${item.span ? 'col-span-1 sm:col-span-2 md:col-span-1 lg:col-span-3' : ''
+              }`}
             data-aos="fade-up"
             data-aos-delay={index * 100}
           >

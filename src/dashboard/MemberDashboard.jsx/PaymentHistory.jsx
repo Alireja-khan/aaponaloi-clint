@@ -24,6 +24,14 @@ const PaymentHistory = () => {
     }
   }, [user?.email]);
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-bars loading-xl"></span>
+      </div>
+    );
+  }
+
   return (
     <div className="pt-15 lg:pl-10 max-w-5xl">
       <h2

@@ -6,7 +6,7 @@ Aaponaloi is a full-stack, role-based Building Management System that simplifies
 
 ## 🚀 Live Website
 
-🔗 [Visit Aaponaloi](https://aaponaloi.web.app)
+🔗 [Visit Aaponaloi](https://aaponaloi.web.app/)
 
 ---
 

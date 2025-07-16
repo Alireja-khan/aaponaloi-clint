@@ -58,6 +58,14 @@ const ManageMembers = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-bars loading-xl"></span>
+      </div>
+    );
+  }
+
   return (
     <div className="py-15 max-w-5xl lg:pl-10">
       <h2

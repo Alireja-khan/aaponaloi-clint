@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { NavLink, Outlet } from 'react-router';
+import { Link, NavLink, Outlet } from 'react-router';
 import { FaBullhorn, FaFileContract, FaTags, FaBars, FaTimes } from 'react-icons/fa';
 import { BsPersonLinesFill } from 'react-icons/bs';
 import { HiUserGroup } from 'react-icons/hi2';
+import AaponaloiLogo from '../../shared/AaponaloiLogo';
 
 const AdminDashboardLayout = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -30,6 +31,13 @@ const AdminDashboardLayout = () => {
         className={`bg-primary/10 shadow-md p-6 flex-col transition-all duration-300
         ${menuOpen ? 'flex' : 'hidden'} lg:flex lg:w-72`}
       >
+
+        <Link to="/" className="hidden lg:flex items-center gap-2 mb-6 cursor-pointer">
+          <span className="w-14 h-12"><AaponaloiLogo /></span>
+          <span className="text-xl font-bold tracking-tight">Aaponaloi</span>
+        </Link>
+
+
         <h2 className="text-2xl font-bold mb-6 text-[#222222] hidden lg:block">Admin Dashboard</h2>
         <nav className="flex flex-col gap-2">
           {navItems.map(({ path, label, icon }) => (

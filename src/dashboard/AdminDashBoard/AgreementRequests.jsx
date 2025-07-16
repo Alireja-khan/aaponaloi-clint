@@ -44,6 +44,14 @@ const AgreementRequests = () => {
         }
     };
 
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center min-h-screen">
+                <span className="loading loading-bars loading-xl"></span>
+            </div>
+        );
+    }
+
     return (
         <div className="pt-14 lg:pl-10">
             <h2

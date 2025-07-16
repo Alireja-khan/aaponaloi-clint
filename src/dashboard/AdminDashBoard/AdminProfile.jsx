@@ -20,6 +20,7 @@ const AdminProfile = () => {
     members: 0,
     coupons: 0,
   });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -55,8 +56,11 @@ const AdminProfile = () => {
           members: membersRes.data.length,
           coupons: couponsRes.data.length,
         });
+
+        setLoading(false);
       } catch (error) {
         console.error('Failed to fetch stats:', error);
+        setLoading(false);
       }
     };
 
@@ -66,6 +70,14 @@ const AdminProfile = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-bars loading-xl"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="px-4 py-10 sm:px-6 lg:px-10">

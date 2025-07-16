@@ -100,7 +100,14 @@ const MakePayment = () => {
         }
     };
 
-    if (loading) return <div className="text-center py-10">Loading...</div>;
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center min-h-screen">
+                <span className="loading loading-bars loading-xl"></span>
+            </div>
+        );
+    }
+    
     if (!agreement) return null;
 
     return (

@@ -186,14 +186,22 @@ const Navbar = () => {
                   </div>
                   <ul className="flex flex-col">
                     <li>
-                      <NavLink
-                        to="/dashboard"
-                        onClick={() => setDropdownOpen(false)}
-                        className="block w-full px-4 py-2 hover:bg-accent transition text-left"
+                      <button
+                        onClick={() => {
+                          const userData = localStorage.getItem('user');
+                          const role = userData ? JSON.parse(userData)?.role?.toLowerCase() : null;
+                          setDropdownOpen(false);
+                          if (role === 'admin') navigate('/admin-dashboard');
+                          else if (role === 'member') navigate('/member-dashboard');
+                          else if (role === 'user') navigate('/user-dashboard');
+                          else navigate('/dashboard'); // fallback
+                        }}
+                        className="block w-full text-left px-4 py-2 hover:bg-accent transition"
                       >
                         Dashboard
-                      </NavLink>
+                      </button>
                     </li>
+
                     <li>
                       <button
                         onClick={() => {

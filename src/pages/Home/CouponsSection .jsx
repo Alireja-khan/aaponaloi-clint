@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { FaTag } from 'react-icons/fa';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import { motion } from 'framer-motion';
 import { IoIosGift } from "react-icons/io";
 import axios from 'axios';
@@ -21,20 +19,17 @@ const fadeUp = {
 
 const CouponsSection = () => {
   const [coupons, setCoupons] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    AOS.init({
-      duration: 800,
-      easing: 'ease-out-cubic',
-      once: false,
-    });
-
     const fetchCoupons = async () => {
       try {
         const res = await axios.get('https://aaponaloi-server.vercel.app/coupons');
         setCoupons(res.data);
       } catch (err) {
         console.error('Failed to fetch coupons:', err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -42,9 +37,7 @@ const CouponsSection = () => {
   }, []);
 
   return (
-    <section
-      id='coupons'
-      className="pb-30 px-6 md:px-20 ">
+    <section id='coupons' className="pb-30 px-6 md:px-20">
       <div className="text-center">
         <div className="flex justify-center">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 flex items-center gap-3">
@@ -57,36 +50,38 @@ const CouponsSection = () => {
           Unlock amazing savings for your next apartment experience with our limited-time offers.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {coupons.map((coupon, index) => (
-            <motion.div
-              custom={index + 2}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.3 }}
-              variants={fadeUp}
-              whileHover={{ scale: 1.03 }}
-              key={coupon.code}
-              className={`relative bg-accent rounded-2xl shadow-md p-6 hover:shadow-2xl transition-all ${index === coupons.length - 1 ? 'md:col-span-2 lg:col-span-1' : ''
+        {loading ? (
+          <p className="text-center text-gray-500 text-lg">Loading coupons...</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {coupons.map((coupon, index) => (
+              <motion.div
+                key={coupon.code}
+                custom={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.3 }}
+                variants={fadeUp}
+                whileHover={{ scale: 1.03 }}
+                className={`relative bg-accent rounded-2xl shadow-md p-6 hover:shadow-2xl transition-all ${
+                  index === coupons.length - 1 ? 'md:col-span-2 lg:col-span-1' : ''
                 }`}
-              data-aos={index % 2 === 0 ? 'flip-left' : 'fade-down-left'}
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <FaTag className={`text-2xl ${coupon.color?.split(' ')[1]}`} />
-                <div>
-                  <h3 className="text-xl font-bold">{coupon.code}</h3>
-                  <p className="text-sm text-gray-500">{coupon.description}</p>
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <FaTag className={`text-2xl ${coupon.color?.split(' ')[1]}`} />
+                  <div>
+                    <h3 className="text-xl font-bold">{coupon.code}</h3>
+                    <p className="text-sm text-gray-500">{coupon.description}</p>
+                  </div>
                 </div>
-              </div>
 
-              <span className="absolute top-4 right-4 px-3 py-1 text-sm font-semibold rounded-full bg-lime-200">
-                {coupon.discount} OFF
-              </span>
-            </motion.div>
-          ))}
-        </div>
-
-
+                <span className="absolute top-4 right-4 px-3 py-1 text-sm font-semibold rounded-full bg-lime-200">
+                  {coupon.discount} OFF
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
