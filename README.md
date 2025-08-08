@@ -73,92 +73,43 @@ Aaponaloi is a full-stack, role-based Building Management System that simplifies
 
 ---
 
----
-
-## 📁 Folder Structure (Simplified)
-
-AAPONALOI-CLIENT/
-├── public/
-│   ├── apartments.json           # Static data for apartment listings
-│   └── vite.svg                   # Vite logo or site SVG
-│
-├── src/
-│   ├── assets/                    # Static images, icons, etc.
-│   ├── contexts/                  # Global context providers
-│   │   ├── AuthContext.jsx
-│   │   └── AuthProvider.jsx
-│   ├── dashboard/
-│   │   ├── AdminDashBoard/        # Admin-specific pages & layout
-│   │   ├── MemberDashBoard/       # Member-specific pages & layout
-│   │   └── UserDashBoard/         # General user dashboard
-│   ├── firebase/                  # Firebase config
-│   │   └── firebase.init.js
-│   ├── hooks/                     # Custom React hooks
-│   ├── layouts/                   # Page/layout wrappers
-│   ├── pages/                     # Route-based pages
-│   │   ├── Apartment/
-│   │   ├── Authentication/
-│   │   ├── Contact/
-│   │   ├── Home/
-│   │   └── routes/
-│   ├── shared/                    # Reusable UI components
-│   ├── App.jsx
-│   ├── App.css
-│   ├── index.css
-│   └── main.jsx
-│
-├── .env.local                     # Local environment variables
-├── .gitignore
-├── index.html
-├── package.json
-├── package-lock.json
-├── tailwind.config.js
-├── eslint.config.js
-└── README.md
-
----
-
 ## 🛠️ Run Locally
-Follow these steps to set up the project on your local machine:
+-- Follow these steps to set up the project on your local machine:
 
-Clone the repository
+- Clone the repository
 
-bash
-Copy
-Edit
-git clone https://github.com/your-username/aaponaloi.git
-Navigate to the project directory
+- Copy
+- Edit
+- git clone https://github.com/your-username/aaponaloi.git
+- Navigate to the project directory
 
-bash
-Copy
-Edit
-cd aaponaloi
-Install dependencies
+- Copy
+- Edit
+- cd aaponaloi
+- Install dependencies
 
-bash
-Copy
-Edit
-npm install
-Set up environment variables
-Create a .env.local file in the root directory and add your Firebase & API keys:
+- Copy
+- Edit
+- npm install
+- Set up environment variables
+- Create a .env.local file in the root directory and add your Firebase & API keys:
 
-env
-Copy
-Edit
-VITE_API_URL=your_api_url
-VITE_FIREBASE_API_KEY=your_firebase_api_key
-Start the development server
+- env
+- Copy
+- Edit
+- VITE_API_URL=your_api_url
+- VITE_FIREBASE_API_KEY=your_firebase_api_key
+- Start the development server
 
-bash
-Copy
-Edit
-npm run dev
-Open in browser
-Visit http://localhost:5173
+- Copy
+- Edit
+- npm run dev
+- Open in browser
+- Visit http://localhost:5173
 
 ---
 
 ## 🌐 Deployment
-Frontend: Firebase Hosting
-Backend: Vercel
-Database: MongoDB Atlas (Cloud)
+- Frontend: Firebase Hosting
+- Backend: Vercel
+- Database: MongoDB Atlas (Cloud)
