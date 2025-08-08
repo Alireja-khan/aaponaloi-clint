@@ -79,85 +79,35 @@ Aaponaloi is a full-stack, role-based Building Management System that simplifies
 
 AAPONALOI-CLIENT/
 ├── public/
-│   ├── apartments.json        # Static data for apartment listings
-│   └── vite.svg               # Vite logo or site SVG
+│   ├── apartments.json           # Static data for apartment listings
+│   └── vite.svg                   # Vite logo or site SVG
 │
 ├── src/
-│   ├── assets/                # Static images, icons, etc.
-│
-│   ├── contexts/              # Global context providers
+│   ├── assets/                    # Static images, icons, etc.
+│   ├── contexts/                  # Global context providers
 │   │   ├── AuthContext.jsx
 │   │   └── AuthProvider.jsx
-│
 │   ├── dashboard/
-│   │   ├── AdminDashBoard/
-│   │   │   ├── AdminProfile.jsx
-│   │   │   ├── AgreementRequests.jsx
-│   │   │   ├── MakeAdmin.jsx
-│   │   │   ├── MakeAnnouncement.jsx
-│   │   │   ├── ManageCoupons.jsx
-│   │   │   ├── ManageMembers.jsx
-│   │   │   └── AdminDashboardLayout.jsx
-│   │   │
-│   │   ├── MemberDashBoard/
-│   │   │   ├── MakePayment.jsx
-│   │   │   ├── MemberProfile.jsx
-│   │   │   ├── PaymentHistory.jsx
-│   │   │   └── MemberDashboardLayout.jsx
-│   │   │
-│   │   └── UserDashBoard/
-│   │       ├── Announcements.jsx
-│   │       ├── DashboardLayout.jsx
-│   │       └── Profile.jsx
-│
-│   ├── firebase/
-│   │   └── firebase.init.js   # Firebase configuration
-│
-│   ├── hooks/                 # Custom hooks
-│   │   ├── useAuth.js
-│   │   └── useClickOutside.js
-│
-│   ├── layouts/               # Page/layout wrappers
-│   │   ├── AuthLayout.jsx
-│   │   └── RootLayout.jsx
-│
-│   ├── pages/                 # Main route-based pages
+│   │   ├── AdminDashBoard/        # Admin-specific pages & layout
+│   │   ├── MemberDashBoard/       # Member-specific pages & layout
+│   │   └── UserDashBoard/         # General user dashboard
+│   ├── firebase/                  # Firebase config
+│   │   └── firebase.init.js
+│   ├── hooks/                     # Custom React hooks
+│   ├── layouts/                   # Page/layout wrappers
+│   ├── pages/                     # Route-based pages
 │   │   ├── Apartment/
-│   │   │   └── Apartments.jsx
 │   │   ├── Authentication/
-│   │   │   ├── Login.jsx
-│   │   │   ├── Register.jsx
-│   │   │   └── SocialLogin.jsx
 │   │   ├── Contact/
-│   │   │   └── Contact.jsx
 │   │   ├── Home/
-│   │   │   ├── AboutBuilding.jsx
-│   │   │   ├── Banner.jsx
-│   │   │   ├── CouponsSection.jsx
-│   │   │   ├── FAQSection.jsx
-│   │   │   ├── Home.jsx
-│   │   │   ├── LocationSection.jsx
-│   │   │   └── StatsSection.jsx
 │   │   └── routes/
-│   │       ├── PrivateRoutes.jsx
-│   │       └── routes.jsx
-│
-│   ├── shared/                # Reusable UI components
-│   │   ├── AaponaloiLogo.jsx
-│   │   ├── AaponaloiLogo1.jsx
-│   │   ├── AaponaloiLogo2.jsx
-│   │   ├── AaponaloiLogo3.jsx
-│   │   ├── Footer.jsx
-│   │   ├── Loader.jsx
-│   │   ├── Navbar.jsx
-│   │   └── ScrollToTop.jsx
-│
+│   ├── shared/                    # Reusable UI components
 │   ├── App.jsx
 │   ├── App.css
 │   ├── index.css
 │   └── main.jsx
 │
-├── .env.local                 # Local environment variables
+├── .env.local                     # Local environment variables
 ├── .gitignore
 ├── index.html
 ├── package.json
@@ -166,7 +116,49 @@ AAPONALOI-CLIENT/
 ├── eslint.config.js
 └── README.md
 
-🌐 Deployment
+---
+
+## 🛠️ Run Locally
+Follow these steps to set up the project on your local machine:
+
+Clone the repository
+
+bash
+Copy
+Edit
+git clone https://github.com/your-username/aaponaloi.git
+Navigate to the project directory
+
+bash
+Copy
+Edit
+cd aaponaloi
+Install dependencies
+
+bash
+Copy
+Edit
+npm install
+Set up environment variables
+Create a .env.local file in the root directory and add your Firebase & API keys:
+
+env
+Copy
+Edit
+VITE_API_URL=your_api_url
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+Start the development server
+
+bash
+Copy
+Edit
+npm run dev
+Open in browser
+Visit http://localhost:5173
+
+---
+
+## 🌐 Deployment
 Frontend: Firebase Hosting
 Backend: Vercel
 Database: MongoDB Atlas (Cloud)
