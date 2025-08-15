@@ -128,7 +128,7 @@ const Apartments = () => {
     }
 
     return (
-        <div className='bg-primary/20'>
+        <div className='bg-primary/20 mt-15'>
             <div className="max-w-screen-2xl mx-auto min-h-screen font-sans">
 
                 <div className="relative z-10 flex flex-col pt-20 items-center justify-center h-full text-center px-4 sm:px-6" data-aos="fade-up">

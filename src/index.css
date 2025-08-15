@@ -41,3 +41,6 @@ html {
 }
 
 
+.slick-slide {
+  overflow: hidden;
+}

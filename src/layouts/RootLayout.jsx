@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet, useLocation } from 'react-router';
 import Navbar from '../shared/Navbar';
 import Footer from '../shared/Footer';
@@ -6,6 +6,7 @@ import ScrollToTop from '../shared/ScrollToTop';
 
 const RootLayout = () => {
     const location = useLocation();
+    const [bannerLoading, setBannerLoading] = useState(true);
 
     // Hide navbar on any dashboard route
     const hideNavbar = location.pathname.startsWith('/dashboard') ||
@@ -16,8 +17,8 @@ const RootLayout = () => {
     return (
         <div>
             <ScrollToTop />
-            {!hideNavbar && <Navbar />}
-            <Outlet />
+            {!hideNavbar && <Navbar bannerLoading={bannerLoading} />}
+            <Outlet context={{ setBannerLoading }} />
             <Footer />
         </div>
     );

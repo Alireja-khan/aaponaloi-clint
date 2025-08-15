@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
 import { motion } from 'framer-motion';
 import { Typewriter } from 'react-simple-typewriter';
@@ -12,38 +12,13 @@ import img5 from '../../assets/Apartment-3/washroom-3.jpg';
 import img6 from '../../assets/Apartment-3/kitchen-3.jpg';
 
 const bannerImages = [
-  {
-    url: img1,
-    title: 'Modern and Spacious Living Room',
-    desc: 'Experience comfort and style in every corner.',
-  },
-  {
-    url: img2,
-    title: 'Cozy and Serene Bedroom Retreat',
-    desc: 'A perfect place to rest and relax.',
-  },
-  {
-    url: img3,
-    title: 'Colorful and Playful Kids Room',
-    desc: 'Safe and joyful space for your little ones.',
-  },
-  {
-    url: img4,
-    title: 'Productive and Peaceful Study Room',
-    desc: 'Stay focused and inspired in a calm environment.',
-  },
-  {
-    url: img5,
-    title: 'Elegant and Modern Washroom Design',
-    desc: 'Clean, modern, and thoughtfully designed.',
-  },
-  {
-    url: img6,
-    title: 'Stylish Kitchen for Culinary Delight',
-    desc: 'Cook with love in a space that feels like home.',
-  },
+  { url: img1, title: 'Modern and Spacious Living Room', desc: 'Experience comfort and style in every corner.' },
+  { url: img2, title: 'Cozy and Serene Bedroom Retreat', desc: 'A perfect place to rest and relax.' },
+  { url: img3, title: 'Colorful and Playful Kids Room', desc: 'Safe and joyful space for your little ones.' },
+  { url: img4, title: 'Productive and Peaceful Study Room', desc: 'Stay focused and inspired in a calm environment.' },
+  { url: img5, title: 'Elegant and Modern Washroom Design', desc: 'Clean, modern, and thoughtfully designed.' },
+  { url: img6, title: 'Stylish Kitchen for Culinary Delight', desc: 'Cook with love in a space that feels like home.' },
 ];
-
 
 const NextArrow = ({ onClick }) => (
   <button
@@ -63,8 +38,15 @@ const PrevArrow = ({ onClick }) => (
   </button>
 );
 
-const Banner = () => {
+const Banner = ({ onFirstImageLoad }) => {
   const navigate = useNavigate();
+  const [firstImageLoaded, setFirstImageLoaded] = useState(false);
+
+  React.useEffect(() => {
+    // On mount, mark as "loading" again
+    setFirstImageLoaded(false);
+  }, []);
+
 
   const settings = {
     dots: true,
@@ -72,84 +54,93 @@ const Banner = () => {
     speed: 700,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
+    // autoplay: true,
+    // autoplaySpeed: 5000,
     pauseOnHover: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
   };
 
+  const handleImageLoad = () => {
+    if (!firstImageLoaded) {
+      setFirstImageLoaded(true);
+      onFirstImageLoad();
+    }
+  };
+
   return (
-    <section id="banner" className="relative w-full min-h-[70vh] max-h-[80vh] overflow-hidden z-0">
-      <Slider {...settings}>
+    <section id="banner" className="relative w-full h-screen overflow-hidden z-0">
+      <Slider {...settings} className="overflow-hidden">
         {bannerImages.map((slide, index) => (
-          <div key={index}>
+
+          <div key={index} className="w-full h-screen overflow-hidden relative">
+            {/* preload for first image */}
+            {index === 5 && (
+              <img src={slide.url} alt={slide.title} className="hidden" onLoad={handleImageLoad} />
+            )}
+
+            {/* Background image with zoom effect */}
             <motion.div
-              className="h-[70vh] bg-cover bg-center relative flex items-center justify-center"
+              className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url(${slide.url})` }}
-              initial={{ scale: 1.05 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.8 }}
+              initial={{ scale: 1 }}
+              animate={{ scale: [1, 1.25, 1] }}
+              transition={{
+                duration: 30,
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "mirror",
+              }}
+            />
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-transparent z-10" />
+
+            {/* Content stays still */}
+            <motion.div
+              className="relative z-20 text-white px-8 max-w-3xl ml-[10%] lg:ml-[15%] h-full flex flex-col justify-center"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent z-10" />
+              <h2 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+                {slide.title}
+              </h2>
 
-              {/* Content */}
-              <motion.div
-                className="z-20 text-center text-white px-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
+              <div className="w-20 h-1 bg-primary mb-6"></div>
 
-                <h2 className="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
-                  <Typewriter
-                    words={[slide.title]}
-                    loop={false}
-                    cursor
-                    cursorStyle="_"
-                    typeSpeed={60}
-                    deleteSpeed={30}
-                    delaySpeed={1500}
-                  />
-                </h2>
+              <p className="text-lg md:text-2xl mb-8">{slide.desc}</p>
 
-
-                <p className="text-base md:text-lg lg:text-xl font-light mb-6 max-w-xl mx-auto">
-                  {slide.desc}
-                </p>
-
-                {/* CTA Buttons */}
-                <div className="flex flex-col md:flex-row gap-4 justify-center">
-                  <Link to='/apartments'>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="bg-white text-secondary px-6 py-2 rounded-lg font-bold shadow-md hover:bg-primary hover:text-black transition duration-300"
-                      onClick={() => {
-                        const section = document.getElementById('apartment-section');
-                        section?.scrollIntoView({ behavior: 'smooth' });
-                      }}
-                    >
-                      View Apartments
-                    </motion.button>
-                  </Link>
+              <div className="flex flex-wrap gap-4">
+                <Link to="/apartments">
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-primary text-black px-6 py-2 rounded-lg font-bold shadow-md hover:bg-white hover:text-secondary transition duration-300"
-                    onClick={() => navigate('/contact')}
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="bg-primary text-black px-8 py-3 rounded-md font-semibold shadow-lg hover:bg-primary-dark transition-colors duration-300"
                   >
-                    Keep in Touch
+                    Explore Properties
                   </motion.button>
-                </div>
-              </motion.div>
+                </Link>
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-black transition-colors duration-300"
+                  onClick={() => navigate('/contact')}
+                >
+                  Contact Us
+                </motion.button>
+              </div>
             </motion.div>
           </div>
+
+
         ))}
       </Slider>
+
     </section>
   );
 };
 
 export default Banner;
+
+
