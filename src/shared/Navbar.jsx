@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaUserCircle } from 'react-icons/fa';
+import { FaChevronDown, FaUserCircle } from 'react-icons/fa';
 import useClickOutside from '../hooks/useClickOutside';
 import { AuthContext } from '../contexts/AuthContext/AuthContext';
 import AaponaloiLogo from './AaponaloiLogo';
@@ -47,7 +47,7 @@ const Navbar = () => {
           to="/"
           end
           className={({ isActive }) =>
-            `font-medium px-3 py-1.5 rounded ${isActive && activeSection === '' ? 'bg-primary font-semibold' : ''
+            `font-medium px-3 py-1.5  rounded ${isActive && activeSection === '' ? 'bg-primary font-semibold' : ''
             }`
           }
           onClick={(e) => {
@@ -151,75 +151,82 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1 space-x-2">{navLinks}</ul>
       </div>
 
+
+
       {/* Navbar End */}
-      <div className="navbar-end">
-        {!user ? (
-          <div className="flex gap-2">
-            <NavLink to="/login" className="btn btn-md text-black btn-primary">Sign In</NavLink>
-            <NavLink to="/register" className="btn btn-md btn-secondary">Sign Up</NavLink>
-          </div>
-        ) : (
-          <div ref={dropdownRef} className="relative">
-            <div
-              onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="cursor-pointer rounded-full border p-1 hover:scale-105 transition"
-            >
-              {user.photoURL ? (
-                <img src={user.photoURL} alt="user" className="w-10 h-10 rounded-full object-cover object-top" />
-              ) : (
-                <FaUserCircle className="text-3xl" />
-              )}
-            </div>
 
-            <AnimatePresence>
-              {dropdownOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute right-0 mt-3 w-56 rounded-lg bg-white text-black shadow-lg z-50"
-                >
-                  <div className="p-4 border-b">
-                    <p className="font-semibold">{user.displayName || 'User'}</p>
-                    <p className="text-xs text-gray-500">{user.email}</p>
-                  </div>
-                  <ul className="flex flex-col">
-                    <li>
-                      <button
-                        onClick={() => {
-                          const userData = localStorage.getItem('user');
-                          const role = userData ? JSON.parse(userData)?.role?.toLowerCase() : null;
-                          setDropdownOpen(false);
-                          if (role === 'admin') navigate('/admin-dashboard');
-                          else if (role === 'member') navigate('/member-dashboard');
-                          else if (role === 'user') navigate('/user-dashboard');
-                          else navigate('/dashboard'); // fallback
-                        }}
-                        className="block w-full text-left px-4 py-2 hover:bg-accent transition"
-                      >
-                        Dashboard
-                      </button>
-                    </li>
+      <div className='navbar-end'>
+        <div ref={dropdownRef} className="relative">
+          <div
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            className="flex items-center gap-1 cursor-pointer rounded-full border p-1 hover:scale-105 transition"
+          >
+            {user?.photoURL ? (
+              <img
+                src={user.photoURL}
+                alt="user"
+                className="w-10 h-10 rounded-full object-cover object-top"
+              />
+            ) : (
+              <FaUserCircle className="text-3xl" />
+            )}
 
-                    <li>
-                      <button
-                        onClick={() => {
-                          handleLogout();
-                          setDropdownOpen(false);
-                        }}
-                        className="block w-full text-left px-4 py-2 hover:bg-red-400 hover:text-white text-red-500 font-medium transition"
-                      >
-                        Logout
-                      </button>
-                    </li>
-                  </ul>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {/* Down arrow icon */}
+            <FaChevronDown
+              className={`text-sm transition-transform duration-200 ${dropdownOpen ? "rotate-180" : "rotate-0"
+                }`}
+            />
           </div>
-        )}
+
+          <AnimatePresence>
+            {dropdownOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="absolute right-0 mt-3 w-56 rounded-lg bg-white text-black shadow-lg z-50"
+              >
+                <div className="p-4 border-b">
+                  <p className="font-semibold">{user.displayName || 'User'}</p>
+                  <p className="text-xs text-gray-500">{user.email}</p>
+                </div>
+                <ul className="flex flex-col">
+                  <li>
+                    <button
+                      onClick={() => {
+                        const userData = localStorage.getItem('user');
+                        const role = userData ? JSON.parse(userData)?.role?.toLowerCase() : null;
+                        setDropdownOpen(false);
+                        if (role === 'admin') navigate('/admin-dashboard');
+                        else if (role === 'member') navigate('/member-dashboard');
+                        else if (role === 'user') navigate('/user-dashboard');
+                        else navigate('/dashboard'); // fallback
+                      }}
+                      className="block w-full text-left px-4 py-2 hover:bg-accent transition"
+                    >
+                      Dashboard
+                    </button>
+                  </li>
+
+                  <li>
+                    <button
+                      onClick={() => {
+                        handleLogout();
+                        setDropdownOpen(false);
+                      }}
+                      className="block w-full text-left px-4 py-2 hover:bg-red-400 hover:text-white text-red-500 font-medium transition"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
+
     </div>
   );
 };
