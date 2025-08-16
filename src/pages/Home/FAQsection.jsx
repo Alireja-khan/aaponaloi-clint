@@ -70,7 +70,7 @@ const FAQSection = () => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  const visibleFaqs = showAll ? faqData : faqData.slice(0, 2);
+  const visibleFaqs = showAll ? faqData : faqData.slice(0, 3);
 
   return (
     <section id="faq" className="max-w-screen-2xl mx-auto relative pb-30 px-6 sm:px-6 md:px-10 lg:px-20 overflow-hidden">
@@ -93,7 +93,7 @@ const FAQSection = () => {
         {/* Right FAQ Section */}
         <FadeInOnView direction="right" delay={0.2}>
           <motion.div layout>
-            <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6 md:mb-8 lg:mb-10 flex items-center gap-3">
+            <h2 className="text-3xl mt-7 sm:text-4xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6 md:mb-8 lg:mb-10 flex items-center gap-3">
               <RiQuestionAnswerLine className="text-secondary text-4xl md:text-5xl" />
               Common <span className="text-secondary ml-1">Queries</span>
             </h2>

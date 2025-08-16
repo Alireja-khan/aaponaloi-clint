@@ -137,14 +137,17 @@ const CouponsSection = ({ onCouponApplied }) => {
                   variants={fadeUp}
                   className="px-4 py-6"
                 >
-                  <div
-                    className="relative h-64 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all"
-                    style={{
-                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${coupon.bgImage})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center'
-                    }}
-                  >
+                  <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all group">
+                    {/* Background Image */}
+                    <img
+                      src={coupon.bgImage}
+                      alt={coupon.code}
+                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-140"
+                    />
+
+                    {/* Dark Overlay */}
+                    <div className="absolute inset-0 bg-black/40" />
+
                     {/* Offer Circle */}
                     <div className="absolute -top-5 -right-5 w-24 h-24 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center shadow-lg">
                       <span className="text-white font-bold text-lg">{coupon.discount} OFF</span>
@@ -168,18 +171,16 @@ const CouponsSection = ({ onCouponApplied }) => {
                           Apply Coupon
                         </button>
 
-                        {/* View All Apartments Button */}
                         <button
                           onClick={() => navigate('/apartments')}
                           className="bg-primary text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
                         >
                           View All Apartments
                         </button>
-
                       </div>
-
                     </div>
                   </div>
+
                 </motion.div>
               ))}
             </Slider>
