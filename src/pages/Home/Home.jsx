@@ -7,6 +7,7 @@ import LocationSection from './LocationSection';
 import FAQSection from './FAQsection';
 import StatsSection from './StatsSection';
 import TestimonialsSection from './TestimonialsSection';
+import HowItWorks from './HowItWorks';
 
 const Home = () => {
     const location = useLocation();
@@ -60,6 +61,7 @@ const Home = () => {
                 <CouponsSection />
                 <LocationSection />
                 <StatsSection />
+                <HowItWorks></HowItWorks>
             </div>
         </div>
     );
