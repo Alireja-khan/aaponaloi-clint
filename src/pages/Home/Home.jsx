@@ -56,8 +56,8 @@ const Home = () => {
             <div className=" mx-auto">
                 <AboutBuilding />
                 <FAQSection />
-                <CouponsSection />
                 <TestimonialsSection></TestimonialsSection>
+                <CouponsSection />
                 <LocationSection />
                 <StatsSection />
             </div>

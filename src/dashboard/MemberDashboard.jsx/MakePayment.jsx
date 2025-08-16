@@ -6,8 +6,10 @@ import { FaEye, FaMoneyCheckAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useLocation } from 'react-router';
 
 const MakePayment = () => {
+    const location = useLocation();
     const { user } = useContext(AuthContext);
     const [agreement, setAgreement] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -35,11 +37,19 @@ const MakePayment = () => {
         }
     }, [user?.email]);
 
-    const handleApplyCoupon = () => {
-        if (!coupon.trim()) return;
+    //  Pre-fill coupon from CouponsSection and auto-apply
+    useEffect(() => {
+        if (location.state?.appliedCoupon) {
+            setCoupon(location.state.appliedCoupon);
+        }
+    }, [location.state, agreement]);
+
+    const handleApplyCoupon = (code) => {
+        const couponCode = code || coupon;
+        if (!couponCode.trim()) return;
 
         axios
-            .get(`https://aaponaloi-server.vercel.app/coupons/${coupon}`)
+            .get(`https://aaponaloi-server.vercel.app/coupons/${couponCode}`)
             .then(res => {
                 const percentage = res.data?.discount;
                 if (percentage) {
@@ -107,7 +117,7 @@ const MakePayment = () => {
             </div>
         );
     }
-    
+
     if (!agreement) return null;
 
     return (
@@ -153,8 +163,8 @@ const MakePayment = () => {
                             />
                             <button
                                 type="button"
-                                onClick={handleApplyCoupon}
-                                className="px-4 py-2 rounded-lg bg-primary text-white font-semibold hover:bg-secondary transition duration-200"
+                                onClick={() => handleApplyCoupon()}
+                                className="px-4 py-2 rounded-lg bg-primary hover:text-white font-semibold hover:bg-secondary transition duration-200"
                             >
                                 Apply
                             </button>
@@ -168,12 +178,11 @@ const MakePayment = () => {
                                         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
                                     }
                                 }}
-                                className="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-gray-300 flex items-center justify-center gap-2 transition duration-200"
+                                className="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-primary flex items-center justify-center gap-2 transition duration-200"
                             >
                                 <FaEye className="text-base" />
                                 <span className="text-sm">Coupons</span>
                             </button>
-
                         </div>
                     </div>
 

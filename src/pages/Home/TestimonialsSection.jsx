@@ -1,7 +1,9 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import Slider from 'react-slick';
-import { FaQuoteLeft, FaStar, FaUsers } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaQuoteLeft, FaStar, FaUsers } from 'react-icons/fa';
+
 
 // Replace with your actual background image import
 import testimonialBg from '../../assets/images/testimonial-bg.jpg';
@@ -161,132 +163,168 @@ const TestimonialsSection = () => {
         ]
     };
 
-    return (
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-            {/* Background image with gradient overlay */}
+    const FadeInOnView = ({ children, direction = 'left', delay = 0 }) => {
+        const controls = useAnimation();
+        const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.3 });
+
+        React.useEffect(() => {
+            if (inView) {
+                controls.start({
+                    opacity: 1,
+                    x: 0,
+                    transition: { duration: 0.8, delay },
+                });
+            } else {
+                controls.start({
+                    opacity: 0,
+                    x: direction === 'left' ? -50 : 50,
+                });
+            }
+        }, [controls, inView, direction, delay]);
+
+        return (
             <motion.div
-                className="absolute inset-0 bg-cover bg-center"
-                initial={{ scale: 1 }}
-                animate={{ scale: [1, 1.25, 1] }}
-                transition={{
-                    duration: 30,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                    repeatType: "mirror",
-                }}
-
+                ref={ref}
+                initial={{ opacity: 0, x: direction === 'left' ? -50 : 50 }}
+                animate={controls}
             >
-
-                <img
-                    src={testimonialBg}
-                    alt="Happy clients background"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30"></div>
+                {children}
             </motion.div>
+        );
+    };
 
-            <div className="max-w-7xl mx-auto relative z-10">
-                {/* Section header */}
+
+    return (
+        <div>
+
+            <FadeInOnView direction="up" delay={0}>
+                <div className="text-center max-w-3xl mx-auto mb-12">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-3 flex-wrap">
+                        <FaUsers className="text-secondary text-4xl sm:text-5xl" />
+                        What Our <span className='text-secondary'>Clients Say</span>
+                    </h2>
+                    <p className="text-base md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+                        Trusted by homeowners, members, and investors, Aaponaloi is known for comfort, security, and modern living — reflected in the words of our happy community.
+                    </p>
+
+                </div>
+            </FadeInOnView>
+
+            <div className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+                {/* Background image with gradient overlay */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="text-center -mt-5 mb-20"
-                >
-                    <div className=''>
-                        <div className="flex justify-center">
-                                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 flex items-center gap-3">
-                                    <FaUsers className="text-primary text-5xl" />
-                                    What Our <span className='text-primary'>Clients Say</span>
-                                </h2>
-                        </div>
+                    className="absolute inset-0 bg-cover bg-center"
+                    initial={{ scale: 1 }}
+                    animate={{ scale: [1, 1.25, 1] }}
+                    transition={{
+                        duration: 30,
+                        ease: "easeInOut",
+                        repeat: Infinity,
+                        repeatType: "mirror",
+                    }}
 
-                        <p className="text-lg text-white mb-12 max-w-2xl mx-auto">
-                            Trusted by homeowners, investors, and design professionals worldwide
-                        </p>
-                    </div>
+                >
+
+                    <img
+                        src={testimonialBg}
+                        alt="Happy clients background"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30"></div>
                 </motion.div>
 
-                {/* Content grid - testimonials on left, stats on right */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-25 items-center">
-                    {/* Testimonials slider - left side */}
+                <div className="max-w-7xl mx-auto relative z-10">
+                    {/* Section header */}
                     <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
                         viewport={{ once: true, margin: "-100px" }}
-                        className="lg:pr-8"
+                        className="text-center -mt-5 mb-20"
                     >
-                        <Slider {...settings} className="pb-10 px-10">
-                            {testimonials.map((testimonial) => (
-                                <div key={testimonial.id} className="px-2 py-2 focus:outline-none">
-                                    <motion.div
-                                        whileHover={{ y: -5 }}
-                                        className="bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg h-full flex flex-col border border-white/20 hover:shadow-xl transition-all duration-300"
-                                    >
-                                        <FaQuoteLeft className="text-secondary text-3xl mb-6 opacity-70" />
-                                        <p className="text-gray-800 mb-6 flex-grow">{testimonial.content}</p>
-                                        <div className="mt-auto">
-                                            <div className="flex items-center mb-4">
-                                                <img
-                                                    src={testimonial.avatar}
-                                                    alt={testimonial.name}
-                                                    className="w-12 h-12 rounded-full object-cover mr-4 border-2 border-white/30"
-                                                    loading="lazy"
-                                                />
-                                                <div>
-                                                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                                                    <p className="text-sm text-gray-700">{testimonial.role}</p>
+                    </motion.div>
+
+                    {/* Content grid - testimonials on left, stats on right */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-25 items-center">
+                        {/* Testimonials slider - left side */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            className="lg:pr-8"
+                        >
+                            <Slider {...settings} className="pb-10 px-10">
+                                {testimonials.map((testimonial) => (
+                                    <div key={testimonial.id} className="px-2 py-2 focus:outline-none">
+                                        <motion.div
+                                            whileHover={{ y: -5 }}
+                                            className="bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg h-full flex flex-col border border-white/20 hover:shadow-xl transition-all duration-300"
+                                        >
+                                            <FaQuoteLeft className="text-secondary text-3xl mb-6 opacity-70" />
+                                            <p className="text-gray-800 mb-6 flex-grow">{testimonial.content}</p>
+                                            <div className="mt-auto">
+                                                <div className="flex items-center mb-4">
+                                                    <img
+                                                        src={testimonial.avatar}
+                                                        alt={testimonial.name}
+                                                        className="w-12 h-12 rounded-full object-cover mr-4 border-2 border-white/30"
+                                                        loading="lazy"
+                                                    />
+                                                    <div>
+                                                        <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
+                                                        <p className="text-sm text-gray-700">{testimonial.role}</p>
+                                                    </div>
                                                 </div>
+                                                <StarRating rating={testimonial.rating} />
                                             </div>
-                                            <StarRating rating={testimonial.rating} />
-                                        </div>
-                                    </motion.div>
-                                </div>
-                            ))}
-                        </Slider>
-                    </motion.div>
+                                        </motion.div>
+                                    </div>
+                                ))}
+                            </Slider>
+                        </motion.div>
 
-                    {/* Stats - right side */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="flex flex-col justify-center space-y-12"
-                    >
-                        <div className="text-center lg:text-left">
-                            <div className="text-5xl font-bold text-white mb-2">200+</div>
-                            <div className="text-xl text-gray-200">Happy Clients</div>
-                            <p className="text-gray-300 mt-3 max-w-md mx-auto lg:mx-0">
-                                Join our growing family of satisfied homeowners and investors
-                            </p>
-                        </div>
-
-                        <div className="text-center lg:text-left">
-                            <div className="text-5xl font-bold text-white mb-2">4.9<span className="text-2xl">/5</span></div>
-                            <div className="text-xl text-gray-200">Average Rating</div>
-                            <div className="flex justify-center lg:justify-start mt-3">
-                                <StarRating rating={5} />
+                        {/* Stats - right side */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.4 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            className="flex flex-col justify-center space-y-12"
+                        >
+                            <div className="text-center lg:text-left">
+                                <div className="text-5xl font-bold text-white mb-2">200+</div>
+                                <div className="text-xl text-gray-200">Happy Clients</div>
+                                <p className="text-gray-300 mt-3 max-w-md mx-auto lg:mx-0">
+                                    Join our growing family of satisfied homeowners and investors
+                                </p>
                             </div>
-                            <p className="text-gray-300 mt-2 max-w-md mx-auto lg:mx-0">
-                                Consistently high ratings across all review platforms
-                            </p>
-                        </div>
 
-                        <div className="text-center lg:text-left">
-                            <div className="text-5xl font-bold text-white mb-2">15</div>
-                            <div className="text-xl text-gray-200">Years Experience</div>
-                            <p className="text-gray-300 mt-3 max-w-md mx-auto lg:mx-0">
-                                Decades of expertise in delivering exceptional properties
-                            </p>
-                        </div>
-                    </motion.div>
+                            <div className="text-center lg:text-left">
+                                <div className="text-5xl font-bold text-white mb-2">4.9<span className="text-2xl">/5</span></div>
+                                <div className="text-xl text-gray-200">Average Rating</div>
+                                <div className="flex justify-center lg:justify-start mt-3">
+                                    <StarRating rating={5} />
+                                </div>
+                                <p className="text-gray-300 mt-2 max-w-md mx-auto lg:mx-0">
+                                    Consistently high ratings across all review platforms
+                                </p>
+                            </div>
+
+                            <div className="text-center lg:text-left">
+                                <div className="text-5xl font-bold text-white mb-2">15</div>
+                                <div className="text-xl text-gray-200">Years Experience</div>
+                                <p className="text-gray-300 mt-3 max-w-md mx-auto lg:mx-0">
+                                    Decades of expertise in delivering exceptional properties
+                                </p>
+                            </div>
+                        </motion.div>
+                    </div>
                 </div>
             </div>
-        </section>
+
+        </div>
     );
 };
 
