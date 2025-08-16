@@ -6,6 +6,7 @@ import CouponsSection from './CouponsSection ';
 import LocationSection from './LocationSection';
 import FAQSection from './FAQsection';
 import StatsSection from './StatsSection';
+import TestimonialsSection from './TestimonialsSection';
 
 const Home = () => {
     const location = useLocation();
@@ -52,10 +53,11 @@ const Home = () => {
     return (
         <div className="bg-primary/20">
             <Banner onFirstImageLoad={handleFirstImageLoad} />
-            <div className="max-w-screen-2xl mx-auto">
+            <div className=" mx-auto">
                 <AboutBuilding />
                 <FAQSection />
                 <CouponsSection />
+                <TestimonialsSection></TestimonialsSection>
                 <LocationSection />
                 <StatsSection />
             </div>

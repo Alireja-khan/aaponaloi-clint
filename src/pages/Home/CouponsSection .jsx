@@ -37,7 +37,7 @@ const CouponsSection = () => {
   }, []);
 
   return (
-    <section id='coupons' className="pb-30 px-6 md:px-20">
+    <section id='coupons' className="max-w-screen-2xl mx-auto pb-30 px-6 md:px-20">
       <div className="text-center">
         <div className="flex justify-center">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 flex items-center gap-3">

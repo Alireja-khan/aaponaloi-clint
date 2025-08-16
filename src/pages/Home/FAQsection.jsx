@@ -73,7 +73,7 @@ const FAQSection = () => {
   const visibleFaqs = showAll ? faqData : faqData.slice(0, 2);
 
   return (
-    <section id="faq" className="relative pb-30 px-6 sm:px-6 md:px-10 lg:px-20 overflow-hidden">
+    <section id="faq" className="max-w-screen-2xl mx-auto relative pb-30 px-6 sm:px-6 md:px-10 lg:px-20 overflow-hidden">
       <motion.div
         layout
         transition={{ layout: { duration: 0.6, ease: 'easeInOut' } }}

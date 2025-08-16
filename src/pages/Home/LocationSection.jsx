@@ -69,7 +69,7 @@ const position = [24.8977, 91.8712]; // Sylhet city center
 
 const LocationSection = () => {
   return (
-    <section id="location" className="pb-20 pt-10 px-4 md:px-12 lg:px-30">
+    <section id="location" className="max-w-screen-2xl mx-auto pb-20 pt-10 px-4 md:px-12 lg:px-30">
       {/* Section Title & Description */}
       <FadeInOnView direction="up" delay={0}>
         <div className="text-center max-w-3xl mx-auto mb-12">

@@ -88,7 +88,7 @@ const AboutBuilding = () => {
   return (
     <section
       id="about"
-      className="relative mt-0 py-30 px-6 md:px-20 z-10 rounded-t-3xl "
+      className="relative max-w-screen-2xl mx-auto mt-0 py-30 px-6 md:px-20 z-10 rounded-t-3xl "
     >
       <motion.div
         className="text-center"
