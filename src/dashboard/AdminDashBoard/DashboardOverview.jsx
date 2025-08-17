@@ -316,7 +316,7 @@ const DashboardOverview = () => {
                   <div className="space-y-4">
                     {stats.recentBookings.length > 0 ? (
                       stats.recentBookings.map((booking, i) => (
-                        <div key={i} className="flex items-center p-3 hover:bg-gray-50 rounded-lg transition-colors">
+                        <div key={i} className="flex items-center p-3 hover:bg-primary/20 rounded-lg transition-colors">
                           <div className="p-2 rounded-full font-semibold mr-4">
                             <FiFileText size={18} />
                           </div>
@@ -328,7 +328,7 @@ const DashboardOverview = () => {
                             <p className="font-medium text-gray-900">৳{booking.rent}</p>
                             <span className={`text-xs px-2 py-1 rounded-full ${booking.status === 'accepted'
                                 ? 'bg-green-100 text-green-800'
-                                : 'bg-yellow-100 text-yellow-800'
+                                : 'bg-primary/50'
                               }`}>
                               {booking.status}
                             </span>
