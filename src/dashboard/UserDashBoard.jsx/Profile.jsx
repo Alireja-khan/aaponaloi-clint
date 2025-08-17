@@ -25,6 +25,8 @@ const Profile = () => {
         .finally(() => setLoading(false));
     }
   }, [user?.email]);
+  
+  console.log(user)
 
   if (loading) {
     return (

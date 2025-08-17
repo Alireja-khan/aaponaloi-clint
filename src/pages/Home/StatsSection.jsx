@@ -99,7 +99,7 @@ const StatsSection = () => {
   }, [controls, inView]);
 
   return (
-    <div className='w-full mt-15 '>
+    <div id='Highlights' className='w-full mt-15 '>
 
       <section>
         {/* Header */}

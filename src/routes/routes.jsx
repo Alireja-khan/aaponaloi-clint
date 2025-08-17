@@ -22,6 +22,7 @@ import MemberProfile from "../dashboard/MemberDashboard.jsx/MemberProfile";
 import MakePayment from "../dashboard/MemberDashboard.jsx/MakePayment";
 import PaymentHistory from "../dashboard/MemberDashboard.jsx/PaymentHistory";
 import NotFound from "../pages/NotFound/NotFound";
+import DashboardOverview from "../dashboard/AdminDashBoard/DashboardOverview";
 
 export const router = createBrowserRouter([
   {
@@ -90,6 +91,7 @@ export const router = createBrowserRouter([
               { path: 'make-announcement', Component: MakeAnnouncement },
               { path: 'agreement-requests', Component: AgreementRequests },
               { path: 'manage-coupons', Component: ManageCoupons },
+              { path: 'dashboard-overview', Component: DashboardOverview },
             ],
           },
         ],

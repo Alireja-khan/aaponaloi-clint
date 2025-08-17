@@ -90,16 +90,16 @@ const AdminProfile = () => {
       </h1>
 
       {/* Profile Card */}
-      <div className="bg-white text-gray-800 items-center rounded-xl overflow-hidden max-w-5xl my-10 shadow-lg flex flex-col md:flex-row">
+      <div className="bg-primary/20 text-gray-800 items-center rounded-xl overflow-hidden max-w-5xl my-10 shadow-lg flex flex-col md:flex-row">
         {/* Left: Image Section */}
         <div
-          className="w-full md:w-1/2 bg-gray-50 p-6 flex items-center justify-center"
+          className="w-full md:w-1/2 bg-primary/20 sha p-6 flex items-center justify-center"
           data-aos="fade-right"
         >
           <img
             src={user?.photoURL || 'https://via.placeholder.com/200'}
             alt="Admin"
-            className="w-100 h-100 rounded-lg object-top object-cover border-4 border-gray-200"
+            className="w-100 h-100 rounded-lg object-top object-cover "
           />
         </div>
 
@@ -173,7 +173,7 @@ const AdminProfile = () => {
         ].map((item, index) => (
           <div
             key={index}
-            className={`bg-gray-50 rounded-md p-4 shadow flex items-center justify-between gap-4 hover:scale-[1.02] transition duration-300 ${item.span ? 'col-span-1 sm:col-span-2 md:col-span-1 lg:col-span-2' : ''
+            className={`bg-primary/20 rounded-md p-4 shadow-md flex items-center justify-between gap-4 hover:scale-[1.02] transition duration-300 ${item.span ? 'col-span-1 sm:col-span-2 md:col-span-1 lg:col-span-2' : ''
               }`}
             data-aos="fade-up"
             data-aos-delay={index * 100}

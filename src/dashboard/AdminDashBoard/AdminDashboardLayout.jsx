@@ -9,6 +9,7 @@ const AdminDashboardLayout = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navItems = [
+    { path: '/admin-dashboard/dashboard-overview', label: 'Dashboard Overview', icon: <BsPersonLinesFill /> },
     { path: '/admin-dashboard/profile', label: 'Admin Profile', icon: <BsPersonLinesFill /> },
     { path: 'manage-members', label: 'Manage Members', icon: <HiUserGroup /> },
     { path: 'make-announcement', label: 'Make Announcement', icon: <FaBullhorn /> },

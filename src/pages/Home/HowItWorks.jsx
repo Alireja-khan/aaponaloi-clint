@@ -126,7 +126,7 @@ const HowItWorks = () => {
                         </div>
 
                         {/* Content Section */}
-                        <div className="w-full md:w-1/2">
+                        <div className="w-full  md:w-1/2">
                             <div className={`w-14 h-14 ${step.accentColor} rounded-lg flex items-center justify-center mb-4`}>
                                 {step.icon}
                             </div>
