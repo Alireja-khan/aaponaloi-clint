@@ -153,7 +153,7 @@ const HowItWorks = () => {
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
                 viewport={{ once: true }}
-                className="mt-20 w-full shadow-sm p-8 md:py-20 border relative overflow-hidden"
+                className="mt-20 w-full shadow-sm p-8 md:py-20  border relative overflow-hidden"
             >
                 {/* Animated Background */}
                 <motion.div
