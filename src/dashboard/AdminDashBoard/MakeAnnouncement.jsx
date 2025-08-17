@@ -58,7 +58,7 @@ const MakeAnnouncement = () => {
       </h2>
 
       <motion.div
-        className="max-w-5xl p-8 bg-white rounded-2xl shadow-lg border border-gray-100"
+        className="max-w-5xl p-8 bg-primary/20 rounded-2xl shadow-lg border border-secondary "
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -70,7 +70,7 @@ const MakeAnnouncement = () => {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition"
+              className="w-full px-4 py-2 border border-secondary  rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition"
               placeholder="Enter title"
               disabled={loading}
             />
@@ -81,7 +81,7 @@ const MakeAnnouncement = () => {
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition"
+              className="w-full px-4 py-2 border  border-secondary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition"
               placeholder="Enter description"
               rows={5}
               disabled={loading}
