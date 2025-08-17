@@ -151,24 +151,25 @@ const Apartments = () => {
                 </div>
 
                 {/* Search + Sort */}
-                <div className="flex  justify-between gap-4 mt-10 mb-10 px-4 sm:px-6  mx-auto">
-
-                    <div>
-                        <form className="flex flex-wrap gap-4 w-full sm:w-auto" onSubmit={handleSearch}>
-                            <input
-                                type="number"
-                                placeholder="Min Rent"
-                                className="w-full sm:w-40 px-4 py-2 rounded-md border border-gray-900 shadow-sm focus:ring-2 focus:ring-primary outline-none"
-                                value={minRent}
-                                onChange={(e) => setMinRent(e.target.value)}
-                            />
-                            <input
-                                type="number"
-                                placeholder="Max Rent"
-                                className="w-full sm:w-40 px-4 py-2 rounded-md border border-gray-900 shadow-sm focus:ring-2 focus:ring-primary outline-none"
-                                value={maxRent}
-                                onChange={(e) => setMaxRent(e.target.value)}
-                            />
+                <div className="flex flex-col lg:flex-row justify-between gap-4 mt-10 mb-10 px-4 sm:px-6 mx-auto">
+                    <div className="w-full lg:w-auto">
+                        <form className="flex flex-col sm:flex-row gap-4 w-full" onSubmit={handleSearch}>
+                            <div className="flex flex-col sm:flex-row gap-4 w-full">
+                                <input
+                                    type="number"
+                                    placeholder="Min Rent"
+                                    className="w-full sm:w-40 px-4 py-2 rounded-md border border-gray-900 shadow-sm focus:ring-2 focus:ring-primary outline-none"
+                                    value={minRent}
+                                    onChange={(e) => setMinRent(e.target.value)}
+                                />
+                                <input
+                                    type="number"
+                                    placeholder="Max Rent"
+                                    className="w-full sm:w-40 px-4 py-2 rounded-md border border-gray-900 shadow-sm focus:ring-2 focus:ring-primary outline-none"
+                                    value={maxRent}
+                                    onChange={(e) => setMaxRent(e.target.value)}
+                                />
+                            </div>
                             <button
                                 type="submit"
                                 className="w-full sm:w-auto bg-primary px-6 py-2 rounded-md font-semibold hover:bg-secondary hover:text-white transition"
@@ -178,7 +179,7 @@ const Apartments = () => {
                         </form>
                     </div>
 
-                    <div className="flex gap-3 mt-4 sm:mt-0">
+                    <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                         <button
                             onClick={() => handleSort('asc')}
                             className={`px-4 py-2 font-semibold hover:bg-secondary rounded-md transition ${sortOrder === 'asc' ? 'bg-primary hover:text-white' : ' bg-primary  hover:bg-primary hover:text-white'}`}
@@ -192,7 +193,6 @@ const Apartments = () => {
                             Price High → Low
                         </button>
                     </div>
-
                 </div>
 
                 {/* Apartments List */}

@@ -22,7 +22,7 @@ const Contact = () => {
     }
 
     return (
-        <div className="bg-primary/20">
+        <div className="pt-15 lg:pt-0 bg-primary/20">
             <div
                 id="contact"
                 className="max-w-screen-2xl mx-auto min-h-screen px-4 lg:px-30 py-10 grid grid-cols-1 lg:grid-cols-2 items-center"

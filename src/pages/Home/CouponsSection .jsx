@@ -75,11 +75,9 @@ const CouponsSection = ({ onCouponApplied }) => {
   }, []);
 
   const handleApplyCoupon = (couponCode) => {
-    // If there's a callback function from parent (MakePayment component)
     if (onCouponApplied) {
       onCouponApplied(couponCode);
     } else {
-      // Update the path to include the member-dashboard prefix
       navigate('/member-dashboard/make-payment', {
         state: { appliedCoupon: couponCode }
       });
@@ -97,35 +95,41 @@ const CouponsSection = ({ onCouponApplied }) => {
     prevArrow: <PrevArrow />,
     responsive: [
       {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+      },
+      {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          arrows: false
         }
       }
     ]
   };
 
   return (
-    <section id='coupons' className="max-w-screen-2xl mt-25 mx-auto pb-18  px-6 md:px-20">
+    <section id='coupons' className="max-w-screen-2xl mx-auto py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-20">
       <div className="text-center">
         <div className="flex justify-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 flex items-center gap-3">
-            <IoIosGift className="text-secondary text-5xl" />
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-3 sm:mb-4 flex items-center gap-2 sm:gap-3">
+            <IoIosGift className="text-secondary text-4xl sm:text-5xl" />
             Exclusive <span className="text-secondary ml-1">Coupons</span>
           </h2>
         </div>
 
-        <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg text-gray-600 mb-6 max-w-2xl mx-auto px-4 sm:px-0">
           Unlock amazing savings for your next apartment experience with our limited-time offers.
         </p>
-
-
 
         {loading ? (
           <p className="text-center text-gray-500 text-lg">Loading coupons...</p>
         ) : (
-          <div className="relative px-8">
+          <div className="relative px-2 sm:px-4 lg:px-8">
             <Slider {...settings}>
               {coupons.map((coupon, index) => (
                 <motion.div
@@ -135,52 +139,51 @@ const CouponsSection = ({ onCouponApplied }) => {
                   whileInView="visible"
                   viewport={{ once: false, amount: 0.3 }}
                   variants={fadeUp}
-                  className="px-4 py-6"
+                  className="px-2 sm:px-3 lg:px-4 py-4 sm:py-6"
                 >
-                  <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all group">
+                  <div className="relative h-56 sm:h-64 rounded-xl lg:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all group">
                     {/* Background Image */}
                     <img
                       src={coupon.bgImage}
                       alt={coupon.code}
-                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-140"
+                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
                     />
 
                     {/* Dark Overlay */}
                     <div className="absolute inset-0 bg-black/40" />
 
                     {/* Offer Circle */}
-                    <div className="absolute -top-5 -right-5 w-24 h-24 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center shadow-lg">
-                      <span className="text-white font-bold text-lg">{coupon.discount} OFF</span>
+                    <div className="absolute -top-4 -right-4 sm:-top-5 sm:-right-5 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center shadow-lg">
+                      <span className="text-white font-bold text-sm sm:text-lg">{coupon.discount} OFF</span>
                     </div>
 
                     {/* Coupon Content */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <div className="flex items-center gap-4 mb-3">
-                        <FaTag className="text-2xl text-yellow-300" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
+                      <div className="flex items-center gap-2 sm:gap-4 mb-2 sm:mb-3">
+                        <FaTag className="text-xl sm:text-2xl text-yellow-300" />
                         <div>
-                          <h3 className="text-2xl font-bold">{coupon.code}</h3>
-                          <p className="text-sm opacity-90">{coupon.description}</p>
+                          <h3 className="text-xl sm:text-2xl font-bold">{coupon.code}</h3>
+                          <p className="text-xs sm:text-sm opacity-90">{coupon.description}</p>
                         </div>
                       </div>
 
-                      <div className="mt-4 pt-3 border-t flex justify-center items-center gap-5 border-white/20">
+                      <div className="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-5 border-white/20">
                         <button
                           onClick={() => handleApplyCoupon(coupon.code)}
-                          className="bg-white text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-primary transition-colors"
+                          className="bg-white text-gray-800 px-3 py-1 sm:px-4 sm:py-2 rounded-lg font-semibold hover:bg-primary transition-colors text-sm sm:text-base"
                         >
                           Apply Coupon
                         </button>
 
                         <button
                           onClick={() => navigate('/apartments')}
-                          className="bg-primary text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                          className="bg-primary text-gray-800 px-3 py-1 sm:px-4 sm:py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-sm sm:text-base"
                         >
                           View All Apartments
                         </button>
                       </div>
                     </div>
                   </div>
-
                 </motion.div>
               ))}
             </Slider>

@@ -215,13 +215,13 @@ const AgreementRequests = () => {
                         <input
                             type="text"
                             placeholder="Search by name, email or apartment..."
-                            className="pl-10 pr-4 py-2 w-full  rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                            className="pl-10 pr-4 py-2 w-full border border-secondary  rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                     </div>
                     <button 
-                        className="bg-primary hover:bg-primary-dark hover:bg-secondary hover:text-white px-6 py-2 rounded-lg transition-colors w-full md:w-auto"
+                        className="bg-primary hover:bg-secondary hover:text-white px-6 py-2 rounded-lg transition-colors w-full md:w-auto"
                         onClick={fetchAgreements}
                     >
                         Refresh

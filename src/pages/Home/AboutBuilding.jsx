@@ -10,35 +10,22 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+// Reduced data for better mobile display
 const cardData = [
-  { icon: FaBuilding, color: "text-blue-600", title: 'Modern Architecture', description: 'Sleek urban design reflecting modern city life with peaceful interiors.' },
-  { icon: FaMapMarkedAlt, color: "text-indigo-600", title: 'Prime Location', description: 'Heart of the city with access to markets, schools, and transport.' },
-  { icon: FaHome, color: "text-yellow-600", title: 'Diverse Apartments', description: 'Studio, 2BHK, and 3BHK units designed for families and professionals.' },
-  { icon: FaShieldAlt, color: "text-red-600", title: '24/7 Security', description: 'CCTV, access control, and on-site staff ensure your safety.' },
-  { icon: FaLeaf, color: "text-green-600", title: 'Green Living', description: 'Eco-conscious design with rooftop gardens and solar-powered lighting.' },
-  { icon: FaWifi, color: "text-purple-600", title: 'High-Speed Internet', description: 'Reliable Wi-Fi ideal for work-from-home and streaming.' },
-  { icon: FaCar, color: "text-emerald-700", title: 'Ample Parking', description: 'Secure underground and surface parking for residents and visitors.' },
-  { icon: FaToolbox, color: "text-cyan-600", title: 'On-site Maintenance', description: 'Quick-response staff for plumbing, electrical, and repairs.' },
-  { icon: MdElevator, color: "text-rose-700", title: 'Elevator Access', description: 'Multiple elevators with backup power for easy movement.' },
-  { icon: FaSwimmingPool, color: "text-cyan-500", title: 'Swimming Pool & Fitness', description: 'Enjoy a modern swimming pool and fully-equipped gym.' },
-  { icon: FaHome, color: "text-orange-600", title: 'Luxury Interiors', description: 'Spacious layouts with premium finishes.' },
-  { icon: FaLeaf, color: "text-lime-600", title: 'Rooftop Garden', description: 'Peaceful green space for relaxation.' },
-  { icon: FaCar, color: "text-teal-600", title: 'Guest Parking', description: 'Dedicated parking area for visitors.' },
-  { icon: FaWifi, color: "text-pink-600", title: 'Smart Home Ready', description: 'IoT-enabled smart systems included.' },
+  { icon: FaBuilding, color: "text-blue-600", title: 'Modern Architecture', description: 'Sleek urban design with peaceful interiors.' },
+  { icon: FaMapMarkedAlt, color: "text-indigo-600", title: 'Prime Location', description: 'Heart of the city with easy access to amenities.' },
+  { icon: FaHome, color: "text-yellow-600", title: 'Diverse Apartments', description: 'Studio, 2BHK, and 3BHK units available.' },
+  { icon: FaShieldAlt, color: "text-red-600", title: '24/7 Security', description: 'CCTV and on-site staff for safety.' },
+  { icon: FaLeaf, color: "text-green-600", title: 'Green Living', description: 'Eco-conscious design with gardens.' },
+  { icon: FaWifi, color: "text-purple-600", title: 'High-Speed Internet', description: 'Reliable Wi-Fi for work and streaming.' },
+  { icon: FaCar, color: "text-emerald-700", title: 'Ample Parking', description: 'Secure parking for residents.' },
+  { icon: FaSwimmingPool, color: "text-cyan-500", title: 'Pool & Fitness', description: 'Swimming pool and gym facilities.' },
 ];
 
 const buildingImages = [
   'https://i.ibb.co.com/q3PKX8B0/interior-2685521.jpg',
   'https://i.ibb.co.com/xtDf2VKq/danilo-rios-Ag-K-XAq-Sbfk-unsplash.jpg',
   'https://i.ibb.co.com/wFsgR7gn/alex-tyson-Ir-VNm-D3u8j-Y-unsplash.jpg',
-  'https://i.ibb.co.com/45pwd51/alex-tyson-j-KZQy7-Fnw-Jk-unsplash.jpg',
-  'https://i.ibb.co.com/Dfdt0vPN/lisa-anna-hp-Aexk-H82-Xg-unsplash.jpg',
-  'https://i.ibb.co.com/jvdj07bX/alex-tyson-Nq-Ljnjw-Kq-KA-unsplash.jpg',
-  'https://i.ibb.co.com/2750pjZm/tony-lee-Qt-OFl-R9-VO1-Y-unsplash.jpg',
-  'https://i.ibb.co.com/QFKGv8GF/leon-seibert-Whgt84a2f-SQ-unsplash.jpg',
-  'https://i.ibb.co.com/TBVntQ9p/alex-tyson-Ii-Vd1wp-Tdtg-unsplash.jpg',
-  'https://i.ibb.co.com/My0MnZM3/alex-tyson-1f-Koe-HQJj-Xw-unsplash.jpg',
-  'https://i.ibb.co.com/pB0PQKB7/alex-tyson-MSFQXXr-Of-Dc-unsplash-1.jpg',
 ];
 
 const fadeUp = {
@@ -51,7 +38,7 @@ const fadeUp = {
 };
 
 const AboutBuilding = () => {
-  // Vertical scroll settings for cards
+  // Vertical scroll settings for cards (only on lg+)
   const cardSettings = {
     dots: false,
     infinite: true,
@@ -62,6 +49,19 @@ const AboutBuilding = () => {
     autoplay: true,
     autoplaySpeed: 2000,
     pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          vertical: false,
+          slidesToShow: 2,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: "unslick" // Disable slick on mobile
+      }
+    ]
   };
 
   // Image carousel settings
@@ -77,27 +77,29 @@ const AboutBuilding = () => {
   };
 
   return (
-    <section id="about" className="relative max-w-screen-2xl mx-auto py-20 mb-10 mt-5 px-6 md:px-16">
-      <div className="grid lg:grid-cols-2 gap-12 items-center">
-
-        {/* Left Section: Text & Hero */}
+    <section id="about" className="relative max-w-screen-2xl mx-auto py-12 md:py-20 px-4 sm:px-6 md:px-8 lg:px-16">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
+        {/* Left Section: Text & Hero - shown on all screens */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeUp}
+          className="w-full lg:w-1/2"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-            <BsInfoSquareFill className="text-secondary text-5xl" />
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+            <BsInfoSquareFill className="text-secondary text-4xl lg:text-5xl" />
             About Our <span className="text-secondary">Building</span>
           </h2>
-          <p className="text-lg text-gray-600 mb-6">
+          <p className="text-base md:text-lg text-gray-600 mb-6">
             Welcome to <span className="font-semibold text-secondary">Aaponaloi</span>,
             a modern living solution where design meets comfort.
             Our complex blends <span className="font-medium">security, sustainability, and convenience</span>
             to create the perfect home for urban lifestyles.
           </p>
-          <div className="rounded-2xl overflow-hidden shadow-lg">
+          
+          {/* Image slider - only on lg+ screens */}
+          <div className="hidden lg:block rounded-2xl overflow-hidden shadow-lg">
             <Slider {...imageSettings}>
               {buildingImages.map((img, i) => (
                 <img
@@ -111,35 +113,58 @@ const AboutBuilding = () => {
           </div>
         </motion.div>
 
-        {/* Right Section: Features (Vertical Scroll) */}
+        {/* Right Section: Features */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeUp}
-          className='mt-8'
+          className="w-full lg:mt-15 lg:w-1/2"
         >
-          <Slider {...cardSettings}>
+          {/* Mobile/Tablet Grid View */}
+          <div className="lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
             {cardData.map((card, index) => (
               <motion.div
                 key={index}
                 custom={index}
                 variants={fadeUp}
                 whileHover={{ y: -5, scale: 1.02 }}
-                className="bg-primary/50 rounded-xl max-w-xl shadow-md p-5 flex items-start gap-4 hover:shadow-xl transition-all m-2"
+                className="bg-primary/50 rounded-xl shadow-md p-4 flex items-start gap-3 hover:shadow-xl transition-all"
               >
-                <div className={`w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 ${card.color}`}>
-                  <card.icon className="text-2xl" />
+                <div className={`w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 ${card.color}`}>
+                  <card.icon className="text-xl" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800">{card.title}</h3>
-                  <p className="text-gray-600 text-sm mt-1">{card.description}</p>
+                  <h3 className="text-base font-semibold text-gray-800">{card.title}</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm mt-1">{card.description}</p>
                 </div>
               </motion.div>
             ))}
-          </Slider>
-        </motion.div>
+          </div>
 
+          {/* Desktop Slider View */}
+          <div className="hidden lg:block h-[500px]">
+            <Slider {...cardSettings}>
+              {cardData.map((card, index) => (
+                <motion.div
+                  key={index}
+                  custom={index}
+                  variants={fadeUp}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="bg-primary/50 rounded-xl max-w-xl shadow-md p-5 flex items-start gap-4 hover:shadow-xl transition-all m-2"
+                >
+                  <div className={`w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 ${card.color}`}>
+                    <card.icon className="text-2xl" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800">{card.title}</h3>
+                    <p className="text-gray-600 text-sm mt-1">{card.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </Slider>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

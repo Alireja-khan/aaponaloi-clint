@@ -21,6 +21,9 @@ const AdminDashboardLayout = () => {
     <div className="min-h-screen flex flex-col lg:flex-row bg-primary/20">
       {/* Mobile Top Bar */}
       <div className="flex justify-between items-center p-4 lg:hidden shadow-md bg-primary/10">
+        <Link to="/" className="flex items-center gap-2">
+          <span className="w-10 h-8"><AaponaloiLogo /></span>
+        </Link>
         <h2 className="text-xl font-bold text-[#222222]">Admin Dashboard</h2>
         <button onClick={() => setMenuOpen(!menuOpen)} className="text-2xl text-gray-800 focus:outline-none">
           {menuOpen ? <FaTimes /> : <FaBars />}
@@ -32,12 +35,11 @@ const AdminDashboardLayout = () => {
         className={`bg-primary/10 shadow-md p-6 flex-col transition-all duration-300
         ${menuOpen ? 'flex' : 'hidden'} lg:flex lg:w-72`}
       >
-
-        <Link to="/" className="hidden lg:flex items-center gap-2 mb-6 cursor-pointer">
+        {/* Home Link - Consistent across all devices */}
+        <Link to="/" className="flex items-center gap-2 mb-6 cursor-pointer">
           <span className="w-14 h-12"><AaponaloiLogo /></span>
-          <span className="text-xl font-bold tracking-tight">Aaponaloi</span>
+          <span className="text-xl font-bold tracking-tight hidden lg:inline">Aaponaloi</span>
         </Link>
-
 
         <h2 className="text-2xl font-bold mb-6 text-[#222222] hidden lg:block">Admin Dashboard</h2>
         <nav className="flex flex-col gap-2">

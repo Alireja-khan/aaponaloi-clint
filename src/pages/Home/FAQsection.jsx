@@ -85,7 +85,7 @@ const FAQSection = () => {
             <img
               src={image1}
               alt="Apartment Building"
-              className="rounded-3xl object-cover w-full h-[300px] sm:h-[400px] md:h-[350px] lg:h-[450px]"
+              className="rounded-3xl object-cover md:mt-20 lg:mt-0 w-full h-[300px] sm:h-[400px] md:h-[350px] lg:h-[450px]"
             />
           </motion.div>
         </FadeInOnView>

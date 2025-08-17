@@ -41,12 +41,14 @@ const MakeAnnouncement = () => {
   return (
     <div className="pt-14 lg:pl-10 px-4">
       <h2
-        className="text-4xl pb-9 font-bold flex items-center gap-3 text-gray-800"
-        data-aos="fade-down"
-      >
-        <FaBullhorn className="text-secondary" />
-        Make <span className="text-secondary">Announcement</span>
-      </h2>
+  className="text-2xl sm:text-3xl md:text-4xl pb-6 md:pb-9 font-bold flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-gray-800"
+  data-aos="fade-down"
+>
+  <FaBullhorn className="text-secondary text-3xl sm:text-4xl" />
+  <span className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2">
+    Make <span className="text-secondary">Announcement</span>
+  </span>
+</h2>
 
       <div className="flex flex-col lg:flex-row gap-8 items-start">
         {/* Form Section */}
