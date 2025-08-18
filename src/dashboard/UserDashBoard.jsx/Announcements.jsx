@@ -29,18 +29,15 @@ const Announcements = () => {
     fetchAnnouncements();
   }, []);
 
-  const filteredAnnouncements = announcements.filter(ann => 
+  const filteredAnnouncements = announcements.filter(ann =>
     ann.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     ann.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-50 to-white">
-        <div className="flex flex-col items-center">
-          <span className="loading loading-spinner loading-lg text-primary"></span>
-          <p className="mt-4 text-gray-500">Loading announcements...</p>
-        </div>
+      <div className="flex justify-center items-center min-h-screen ">
+        <span className="loading loading-bars loading-xl"></span>
       </div>
     );
   }
@@ -49,7 +46,7 @@ const Announcements = () => {
     <div className="px-4 py-8 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <div className="space-y-8">
         {/* Header Section */}
-        <motion.div 
+        <motion.div
           className="flex flex-col md:flex-row md:items-center md:justify-between gap-4"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -62,18 +59,18 @@ const Announcements = () => {
             </h2>
             <p className="text-gray-600 mt-2">Stay updated with community news and important notices</p>
           </div>
-          
+
           {announcements.length > 0 && (
             <div className="relative w-full md:w-64">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <FaSearch className="text-gray-400" />
+                <FaSearch className="" />
               </div>
               <input
                 type="text"
                 placeholder="Search announcements..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+                className="pl-10 w-full px-4 py-2 border border-secondary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
               />
             </div>
           )}
@@ -82,16 +79,16 @@ const Announcements = () => {
         {/* Empty State */}
         {!loading && announcements.length === 0 && (
           <motion.div
-            className="text-center bg-white rounded-xl shadow-sm p-8 border border-gray-100"
+            className="text-center bg-primary/20 rounded-xl shadow-sm p-8 border border-secondary/50"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
             <div className="max-w-md mx-auto">
-              <img 
-                src={noFound} 
-                alt="No announcements found" 
-                className="w-64 h-64 mx-auto mb-6" 
+              <img
+                src={noFound}
+                alt="No announcements found"
+                className="w-64 h-64 mx-auto mb-6"
               />
               <h3 className="text-2xl font-semibold text-gray-700 mb-2">
                 No Announcements Available
@@ -114,7 +111,7 @@ const Announcements = () => {
             {filteredAnnouncements.map((ann, index) => (
               <motion.div
                 key={ann._id}
-                className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition-all duration-300"
+                className="bg-primary/20 rounded-xl shadow-sm overflow-hidden border border-secondary/50 hover:shadow-md transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
@@ -149,13 +146,13 @@ const Announcements = () => {
         {/* No results for search */}
         {announcements.length > 0 && filteredAnnouncements.length === 0 && (
           <motion.div
-            className="text-center bg-white rounded-xl shadow-sm p-8 border border-gray-100"
+            className="text-center bg-primary/20 rounded-xl shadow-sm p-8 border border-secondary/50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
           >
             <div className="max-w-md mx-auto">
-              <FaSearch className="text-4xl text-gray-400 mx-auto mb-4" />
+              <FaSearch className="text-4xl  mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-gray-700 mb-2">
                 No announcements found
               </h3>

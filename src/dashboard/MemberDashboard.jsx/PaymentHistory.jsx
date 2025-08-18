@@ -35,11 +35,8 @@ const PaymentHistory = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-50 to-white">
-        <div className="flex flex-col items-center">
-          <span className="loading loading-spinner loading-lg text-primary"></span>
-          <p className="mt-4 text-gray-500">Loading your payment history...</p>
-        </div>
+      <div className="flex justify-center items-center min-h-screen ">
+        <span className="loading loading-bars loading-xl"></span>
       </div>
     );
   }
@@ -65,7 +62,7 @@ const PaymentHistory = () => {
           {payments.length > 0 && (
             <div className="relative w-full md:w-64">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <FaSearch className="text-gray-400" />
+                <FaSearch className="" />
               </div>
               <input
                 type="text"
@@ -81,7 +78,7 @@ const PaymentHistory = () => {
         {/* Empty State */}
         {!loading && payments.length === 0 && (
           <motion.div
-            className="text-center bg-white rounded-xl shadow-sm p-8 border border-gray-100"
+            className="text-center bg-primary/20 rounded-xl shadow-sm p-8 border border-secondary/50"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
@@ -95,7 +92,7 @@ const PaymentHistory = () => {
               <h3 className="text-2xl font-semibold text-gray-700 mb-2">
                 No Payment Records Found
               </h3>
-              <p className="text-gray-500 mb-6">
+              <p className=" mb-6">
                 You haven't made any payments yet. Your payment history will appear here once you complete your first payment.
               </p>
             </div>
@@ -105,52 +102,52 @@ const PaymentHistory = () => {
         {/* Payment Table */}
         {filteredPayments.length > 0 && (
           <motion.div
-            className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100"
+            className="bg-primary/20 rounded-xl shadow-sm overflow-hidden border border-secondary/50"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="min-w-full divide-y divide-secondary/20">
+                <thead className="bg-primary/50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                       <div className="flex items-center gap-2">
                         <BsCalendarCheck />
                         Month
                       </div>
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                       <div className="flex items-center gap-2">
                         <IoLocationSharp />
                         Apartment
                       </div>
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                       <div className="flex items-center gap-2">
                         <RiBillFill />
                         Original Rent
                       </div>
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                       Discount
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                       <div className="flex items-center gap-2">
                         <BsCurrencyDollar />
                         Amount Paid
                       </div>
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                       Date
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-primary/20 divide-y divide-secondary/20">
                   {filteredPayments.map((p, idx) => (
                     <motion.tr
                       key={idx}
-                      className="hover:bg-gray-50 transition-colors"
+                      className="hover:bg-primary/30 transition-colors"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: idx * 0.05 }}
@@ -158,23 +155,23 @@ const PaymentHistory = () => {
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                         {p.month}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm ">
                         <div className="flex items-center gap-1">
                           <span className="font-medium">{p.apartmentNo}</span>
-                          <span className="text-gray-400">|</span>
+                          <span className="">|</span>
                           <span>Block {p.block}</span>
-                          <span className="text-gray-400">|</span>
+                          <span className="">|</span>
                           <span>Floor {p.floor}</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm ">
                         ৳{p.originalRent}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm ">
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                           p.discountPercentage > 0 
-                            ? 'bg-green-100 text-green-800' 
-                            : 'bg-gray-100 text-gray-800'
+                            ? 'bg-primary' 
+                            : 'bg-primary/50'
                         }`}>
                           {p.discountPercentage || 0}%
                         </span>
@@ -182,7 +179,7 @@ const PaymentHistory = () => {
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-green-600">
                         ৳{p.rent}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm ">
                         {new Date(p.paidAt).toLocaleDateString('en-US', {
                           year: 'numeric',
                           month: 'short',
@@ -196,9 +193,9 @@ const PaymentHistory = () => {
             </div>
 
             {/* Summary Footer */}
-            <div className="bg-gray-50 px-6 py-3 border-t border-gray-200">
+            <div className="bg-primary/50 px-6 py-3 border-t border-secondary/30">
               <div className="flex justify-between items-center">
-                <p className="text-sm text-gray-500">
+                <p className="text-sm ">
                   Showing <span className="font-medium">{filteredPayments.length}</span> of{' '}
                   <span className="font-medium">{payments.length}</span> payments
                 </p>
@@ -218,17 +215,17 @@ const PaymentHistory = () => {
         {/* No results for search */}
         {payments.length > 0 && filteredPayments.length === 0 && (
           <motion.div
-            className="text-center bg-white rounded-xl shadow-sm p-8 border border-gray-100"
+            className="text-center bg-primary/20 rounded-xl shadow-sm p-8 border border-secondary/50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
           >
             <div className="max-w-md mx-auto">
-              <FaSearch className="text-4xl text-gray-400 mx-auto mb-4" />
+              <FaSearch className="text-4xl  mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-gray-700 mb-2">
                 No payments found
               </h3>
-              <p className="text-gray-500 mb-4">
+              <p className=" mb-4">
                 No payments match your search for "<span className="font-medium">{searchTerm}</span>"
               </p>
               <button

@@ -45,11 +45,8 @@ const MemberProfile = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-100 to-indigo-100 animate-pulse"></div>
-          <div className="h-4 w-32 bg-gray-100 rounded-full animate-pulse"></div>
-        </div>
+      <div className="flex justify-center items-center min-h-screen ">
+        <span className="loading loading-bars loading-xl"></span>
       </div>
     );
   }
@@ -57,7 +54,7 @@ const MemberProfile = () => {
   if (!agreement) {
     return (
       <div className="flex justify-center items-center min-h-screen px-4">
-        <div className="text-center max-w-md p-8 bg-white rounded-2xl shadow-sm border border-gray-200">
+        <div className="text-center max-w-md p-8 bg-primary/20 rounded-2xl shadow-sm border border-secondary/50">
           <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
             <FaHome className="text-blue-500 text-3xl" />
           </div>
@@ -101,7 +98,7 @@ const MemberProfile = () => {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-blue-50 text-blue-500">
+          <div className="p-2 rounded-lg bg-primary">
             <FaUser className="text-xl" />
           </div>
           <h1 className="text-2xl font-bold text-gray-900">Member Profile</h1>
@@ -112,8 +109,8 @@ const MemberProfile = () => {
       {/* Main Content */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Profile Card - Takes 4 columns on large screens */}
-        <div className="lg:col-span-4 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-fit" data-aos="fade-right">
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6">
+        <div className="lg:col-span-4 bg-primary/20 rounded-xl shadow-sm border border-secondary/50 overflow-hidden h-fit" data-aos="fade-right">
+          <div className="bg-primary/30 border-b border-b-secondary/50 p-6">
             <div className="flex flex-col items-center">
               <img
                 src={
@@ -121,7 +118,7 @@ const MemberProfile = () => {
                   `https://ui-avatars.com/api/?name=${encodeURIComponent(userData.userName || userData.displayName || 'Member')}&background=random`
                 }
                 alt="Profile"
-                className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-sm"
+                className="w-44 h-62 rounded-xl object-cover object-top border-4 border-primary/60 shadow-sm"
               />
               <h2 className="mt-4 text-lg font-semibold text-gray-800 text-center">
                 {userData.userName || userData.displayName || 'Member Name'}
@@ -133,36 +130,36 @@ const MemberProfile = () => {
           <div className="p-5 space-y-4">
             {/* Email */}
             <div className="flex items-start gap-3">
-              <div className="p-2 bg-blue-50 rounded-lg text-blue-500 mt-0.5">
+              <div className="p-2 bg-primary/80 rounded-lg  mt-0.5">
                 <FaEnvelope className="text-sm" />
               </div>
               <div>
-                <p className="text-xs font-medium text-gray-400 uppercase tracking-wider">Email</p>
-                <p className="text-sm text-gray-900 mt-1 break-all">{userData.email || 'Not provided'}</p>
+                <p className="text-xs font-medium  uppercase tracking-wider">Email</p>
+                <p className="text-sm text-gray-600 mt-1 break-all">{userData.email || 'Not provided'}</p>
               </div>
             </div>
 
             {/* Phone */}
             {(userData.contact || userData.phone) && (
               <div className="flex items-start gap-3">
-                <div className="p-2 bg-green-50 rounded-lg text-green-500 mt-0.5">
+                <div className="p-2 bg-primary/80 rounded-lg mt-0.5">
                   <FaPhone className="text-sm" />
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-gray-400 uppercase tracking-wider">Contact</p>
-                  <p className="text-sm text-gray-900 mt-1">{userData.contact || userData.phone}</p>
+                  <p className="text-xs font-medium  uppercase tracking-wider">Contact</p>
+                  <p className="text-sm text-gray-600 mt-1">{userData.contact || userData.phone}</p>
                 </div>
               </div>
             )}
 
             {/* Created At */}
             <div className="flex items-start gap-3">
-              <div className="p-2 bg-purple-50 rounded-lg text-purple-500 mt-0.5">
+              <div className="p-2 bg-primary/80 rounded-lg  mt-0.5">
                 <FaCalendarAlt className="text-sm" />
               </div>
               <div>
-                <p className="text-xs font-medium text-gray-400 uppercase tracking-wider">Member Since</p>
-                <p className="text-sm text-gray-900 mt-1">
+                <p className="text-xs font-medium  uppercase tracking-wider">Member Since</p>
+                <p className="text-sm text-gray-600 mt-1">
                   {userData.createdAt
                     ? new Date(userData.createdAt).toLocaleDateString('en-US', {
                         year: 'numeric',
@@ -181,48 +178,48 @@ const MemberProfile = () => {
           {/* Location & Financial in one row */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Location Card */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-              <div className="px-5 py-3 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-indigo-50 flex items-center gap-2">
-                <div className="p-1.5 rounded-lg bg-blue-100 text-blue-600">
+            <div className="bg-primary/20 rounded-xl shadow-sm border border-secondary/50 overflow-hidden">
+              <div className="px-5 py-3 border-b border-secondary/50 bg-primary/30 flex items-center gap-2">
+                <div className="p-1.5 rounded-lg bg-primary/50">
                   <FaMapMarkerAlt className="text-sm" />
                 </div>
                 <h2 className="text-base font-semibold text-gray-800">Location</h2>
               </div>
               <div className="p-4 grid grid-cols-2 gap-3">
                 <div>
-                  <p className="text-xs font-medium text-gray-400 uppercase">Block</p>
-                  <p className="text-base font-medium text-gray-800 mt-1">{userData.block || 'N/A'}</p>
+                  <p className="text-xs font-medium  uppercase">Block</p>
+                  <p className="text-base font-medium text-gray-600 mt-1">{userData.block || 'N/A'}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-gray-400 uppercase">Floor</p>
-                  <p className="text-base font-medium text-gray-800 mt-1">{userData.floor || 'N/A'}</p>
+                  <p className="text-xs font-medium  uppercase">Floor</p>
+                  <p className="text-base font-medium text-gray-600 mt-1">{userData.floor || 'N/A'}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-gray-400 uppercase">Apartment</p>
-                  <p className="text-base font-medium text-gray-800 mt-1">{userData.apartmentNo || 'N/A'}</p>
+                  <p className="text-xs font-medium  uppercase">Apartment</p>
+                  <p className="text-base font-medium text-gray-600 mt-1">{userData.apartmentNo || 'N/A'}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-gray-400 uppercase">Status</p>
+                  <p className="text-xs font-medium  uppercase">Status</p>
                   <div className="flex items-center gap-1 mt-1">
                     <FaCheckCircle className="text-green-500 text-sm" />
-                    <span className="text-base font-medium text-gray-800">Active</span>
+                    <span className="text-base font-medium text-gray-600">Active</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Financial Card */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-              <div className="px-5 py-3 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-indigo-50 flex items-center gap-2">
-                <div className="p-1.5 rounded-lg bg-green-100 text-green-600">
+            <div className="bg-primary/20 rounded-xl shadow-sm border border-secondary/50 overflow-hidden">
+              <div className="px-5 py-3 border-b border-secondary/50 bg-primary/30 flex items-center gap-2">
+                <div className="p-1.5 rounded-lg bg-primary/50">
                   <FaMoneyBillWave className="text-sm" />
                 </div>
                 <h2 className="text-base font-semibold text-gray-800">Financials</h2>
               </div>
               <div className="p-4 space-y-4">
                 <div>
-                  <p className="text-xs font-medium text-gray-400 uppercase">Monthly Rent</p>
-                  <p className="text-xl font-bold text-gray-800 mt-1">৳{userData.rent?.toLocaleString() || 'N/A'}</p>
+                  <p className="text-xs font-medium uppercase">Monthly Rent</p>
+                  <p className="text-xl font-bold text-gray-600 mt-1">৳{userData.rent?.toLocaleString() || 'N/A'}</p>
                 </div>
                 {hasDiscount && (
                   <div className="bg-blue-50 p-3 rounded-lg border border-blue-100">
@@ -240,9 +237,9 @@ const MemberProfile = () => {
           </div>
 
           {/* Agreement Details */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-            <div className="px-5 py-3 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-indigo-50 flex items-center gap-2">
-              <div className="p-1.5 rounded-lg bg-indigo-100 text-indigo-600">
+          <div className="bg-primary/20 rounded-xl shadow-sm border border-secondary/50 overflow-hidden">
+            <div className="px-5 py-3 border-b border-secondary/50 bg-primary/30 flex items-center gap-2">
+              <div className="p-1.5 rounded-lg bg-primary/50">
                 <FaFileSignature className="text-sm" />
               </div>
               <h2 className="text-base font-semibold text-gray-800">Agreement Details</h2>
@@ -250,17 +247,17 @@ const MemberProfile = () => {
             <div className="p-5 space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <p className="text-xs font-medium text-gray-400 uppercase">Agreement Date</p>
-                  <p className="text-sm text-gray-800 mt-1">{agreementDate}</p>
+                  <p className="text-xs font-medium  uppercase">Agreement Date</p>
+                  <p className="text-sm text-gray-600 mt-1">{agreementDate}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-gray-400 uppercase">Document ID</p>
-                  <p className="text-sm text-gray-800 mt-1 font-mono">{agreement._id?.slice(-8) || 'N/A'}</p>
+                  <p className="text-xs font-medium  uppercase">Document ID</p>
+                  <p className="text-sm text-gray-600 mt-1 font-mono">{agreement._id?.slice(-8) || 'N/A'}</p>
                 </div>
               </div>
 
-              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                <p className="text-xs font-medium text-gray-500 uppercase mb-2">Key Terms</p>
+              <div className="bg-primary/10 p-4 rounded-lg border border-secondary/50">
+                <p className="text-xs font-medium  uppercase mb-2">Key Terms</p>
                 <ul className="text-sm text-gray-700 space-y-2">
                   <li className="flex items-start gap-2">
                     <FaFileAlt className="text-gray-400 mt-0.5 flex-shrink-0" size={12} />
@@ -282,8 +279,8 @@ const MemberProfile = () => {
           {/* Quick Action */}
           <div>
             <Link to='/member-dashboard/make-payment'>
-              <button className="w-full flex items-center justify-center gap-2 p-3 bg-white rounded-lg border border-green-200 hover:bg-green-50 transition-all shadow-sm hover:shadow-md">
-                <FaMoneyBillWave className="text-green-600" />
+              <button className="w-full flex items-center justify-center gap-2 p-3 bg-primary/70 rounded-lg border border-secondary/50 hover:bg-secondary/70 hover:text-white transition-all shadow-sm hover:shadow-md">
+                <FaMoneyBillWave className="" />
                 <span className="font-medium">Make Payment</span>
               </button>
             </Link>

@@ -94,24 +94,23 @@ const Navbar = ({ bannerLoading }) => {
     </>
   );
 
-  // Determine navbar background and text color
 const getNavbarStyle = () => {
-  // Base styles (applied to all screens)
-  let baseStyles = 'lg:bg-[#adc17826] lg:backdrop-blur-2xl lg:shadow-md lg:text-black';
-  
-  // Desktop-specific styles (lg and up)
-  if (location.pathname === '/') {
-    baseStyles += isScrolled 
-      ? '' // already covered by base styles
-      : bannerLoading 
-        ? ' lg:bg-transparent lg:text-black'
-        : ' lg:bg-transparent lg:text-white';
+  // For mobile (always show the blurred background)
+  if (window.innerWidth < 1024) { // Tailwind's lg breakpoint
+    return 'bg-[#adc17826] backdrop-blur-2xl shadow-md text-black';
   }
   
-  // Mobile/tablet styles (below lg)
-  baseStyles += ' bg-[#adc17826] backdrop-blur-2xl shadow-md text-black';
+  // For desktop on home page
+  if (location.pathname === '/') {
+    return isScrolled 
+      ? 'bg-[#adc17826] backdrop-blur-2xl shadow-md text-black'
+      : bannerLoading 
+        ? 'bg-transparent text-black'
+        : 'bg-transparent text-white';
+  }
   
-  return baseStyles;
+  // For desktop on other pages
+  return 'bg-[#adc17826] backdrop-blur-2xl shadow-md text-black';
 };
 
   return (
