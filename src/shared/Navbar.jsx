@@ -22,7 +22,7 @@ const Navbar = ({ bannerLoading }) => {
 
   useEffect(() => {
     const onScroll = () => {
-      setIsScrolled(window.scrollY > 80); // Fixed typo here (was scrollY)
+      setIsScrolled(window.scrollY > 80); 
     };
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
@@ -94,6 +94,8 @@ const Navbar = ({ bannerLoading }) => {
     </>
   );
 
+  
+
 const getNavbarStyle = () => {
   // For mobile (always show the blurred background)
   if (window.innerWidth < 1024) { // Tailwind's lg breakpoint
@@ -144,7 +146,7 @@ const getNavbarStyle = () => {
         </div>
 
         {/* Navbar End - Show user dropdown on all routes except specific ones */}
-        {(user && !['/login', '/register'].includes(location.pathname)) && (
+        {(!user && !['/login', '/register'].includes(location.pathname)) && (
           <div className="navbar-end">
             <div ref={dropdownRef} className="relative">
               <div
