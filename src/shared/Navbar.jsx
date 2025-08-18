@@ -7,7 +7,7 @@ import { AuthContext } from '../contexts/AuthContext/AuthContext';
 import AaponaloiLogo from './AaponaloiLogo';
 
 const Navbar = ({ bannerLoading }) => {
-  const { user, signOutUser } = useContext(AuthContext);
+  const { user, signOutUser, loading } = useContext(AuthContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -22,7 +22,7 @@ const Navbar = ({ bannerLoading }) => {
 
   useEffect(() => {
     const onScroll = () => {
-      setIsScrolled(window.scrollY > 80); 
+      setIsScrolled(window.scrollY > 80);
     };
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
@@ -54,9 +54,9 @@ const Navbar = ({ bannerLoading }) => {
   const navLinks = (
     <>
       <li>
-        <NavLink 
-          to="/" 
-          end 
+        <NavLink
+          to="/"
+          end
           className="font-medium text-lg px-3 py-1.5 rounded"
           onClick={() => setIsOpen(false)}
         >
@@ -64,8 +64,8 @@ const Navbar = ({ bannerLoading }) => {
         </NavLink>
       </li>
       <li>
-        <NavLink 
-          to="/apartments" 
+        <NavLink
+          to="/apartments"
           className="font-medium text-lg px-3 py-1.5 rounded"
           onClick={() => setIsOpen(false)}
         >
@@ -73,8 +73,8 @@ const Navbar = ({ bannerLoading }) => {
         </NavLink>
       </li>
       <li>
-        <NavLink 
-          to="/contact" 
+        <NavLink
+          to="/contact"
           className="font-medium text-lg px-3 py-1.5 rounded"
           onClick={() => setIsOpen(false)}
         >
@@ -94,26 +94,24 @@ const Navbar = ({ bannerLoading }) => {
     </>
   );
 
-  
+  const getNavbarStyle = () => {
+    // For mobile (always show the blurred background)
+    if (window.innerWidth < 1024) { // Tailwind's lg breakpoint
+      return 'bg-[#adc17826] backdrop-blur-2xl shadow-md text-black';
+    }
 
-const getNavbarStyle = () => {
-  // For mobile (always show the blurred background)
-  if (window.innerWidth < 1024) { // Tailwind's lg breakpoint
+    // For desktop on home page
+    if (location.pathname === '/') {
+      return isScrolled
+        ? 'bg-[#adc17826] backdrop-blur-2xl shadow-md text-black'
+        : bannerLoading
+          ? 'bg-transparent text-black'
+          : 'bg-transparent text-white';
+    }
+
+    // For desktop on other pages
     return 'bg-[#adc17826] backdrop-blur-2xl shadow-md text-black';
-  }
-  
-  // For desktop on home page
-  if (location.pathname === '/') {
-    return isScrolled 
-      ? 'bg-[#adc17826] backdrop-blur-2xl shadow-md text-black'
-      : bannerLoading 
-        ? 'bg-transparent text-black'
-        : 'bg-transparent text-white';
-  }
-  
-  // For desktop on other pages
-  return 'bg-[#adc17826] backdrop-blur-2xl shadow-md text-black';
-};
+  };
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 ${getNavbarStyle()} transition-all duration-300`}>
@@ -145,9 +143,9 @@ const getNavbarStyle = () => {
           <ul className="menu menu-horizontal px-1 space-x-2">{navLinks}</ul>
         </div>
 
-        {/* Navbar End - Show user dropdown on all routes except specific ones */}
-        {(!user && !['/login', '/register'].includes(location.pathname)) && (
-          <div className="navbar-end">
+        {/* Navbar End - Show login/signup or user dropdown based on auth state */}
+        <div className="navbar-end">
+          {user ? (
             <div ref={dropdownRef} className="relative">
               <div
                 onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -163,9 +161,8 @@ const getNavbarStyle = () => {
                   <FaUserCircle className="text-3xl" />
                 )}
                 <FaChevronDown
-                  className={`text-sm text-black transition-transform duration-200 ${
-                    dropdownOpen ? 'rotate-180' : 'rotate-0'
-                  }`}
+                  className={`text-sm text-black transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : 'rotate-0'
+                    }`}
                 />
               </div>
 
@@ -215,10 +212,25 @@ const getNavbarStyle = () => {
                 )}
               </AnimatePresence>
             </div>
-          </div>
-        )}
-
-        
+          ) : (
+            !['/login', '/register'].includes(location.pathname) && (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => navigate('/login')}
+                  className="btn btn-ghost hover:bg-primary border border-secondary/50 font-medium"
+                >
+                  Login
+                </button>
+                <button
+                  onClick={() => navigate('/register')}
+                  className="btn btn-ghost hover:bg-primary border border-secondary/50 font-medium"
+                >
+                  Sign Up
+                </button>
+              </div>
+            )
+          )}
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -233,6 +245,28 @@ const getNavbarStyle = () => {
             className="lg:hidden fixed top-0 left-0 h-screen w-64 bg-white shadow-lg z-40 pt-16"
           >
             <ul className="menu p-4 space-y-2">{navLinks}</ul>
+            {!user && !['/login', '/register'].includes(location.pathname) && (
+              <div className="px-4 space-y-2">
+                <button
+                  onClick={() => {
+                    setIsOpen(false);
+                    navigate('/login');
+                  }}
+                  className="btn btn-ghost w-full justify-start"
+                >
+                  Login
+                </button>
+                <button
+                  onClick={() => {
+                    setIsOpen(false);
+                    navigate('/register');
+                  }}
+                  className="btn btn-primary w-full justify-start"
+                >
+                  Sign Up
+                </button>
+              </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
